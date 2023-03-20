@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/kirameki/css/layout.css">
 
 		
-		<title> Transition Layer -  Wandern</title>
+		<title> Transition-Layer_TCP -  Wandern</title>
 		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
 		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 		<!-- lazyload -->
@@ -265,130 +265,24 @@
 			<img
 				data-src="https://cdn.jsdelivr.net/gh/WandernForte/roselia/bkg.jpg"
 				data-sizes="auto"
-				alt="Transition Layer"
+				alt="Transition-Layer_TCP"
 				class="lazyload kira-post-cover-image disabled-kira-image"
 			/>
-			<h1>Transition Layer</h1>
+			<h1>Transition-Layer_TCP</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年03月20日</a>
-			<a><i class="kirafont icon-areachart"></i>793 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>0 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
-		<h1><span id="第5章-传输层">第5章 传输层</span></h1><h2><span id="51-传输层提供的服务">5.1 传输层提供的服务</span></h2><p>传输层为应用层提供<strong>可靠</strong>通信服务</p>
-<h3><span id="511-传输层的功能">5.1.1 传输层的功能</span></h3><ol>
-<li>提供端到端的通信</li>
-<li>复用和分用<ul>
-<li>复用：发送方的不同应用进程均可使用同一传输层协议传送数据</li>
-<li>分用：接收方的传输层可以在剥离报文首部后把这些数据正确交付到目的应用进程</li>
-</ul>
-</li>
-<li>对报文的首部以及数据部分进行差错检测（如何对数据进行检错？）</li>
-<li>同时提供两种不同传输协议<ol>
-<li>面向连接的TCP（无论底层是否可靠，逻辑上就是可靠的信道）</li>
-<li>无连接的UDP（逻辑上是不可靠信道）</li>
-</ol>
-</li>
-</ol>
-<h3><span id="512-传输层的寻址与端口">5.1.2 传输层的寻址与端口</span></h3><ol>
-<li><p>（软件）端口的作用</p>
-<ul>
-<li>用于唯一标识主机中应用进程的接口（根据ip地址和mac地址类推，但是感觉有些不对？）</li>
-<li>是应用层的各种协议进程与传输实体进行层间交互的一种地址</li>
-</ul>
-</li>
-<li><p>端口号</p>
-<ul>
-<li><p>端口号长度为16位，最多能够表示65536个端口号，只具有本地意义</p>
-</li>
-<li><p>服务端使用的端口号</p>
-<ul>
-<li><p>熟知端口号  数值为0~1023  被指派给TCP&#x2F;IP最重要的一些应用程序</p>
-</li>
-<li><p>登记端口号  数值为1024~49151  </p>
-<ul>
-<li><table>
-<thead>
-<tr>
-<th>应用程序</th>
-<th>FTP</th>
-<th>TELNET</th>
-<th>SMTP</th>
-<th>DNS</th>
-<th>TFTP</th>
-<th>HTTP</th>
-<th>SNMP</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>熟知端口号（相对于1024的ofs）</td>
-<td>21</td>
-<td>23</td>
-<td>25</td>
-<td>53</td>
-<td>69</td>
-<td>80</td>
-<td>161</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>客户端使用的端口号</p>
-<ul>
-<li>数值为49152~65535</li>
-<li>一个进程在通信结束后就释放占用的端口号，这个端口号就可被其他进程使用</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>套接字Socket&#x3D;IP Address:Port</p>
-</li>
-</ol>
-<h3><span id="513-无连接服务与面向连接服务">5.1.3 无连接服务与面向连接服务</span></h3><p>暂略</p>
-<h2><span id="52-udp协议">5.2 UDP协议</span></h2><h3><span id="521-udp数据报">5.2.1 UDP数据报</span></h3><ol>
-<li>UDP概述</li>
-<li>UDP首部格式</li>
-</ol>
-<h3><span id="522-udp校验">5.2.2 UDP校验</span></h3><p>在计算校验和时，要在UDP数据报之前增加12B的伪首部，伪首部仅用于计算校验和</p>
-<p><strong>伪首部的格式：</strong> <strong>|源ip地址（4B）|目的ip地址（4B)|0(1B)|17(1B)|UDP长度（2B)|</strong></p>
-<p><strong>校验过程：</strong></p>
-<ol>
-<li>在发送端<ol>
-<li>伪首部，首部，数据段分为每段2B长的数据，数据段若不足则填充0</li>
-<li>对上述各段数计算反码求和，结果填入检验和字段</li>
-<li>去掉伪首部，发送</li>
-</ol>
-</li>
-<li>在接收端<ol>
-<li>填上伪首部</li>
-<li>同样的反码求和</li>
-<li>结果为全1则无差错，否则进行差错处理</li>
-</ol>
-</li>
-</ol>
-<h2><span id="53-tcp协议">5.3 TCP协议</span></h2><h3><span id="531-tcp协议的特点">5.3.1 TCP协议的特点</span></h3><ol>
-<li>面向连接的逻辑连接</li>
-<li>每条TCP连接都只能有两个端点。</li>
-<li>提供可靠交付服务，保证传输数据无差错，不丢失，不重复且有序</li>
-<li>提供全双工通信（两端都设有发送缓存和接收缓存，用于临时存放双向通信的数据）</li>
-<li>面向字节流</li>
-<li>发送数据报的适应性调整<em>（这里暂时只是个人说法）</em></li>
-</ol>
-<h3><span id="532-tcp报文">5.3.2 TCP报文</span></h3><p><code>TCP报文可以运载数据，建立连接，释放连接以及应答</code></p>
-<p>TCP报文各字段意义</p>
-<hr>
-<p>内容太多准备单独把TCP拎出来</p>
-
+		
 	</article>
 
 	 
     <div class="kira-post-copyright">
         <strong>本文作者：</strong>Kiryu Sento<br>
-        <strong>本文链接：</strong><a href="https://wandernforte.github.io/kirameki/Transition-Layer/" title="https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;Transition-Layer&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;Transition-Layer&#x2F;</a><br>
+        <strong>本文链接：</strong><a href="https://wandernforte.github.io/kirameki/Transition-Layer-TCP/" title="https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;Transition-Layer-TCP&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;Transition-Layer-TCP&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
