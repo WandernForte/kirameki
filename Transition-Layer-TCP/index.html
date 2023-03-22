@@ -90,7 +90,7 @@
 		
 		<a
 			class="kira-list-item mdui-ripple false"
-			href="/kirameki/archives"
+			href="/kirameki/Archive"
 			title="文章归档"
 		>
 			<i
@@ -273,7 +273,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年03月20日</a>
-			<a><i class="kirafont icon-areachart"></i>967 字</a>
+			<a><i class="kirafont icon-areachart"></i>1k 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
 		</div>
 		<h1><span id="chapter-5-transition-layer">Chapter 5 Transition-Layer</span></h1><h2><span id="53-tcp">5.3 TCP</span></h2><h3><span id="531-tcp协议的特点">5.3.1 TCP协议的特点</span></h3><ol>
@@ -336,10 +336,15 @@
 <li>流水线机制</li>
 <li>累计确认</li>
 <li>重传<ol>
-<li>超时TCP（使用单一重传定时器）</li>
+<li>超时TCP<ul>
+<li>使用单一重传定时器</li>
+<li>慢开始和拥塞避免</li>
+</ul>
+</li>
 <li>重复确认<ul>
 <li>发送方会背靠背地发送多个 分组</li>
 <li>如果发送方收到对同一数据的3个ACK，则假定该数据之后的段已经丢失</li>
+<li>快重传和快恢复</li>
 </ul>
 </li>
 </ol>
@@ -355,12 +360,18 @@
 <p>与慢启动不同的是，cwnd在每个往返时延后自增</p>
 </li>
 </ol>
-<p>使用的时机</p>
-<ol>
-<li>cwnd&lt;ssthresh, 慢开始</li>
-<li>cwnd&gt;ssthresh, 拥塞避免</li>
-<li>cwnd&#x3D;ssthresh, 二者均可</li>
+<p>​	使用的时机</p>
+<pre><code>1. cwnd&lt;ssthresh, 慢开始
+2. cwnd&gt;ssthresh, 拥塞避免
+3. cwnd=ssthresh, 二者均可
+</code></pre>
+<ol start="3">
+<li>网络拥塞的处理<ol>
+<li>只要发送方判断网络出现拥塞（超时），就将ssthresh设置为出现拥塞时发送方的cwnd大小的一半，然后把cwnd重置</li>
 </ol>
+</li>
+</ol>
+<h4><span id="快重传与快恢复">快重传与快恢复</span></h4><p>如上文</p>
 
 	</article>
 
