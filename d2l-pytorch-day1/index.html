@@ -202,8 +202,8 @@
       
 
       <li class="category-list-item">
-        <a class="category-list-link" href="/kirameki/categories/ComputerNetwork/">ComputerNetwork</a>
-        <span class="category-list-count">2</span>
+        <a class="category-list-link" href="/kirameki/categories/Computer-Network/">Computer Network</a>
+        <span class="category-list-count">3</span>
       </li>
 
       
@@ -323,10 +323,39 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月02日</a>
-			<a><i class="kirafont icon-areachart"></i>0 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>664 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
 		</div>
-		
+		<p><del>其实之前有看过一点，但是没有认真去学，所以直接从深度学习网络开始</del></p>
+<h1><span id="层和块">层和块</span></h1><p>块本身也是一个小型的计算网络，每个块必须提供的基本功能如下 </p>
+<ol>
+<li>将输⼊数据作为其前向传播函数的参数。 </li>
+<li>通过前向传播函数来⽣成输出。请注意，输出的形状可能与输⼊的形状不同。例如，我们上⾯模型中的 第⼀个全连接的层接收⼀个20维的输⼊，但是返回⼀个维度为256的输出。 </li>
+<li>计算其输出关于输⼊的梯度，可通过其反向传播函数进行访问。通常这是⾃动发⽣的。 </li>
+<li>存储和访问前向传播计算所需的参数。 </li>
+<li>根据需要初始化模型参数。</li>
+</ol>
+<p><strong>以下是示例</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">FixedHiddenMLP</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-comment"># 不计算梯度的随机权重参数。因此其在训练期间保持不变</span><br>        self.rand_weight = torch.rand((<span class="hljs-number">20</span>, <span class="hljs-number">20</span>), 									requires_grad=<span class="hljs-literal">False</span>)<br>        self.linear = nn.Linear(<span class="hljs-number">20</span>, <span class="hljs-number">20</span>)<br>        <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, X</span>):<br>        X = self.linear(X)<br><span class="hljs-comment"># 使⽤创建的常量参数以及relu和mm函数</span><br>        X = F.relu(torch.mm(X, self.rand_weight) + <span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># 等价写法X = nn.ReLU()(torch.mm(X, self.rand_weight) + 1)</span><br><span class="hljs-comment"># 复⽤全连接层。这相当于两个全连接层共享参数</span><br>        X = self.linear(X)<br><span class="hljs-comment"># 控制流, 这一部分在实际应用中几乎不会涉及</span><br>        <span class="hljs-keyword">while</span> X.<span class="hljs-built_in">abs</span>().<span class="hljs-built_in">sum</span>() &gt; <span class="hljs-number">1</span>:<br>            X /= <span class="hljs-number">2</span><br>        <span class="hljs-keyword">return</span> X.<span class="hljs-built_in">sum</span>()<br><br></code></pre></td></tr></table></figure>
+
+<h2><span id="练习">练习</span></h2><p>Q1. 无法通过print(net)便捷查看网络结构</p>
+<p>Q2. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 更改forward函数的输出</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Net2X</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, *args</span>):<br>        <span class="hljs-keyword">pass</span><br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-keyword">return</span> torch.concat(self.net1(x), self.net2(x), <span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<p>Q3. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 工厂模式</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1><span id="参数管理">参数管理</span></h1><h2><span id="参数访问">参数访问</span></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(*[(name, param) <span class="hljs-keyword">for</span> name, param <span class="hljs-keyword">in</span> net.named_parameters()])<br></code></pre></td></tr></table></figure>
+
+<h2><span id="参数初始化">参数初始化</span></h2><p><em>默认情况下PyTorch会根据输入输出维度自动计算初始权重和偏置矩阵</em></p>
+<p><em>以nn.Linear为例，这里的参数就是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>W</mi><mi>T</mi></msup><mi mathvariant="normal">@</mi><mi>X</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">f(x)=W^T@X+b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.924661em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord">@</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">b</span></span></span></span>中的W和b</em></p>
+<h3><span id="内置初始化">内置初始化</span></h3><h3><span id="自定义初始化">自定义初始化</span></h3><h2><span id="参数绑定">参数绑定</span></h2><p>参数是与神经网络层的实例绑定的，只要一被创建就会绑定</p>
+<h2><span id="自定义层">自定义层</span></h2><h3><span id="不带参数的层">不带参数的层</span></h3><p>只需继承基础层类并实现<code>forward()</code>函数即可</p>
+<h3><span id="带参数的层">带参数的层</span></h3><h2><span id="练习">练习</span></h2><p>Q1. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">DimensionReduction</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, i, j, k</span>):<br>        <span class="hljs-built_in">super</span>(DimensionReduction, self).__init__()<br>        self.net = nn.Conv2d(in_channels=<span class="hljs-number">1</span>, out_channels=k, kernel_size=(i, j))<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, X, Y</span>):<br>        <span class="hljs-comment"># 先用X和Y做矩阵乘法构成i*j矩阵，</span><br>        <span class="hljs-comment"># 再用卷积层快捷地实现计算功能</span><br>        matrix = torch.bmm(x, torch.transpose(y, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>))<br>        matrix = matrix.unsqueeze(<span class="hljs-number">1</span>)  <span class="hljs-comment"># B*1*i*j</span><br>        <span class="hljs-keyword">return</span> self.net(matrix)  <span class="hljs-comment"># B*5*i*j</span><br><br><br>myNet1 = DimensionReduction(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>)<br>x = torch.ones(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment"># B*i*1</span><br>y = torch.rand(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment"># B*j*1</span><br><span class="hljs-built_in">print</span>(myNet1(x, y))<br></code></pre></td></tr></table></figure>
+
+
 	</article>
 
 	 
@@ -341,11 +370,11 @@
   
 	<div class="kira-post-nav">
 		<nav class="post-nav">
-			              
+			          
 			<!-- 先找到与当前文字相同的目录 -->
 			   
 			<!-- 在找到当前文章所在的 index -->
-			          
+			              
 		</nav>
 	</div>
 	
