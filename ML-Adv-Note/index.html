@@ -323,11 +323,20 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月04日</a>
-			<a><i class="kirafont icon-areachart"></i>623 字</a>
+			<a><i class="kirafont icon-areachart"></i>742 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
 		</div>
 		<h1><span id="multi-label-adversarial-perturbations-note">Multi-Label Adversarial Perturbations: Note</span></h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 毕设需要所以暂时只学习classification中的targeted部分</span><br><span class="hljs-comment"># 后续可能会更新其他部分</span><br><span class="hljs-comment"># 所以ranking到底是个啥啊</span><br></code></pre></td></tr></table></figure>
 
+<h2><span id="生成多标签的面向目标的对抗样本的三大挑战">生成多标签的面向目标的对抗样本的三大挑战</span></h2><ol>
+<li>每个实例的标签可能不同，需要攻击方法具有更高的敏感性和区分能力<ul>
+<li>攻击的同时也要分类，是这个意思吗</li>
+<li>个人在以往的病理图像分割比赛中见过多标签，但是一般情况下是误判导致的</li>
+</ul>
+</li>
+<li>样本中其他其他标签的使用</li>
+<li>难以量化攻击的效果</li>
+</ol>
 <h2><span id="type-1-classification-targeted-framework">Type 1: Classification-targeted Framework</span></h2><p>这里作者假设每个标签<strong>不是1就是-1（即只有两类）</strong>，H是目标分类器，x是初始的样本实例，所求的扰动r可表示为</p>
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/ML-Adv-Note/image1.png" alt="image1" class="lazyload"></p>
 <p>达到的效果是让添加了扰动的样本通过分类器后，A类被误分类，B类正确分类。</p>
