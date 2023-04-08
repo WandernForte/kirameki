@@ -323,7 +323,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月04日</a>
-			<a><i class="kirafont icon-areachart"></i>764 字</a>
+			<a><i class="kirafont icon-areachart"></i>777 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
 		</div>
 		<h1><span id="multi-label-adversarial-perturbations-note">Multi-Label Adversarial Perturbations: Note</span></h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 毕设需要所以暂时只学习classification中的targeted部分</span><br><span class="hljs-comment"># 后续可能会更新其他部分</span><br><span class="hljs-comment"># 所以ranking到底是个啥啊 </span><br><span class="hljs-comment"># A: ranking 和 classification 都是 multi-label的下分支, ranking 是标签相关性的排序</span><br></code></pre></td></tr></table></figure>
@@ -337,7 +337,7 @@
 <li>样本中其他其他标签的使用</li>
 <li>难以量化攻击的效果</li>
 </ol>
-<h2><span id="type-1-classification-targeted-framework">Type 1: Classification-targeted Framework</span></h2><p>这里作者假设每个标签<strong>不是1就是-1（即只有两类）</strong>，H是目标分类器，x是初始的样本实例，所求的扰动r可表示为</p>
+<h2><span id="type-1-classification-targeted-framework">Type 1: Classification-targeted Framework</span></h2><p>这里作者假设每个大类（A和B表示）每个标签（a_i和b_i表示）<strong>不是1就是-1（即只有两类）</strong>，H是目标分类器，x是初始的样本实例，所求的扰动r可表示为</p>
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/ML-Adv-Note/image1.png" alt="image1" class="lazyload"></p>
 <p>达到的效果是让添加了扰动的样本通过分类器后，A类被误分类，B类正确分类。</p>
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∥</mi><mi>r</mi><mi mathvariant="normal">∥</mi><mtext>表示</mtext><mi>p</mi><mtext>范数</mtext></mrow><annotation encoding="application/x-tex">\Vert r\Vert 表示p范数</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∥</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord">∥</span><span class="mord cjk_fallback">表</span><span class="mord cjk_fallback">示</span><span class="mord mathnormal">p</span><span class="mord cjk_fallback">范</span><span class="mord cjk_fallback">数</span></span></span></span>按具体需要选择p的值
