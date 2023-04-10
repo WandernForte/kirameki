@@ -330,8 +330,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月10日</a>
-			<a><i class="kirafont icon-areachart"></i>620 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>834 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
 		</div>
 		<h1><span id="chapter-2-信息的表示和处理">Chapter 2 信息的表示和处理</span></h1><h2><span id="信息的位表示">信息的位表示</span></h2><p><strong>字</strong> 根据不同CPU的地址索引有关。在汇编&#x2F;机器语言编程上，一个字指的是<strong>16bit</strong></p>
 <p><strong>最高有效位&#x2F;最低有效位</strong> 01串的最高&#x2F;最低位</p>
@@ -411,20 +411,40 @@
 </li>
 <li><p>将操作数按位运算</p>
 </li>
-<li><pre><code class="c">// 异或操作的示例
-void inplace_swap(int *x, int *y)&#123;
-    *x = *x^*y;
-    *y = *y^*x;
-    *x = *x^*y;
-&#125;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"><br>  - RAID5恢复数据<br><br>- **c语言中的逻辑运算符：&amp;&amp;，||，！**<br><br>  - 只有0倍视为逻辑假， 非0值视为逻辑真<br>  - 计算结果总是0或1<br>  <br>- **C语言中的移位运算**<br>  <br>  - 左移<br>    - 不区分算术（有符号）或是逻辑（无符号）左移<br>  <br>  - 右移<br>    - 逻辑右移：在左侧补0<br>    - 算术右移：在左侧复制最高位<br>  <br><br>## 整型数<br><br>### 整数编码<br><br>&#123;% katex %&#125;$B2U(X)=\sum\limits_&#123;i=0&#125;^&#123;w-1&#125;x_i·2^i$&#123;% endkatex %&#125;<br><br>&#123;% katex %&#125;$B2T(X)=-X_&#123;w-1&#125;·2^&#123;w-1&#125;+\sum\limits_&#123;i=0&#125;^&#123;w-2&#125;x_i·2^i$&#123;% endkatex %&#125;<br><br>w denotes width<br><br>### 数值范围<br><br>- 无符号数<br>  - Min = 0…0 （0）<br>  - Max = 1…1（2^w -1）<br>- 补码数值<br>  - Max = 01…1（2^(w-1)-1)<br>  - Min = 10…0（-2^(w-1))<br>  - **-1 = 1…1**<br><br>### 有符号数与无符号数的转换<br><br>非负部分相同<br><br>负数部分相差2^width<br><br>ps:这里的正负仅针对补码<br><br>**运算(包括比较运算)同时出现有符号数与无符号数时，有符号数隐式转换为无符号数**<br><br>### 扩展 截断<br><br>- 符号扩展(w-&gt;w+k)<br>  - 将符号位复制k份<br>  - 从短整数类型向长整数类型进行类型转换时，C自动进行符号扩展<br>- 截断(w截k位)<br>  - 无符号数截断 无符号数对2^k取模<br>  - 有符号数 先进行一般的对2^k取模，再进行补码解读<br><br>### 整数运算：加，非，乘，移位<br><br>- 无符号数<br><br>  - 加法：有溢出。但最多溢出一次<br><br>  - ``` c<br>    int s, t, x, y;<br>    s = int((unsigned)x + (unsigned)y);<br>    t = x + y;<br>    s==t// =&gt; True<br></code></pre></td></tr></table></figure>
-</code></pre>
+<li><p>&#96;&#96;&#96; c<br>&#x2F;&#x2F; 异或操作的示例<br>void inplace_swap(int *x, int *y){<br>*x &#x3D; <em>x^</em>y;<br>*y &#x3D; <em>y^</em>x;<br>*x &#x3D; <em>x^</em>y;<br>}</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"><br>  - RAID5恢复数据<br><br>- **c语言中的逻辑运算符：&amp;&amp;，||，！**<br><br>  - 只有0倍视为逻辑假， 非0值视为逻辑真<br>  - 计算结果总是0或1<br>  <br>- **C语言中的移位运算**<br>  <br>  - 左移<br>    - 不区分算术（有符号）或是逻辑（无符号）左移<br>  <br>  - 右移<br>    - 逻辑右移：在左侧补0<br>    - 算术右移：在左侧复制最高位<br>  <br><br>## 整型数<br><br>### 整数编码<br><br>&#123;% katex %&#125;$B2U(X)=\sum\limits_&#123;i=0&#125;^&#123;w-1&#125;x_i·2^i$&#123;% endkatex %&#125;<br><br>&#123;% katex %&#125;$B2T(X)=-X_&#123;w-1&#125;·2^&#123;w-1&#125;+\sum\limits_&#123;i=0&#125;^&#123;w-2&#125;x_i·2^i$&#123;% endkatex %&#125;<br><br>w denotes width<br><br>### 数值范围<br><br>- 无符号数<br>  - Min = 0…0 （0）<br>  - Max = 1…1（2^w -1）<br>- 补码数值<br>  - Max = 01…1（2^(w-1)-1)<br>  - Min = 10…0（-2^(w-1))<br>  - **-1 = 1…1**<br><br>### 有符号数与无符号数的转换<br><br>非负部分相同<br><br>负数部分相差2^width<br><br>ps:这里的正负仅针对补码<br><br>**运算(包括比较运算)同时出现有符号数与无符号数时，有符号数隐式转换为无符号数**<br><br>### 扩展 截断<br><br>- 符号扩展(w-&gt;w+k)<br>  - 将符号位复制k份<br>  - 从短整数类型向长整数类型进行类型转换时，C自动进行符号扩展<br>- 截断(w截k位)<br>  - 无符号数截断 无符号数对2^k取模<br>  - 有符号数 先进行一般的对2^k取模，再进行补码解读<br><br>### 整数运算：加，非，乘，移位<br><br>**加法**<br><br>- 无符号数<br><br>  - 加法：有溢出。但最多溢出一次<br><br>  - ``` c<br>    int s, t, x, y;<br>    s = int((unsigned)x + (unsigned)y);<br>    t = x + y;<br>    s==t// =&gt; True<br></code></pre></td></tr></table></figure></li>
+</ul>
 </li>
-<li></li>
+<li><p>有符号数（补码）</p>
+<ul>
+<li>真实的结果需要w+1位，丢弃最高有效位，剩余部分视为补码的到最终结果</li>
+<li>正溢出 z&#x3D;x+y-2^w</li>
+<li>正常 z&#x3D;x+y</li>
+<li>负溢出 z&#x3D;x+y+2^w</li>
+<li><strong>如何判断是否溢出?</strong><ul>
+<li>Xh!&#x3D;Yh或Xh&#x3D;Yh&#x3D;Zh则无溢出</li>
+<li>Xh&#x3D;Yh!&#x3D;Zh则溢出</li>
 </ul>
 </li>
 </ul>
-<h2><span id="内存-指针-字符串表示">内存、指针、字符串表示</span></h2>
+</li>
+</ul>
+<p><strong>乘法</strong></p>
+<p>  与加法类似，无论是否有符号，溢出时均只保留结果的低w位</p>
+<p>无溢出时， 有符号数的乘积需要进行符号扩展</p>
+<p><strong>除法（除以2的幂）</strong></p>
+<ul>
+<li>无符号数：u&gt;&gt;k &#x3D; round(u&#x2F;2^k)<ul>
+<li>使用逻辑右移，向下取整</li>
+</ul>
+</li>
+<li>有符号数<ul>
+<li>当x&lt;0时，向0舍入（向上舍入）</li>
+</ul>
+</li>
+</ul>
+<h2><span id="浮点数">浮点数</span></h2><h3><span id="二进制小数">二进制小数</span></h3><p>忽略</p>
+<h3><span id="ieee浮点数标准">IEEE浮点数标准</span></h3><h3><span id="舍入模式">舍入模式</span></h3><h3><span id="浮点数运算">浮点数运算</span></h3><h3><span id="c语言的浮点数">c语言的浮点数</span></h3>
 	</article>
 
 	 
