@@ -330,7 +330,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月09日</a>
-			<a><i class="kirafont icon-areachart"></i>236 字</a>
+			<a><i class="kirafont icon-areachart"></i>413 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
 		<p>论文链接<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9857594">Evolutionary Multi-Label Adversarial Examples: An Effective Black-Box Attack | IEEE Journals &amp; Magazine | IEEE Xplore</a><del>怨种导师的论文</del></p>
@@ -358,6 +358,26 @@
 <hr>
 <p>个体的<strong>适应度</strong>（fitness）指的是个体在种群生存的优势程度度量，用于区分个体的“好与坏”。适应度使用<strong>适应度函数</strong>（fitness function）来进行计算。适应度函数也叫评价函数，主要是通过个体特征从而判断个体的适应度。</p>
 <p><em>就是取一个评估标准罢，极大极小都可以</em></p>
+<hr>
+<p>下面正式开始论文笔记</p>
+<h2><span id="基于进化算法的对抗攻击的优势">基于进化算法的对抗攻击的优势</span></h2><ul>
+<li>无需计算模型梯度</li>
+<li>不需要还原模型的梯度下降过程</li>
+<li>只需要利用模型输出即可完成对模型的攻击</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/Differential-Evolution/image-20230412165818579.png" alt="pseudocode" class="lazyload"></p>
+<h2><span id="算法输入">算法输入</span></h2><p>原图像 <em>x</em>, 目标标签向量 <em>target</em>, 图像的维度 <em>d</em>， 种群大小<em>N</em>, 最大迭代次数<em>maxiter</em>, 种群（空集）<strong>P</strong>, 扰动的阈值 ε</p>
+<h2><span id="算法输出">算法输出</span></h2><p>目的对抗样本<em>x*</em></p>
+<h3><span id="初始化种群">初始化种群</span></h3><span class="katex-error" title="ParseError: KaTeX parse error: Can&#x27;t use function &#x27;$&#x27; in math mode at position 1: $̲P_0 = {z_i|z_i=…" style="color:#cc0000">$P_0 = {z_i|z_i=\epsilon ·rand(-1, 1)^d, 0\leq i\leq N }$</span>
+
+<h3><span id="突变操作">突变操作</span></h3><span class="katex-error" title="ParseError: KaTeX parse error: Can&#x27;t use function &#x27;$&#x27; in math mode at position 1: $̲z_{g+1}(i)=z_g(…" style="color:#cc0000">$z_{g+1}(i)=z_g(r_1) + F·(z_g(r_2)-z_g(r_3))$</span>
+
+<h3><span id="适应度函数">适应度函数</span></h3><span class="katex-error" title="ParseError: KaTeX parse error: Can&#x27;t use function &#x27;$&#x27; in math mode at position 1: $̲fitness(z_i) = …" style="color:#cc0000">$fitness(z_i) = \sum_{k=1}^lscore(z_i, k)$</span>
+
+<p>score函数定义</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/Differential-Evolution/image-20230412184503856.png" alt="score_function" class="lazyload"></p>
+<h3><span id="辅助突变操作">辅助突变操作</span></h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/Differential-Evolution/image-20230412185049889.png" alt="image-20230412185049889" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/Differential-Evolution/image-20230412185101781.png" alt="image-20230412185101781" class="lazyload"></p>
 
 	</article>
 
@@ -373,7 +393,7 @@
   
 	<div class="kira-post-nav">
 		<nav class="post-nav">
-			  
+			      
 			<!-- 先找到与当前文字相同的目录 -->
 			            
 			<!-- 在找到当前文章所在的 index -->
@@ -383,7 +403,7 @@
 				<span>上一章</span>
 				<a href="/kirameki/MultiMnistFashion-test/"> MultiMnistFashion_test</a>
 			</div>
-			                          
+			                      
 		</nav>
 	</div>
 	
