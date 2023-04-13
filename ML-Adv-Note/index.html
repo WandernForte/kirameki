@@ -330,8 +330,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月04日</a>
-			<a><i class="kirafont icon-areachart"></i>847 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>979 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
 		</div>
 		<h1><span id="multi-label-adversarial-perturbations-note">Multi-Label Adversarial Perturbations: Note</span></h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 毕设需要所以暂时只学习classification中的targeted部分</span><br><span class="hljs-comment"># 后续可能会更新其他部分</span><br><span class="hljs-comment"># 所以ranking到底是个啥啊 </span><br><span class="hljs-comment"># A: ranking 和 classification 都是 multi-label的下分支, ranking 是标签相关性的排序</span><br></code></pre></td></tr></table></figure>
 
@@ -361,6 +361,16 @@
 
 <p>λ 是一个权衡损失参数，由二分搜索算法得到，每次攻击失败就将其除以2，即<code>lambda=lambda/2</code></p>
 <p>选择策略：在多个扰动中选出最满足约束条件（4）并且对样本扰动最小的</p>
+<p><strong>与原版本CW算法的比较</strong></p>
+<p>基本思想都是将有约束优化问题转化为无约束优化问题</p>
+<span class="katex-error" title="ParseError: KaTeX parse error: Can&#x27;t use function &#x27;$&#x27; in math mode at position 1: $̲L_{CW}(x&#x27;, t) =…" style="color:#cc0000">$L_{CW}(x&#x27;, t) = max(\max\limits_{i\neq t}\{Z(x&#x27;)_{(i)}\}-Z(x&#x27;)_{(t)}, -k)$</span>
+
+<span class="katex-error" title="ParseError: KaTeX parse error: Can&#x27;t use function &#x27;$&#x27; in math mode at position 2: 
+$̲\min\limits_r\s…" style="color:#cc0000">
+$\min\limits_r\space\space\Vert r\Vert_2^2 +c·L_{CW}(x&#x27;(w), t) \\where \space x&#x27;(w)=\frac{1}{2}(\tanh(x)+1)$
+</span>
+
+<p>其中Z()表示分类器的结果, t表示目标标签， 而k表示对抗样本的最小期望置信度</p>
 </li>
 <li><p>ML-DP</p>
 </li>
@@ -382,6 +392,8 @@
 <p>顺便学了下hinge loss和hamming loss(误分类在全部样本中的比率)</p>
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mi>e</mi><mi>s</mi><mi>t</mi><mo>−</mo><mi>t</mi><mi>e</mi><mi>x</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">test-text </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69841em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span class="mord mathnormal">t</span></span></span></span>
 
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/ML-Adv-Note/image-20230413154506598.png" alt="七个经典的生成攻击样本的优化函数" class="lazyload"></p>
+<p>七个经典的生成攻击样本的优化函数</p>
 
 	</article>
 
