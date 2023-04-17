@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/kirameki/css/layout.css">
 
 		
-		<title> CS_Ch3 -  Wandern</title>
+		<title> Ch3 程序的机器级表示 -  Wandern</title>
 		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
 		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 		<!-- lazyload -->
@@ -322,18 +322,54 @@
 			<img
 				data-src="https://cdn.jsdelivr.net/gh/WandernForte/roselia/bkg.jpg"
 				data-sizes="auto"
-				alt="CS_Ch3"
+				alt="Ch3 程序的机器级表示"
 				class="lazyload kira-post-cover-image disabled-kira-image"
 			/>
-			<h1>CS_Ch3</h1>
+			<h1>Ch3 程序的机器级表示</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月10日</a>
-			<a><i class="kirafont icon-areachart"></i>0 字</a>
+			<a><i class="kirafont icon-areachart"></i>381 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
-		
+		<h1><span id="31-历史观点">3.1 历史观点</span></h1><p>略</p>
+<h1><span id="32-程序编码">3.2 程序编码</span></h1><h2><span id="321-机器级代码">3.2.1 机器级代码</span></h2><p>两个重要抽象</p>
+<p><strong>指令集架构</strong>：定义了处理器状态，指令的格式，以及每条指令对状态的影响</p>
+<p><strong>虚拟地址</strong>：机器程序使用的内存地址被抽象为虚拟地址</p>
+<hr>
+<p>机器代码中包含的状态</p>
+<ul>
+<li>程序计数器PC, 在x86-64中用%rip表示</li>
+<li>整数寄存器堆</li>
+<li>条件码寄存器</li>
+<li>向量寄存器：存放一个或多个整数或浮点数值<ul>
+<li>C语言中的数组和结构体在机器代码中用一组连续的字节来表示</li>
+</ul>
+</li>
+</ul>
+<h2><span id="322-代码示例">3.2.2 代码示例</span></h2><p><strong>gcc指令</strong></p>
+<p><code>gcc -S file.c</code>编译程序</p>
+<p><code>gcc -c file.c </code>编译并汇编代码</p>
+<p><code>gcc -o runnable file.c</code>生成可执行文件</p>
+<p><code>objdump -d file.o</code>反汇编程序</p>
+<p><strong>反汇编程序的特性</strong></p>
+<h2><span id="323-关于格式的注解">3.2.3 关于格式的注解</span></h2><p><strong>伪指令pseudo code</strong></p>
+<p>以’.’开头的行都是指导汇编器和链接器工作的伪指令。通常可以忽略</p>
+<h1><span id="33-数据格式">3.3 数据格式</span></h1><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch3/image-20230417120027149.png" alt="image-20230417120027149" class="lazyload"></p>
+<p>英特尔用字表示16位数据类型，双字表示32位，四字表示64位</p>
+<p>相关的数据传输指令</p>
+<p>movb, movw, movl, movq(傍晚篮球)</p>
+<h1><span id="34-访问信息">3.4 访问信息</span></h1><p>x86-64通用寄存器</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch3/image-20230417120350905.png" alt="x86-64通用寄存器" class="lazyload"></p>
+<p>（汉化版120页，en.ver p216）</p>
+<h2><span id="341-操作指示符">3.4.1 操作指示符</span></h2><p><strong>操作数的类型</strong></p>
+<ul>
+<li>立即数：$</li>
+<li>寄存器：%r</li>
+<li>内存引用：直接给出一个数值，这个数值被当做将访问数据的地址</li>
+</ul>
+
 	</article>
 
 	 
