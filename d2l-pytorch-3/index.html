@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/kirameki/css/layout.css">
 
 		
-		<title> d2l-pytorch-day2 -  Wandern</title>
+		<title> d2l：优化算法 -  Wandern</title>
 		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
 		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 		<!-- lazyload -->
@@ -71,9 +71,9 @@
 		</a>
 	</div>
 	<div class="kira-count">
-		<div><span>文章</span>13</div>
+		<div><span>文章</span>15</div>
 		<div><span>标签</span>5</div>
-		<div><span>分类</span>5</div>
+		<div><span>分类</span>6</div>
 	</div>
 	<div class="kira-list">
 		
@@ -210,13 +210,20 @@
 
       <li class="category-list-item">
         <a class="category-list-link" href="/kirameki/categories/Computer-Network/">Computer Network</a>
-        <span class="category-list-count">3</span>
+        <span class="category-list-count">4</span>
       </li>
 
       
 
       <li class="category-list-item">
         <a class="category-list-link" href="/kirameki/categories/System-Security/">System Security</a>
+        <span class="category-list-count">1</span>
+      </li>
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/kirameki/categories/d2l/">d2l</a>
         <span class="category-list-count">1</span>
       </li>
 
@@ -242,7 +249,7 @@
 <div class="kira-widget-wrap">
 	<h3 class="kira-widget-title">文章归档</h3>
 	<div class="kira-widget">
-		<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/kirameki/archives/2023/">2023</a><span class="archive-list-count">13</span></li></ul>
+		<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/kirameki/archives/2023/">2023</a><span class="archive-list-count">15</span></li></ul>
 	</div>
 </div>
 
@@ -322,48 +329,49 @@
 			<img
 				data-src="https://cdn.jsdelivr.net/gh/WandernForte/roselia/bkg.jpg"
 				data-sizes="auto"
-				alt="d2l-pytorch-day2"
+				alt="d2l：优化算法"
 				class="lazyload kira-post-cover-image disabled-kira-image"
 			/>
-			<h1>d2l-pytorch-day2</h1>
+			<h1>d2l：优化算法</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2023年04月03日</a>
-			<a><i class="kirafont icon-areachart"></i>615 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2023年04月18日</a>
+			<a><i class="kirafont icon-areachart"></i>364 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
-		<h1><span id="61-从全连接层到卷积">6.1 从全连接层到卷积</span></h1><p>多层感知机等全连接层结构对于高维数据并不实用，例如高像素的图片数据，因此引入了学习数字图像一些结构特征的卷积神经网络</p>
-<h2><span id="611-空间不变性">6.1.1 （空间）不变性</span></h2><ol>
-<li>平移不变性（translation invariance）：不管检测对象出现在图像中的哪个位置，<strong>神经网络的前面⼏层 应该对相同的图像区域具有相似的反应，即为“平移不变性”</strong>。 </li>
-<li>局部性（locality）：<strong>神经⽹络的前⾯⼏层应该只探索输⼊图像中的局部区域</strong>，⽽不过度在意图像中相隔较远区域的关系，这就是“局部性”原则。最终，可以聚合这些局部特征，以在整个图像级别进⾏预测。</li>
-</ol>
-<p><em>下面讨论如何将这两个特性转化为数值表示</em></p>
-<h2><span id="612">6.1.2</span></h2><p>平移不变性</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/d2l-pytorch-day2/image-20230405113213319.png" alt="image-20230405113213319" class="lazyload"></p>
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mi>e</mi><mi>s</mi><mi>t</mi><mo>−</mo><mi>t</mi><mi>e</mi><mi>x</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">test-text</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69841em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span class="mord mathnormal">t</span></span></span></span>
+		<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bP4y1p7Gq?vd_source=e71dd8374e48550e5b7226cee0a3cb19">【72 优化算法【动手学深度学习v2】</a></p>
+<h1><span id="111-优化和深度学习">11.1 优化和深度学习</span></h1><p>在优化中，损失函数通常被称为优化问题的目标函数。通常研究的是如何最小化，但也可以最大化（只需取目标函数的相反即可）</p>
+<h2><span id="1111-优化的目标">11.1.1 优化的目标</span></h2><p>优化算法的目标与深度学习的目标是不同的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 首先引入两个概念: 风险f表示和经验风险g表示</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">f</span>(<span class="hljs-params">x</span>):<br>    <span class="hljs-keyword">return</span> x * torch.cos(np.pi * x)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">g</span>(<span class="hljs-params">x</span>):<br>    <span class="hljs-keyword">return</span> f(x) + <span class="hljs-number">0.2</span> * torch.cos(<span class="hljs-number">5</span>*np.pi*x)<br></code></pre></td></tr></table></figure>
 
-<p>局部性</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/d2l-pytorch-day2/image-20230405113244566.png" alt="image-20230405113244566" class="lazyload"></p>
-<p>可以看出，平移不变性表示的就是卷积操作，局部性表示的就是一个卷积层的操作，V被称为卷积核或滤波器，或者可以简称为该卷积层的权重。</p>
-<h2><span id="613-卷积">6.1.3 卷积</span></h2><p>数值形式</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/d2l-pytorch-day2/image-20230405114406495.png" alt="image-20230405114406495" class="lazyload"></p>
-<h1><span id="62-图像卷积">6.2 图像卷积</span></h1><h2><span id="621-互相关运算">6.2.1 互相关运算</span></h2><p><em>其实对于图像而言没有卷积算法，只有互相关算法</em></p>
-<h1><span id="63-填充和步幅">6.3 填充和步幅</span></h1><h1><span id="64-多输入多输出通道">6.4 多输入多输出通道</span></h1><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/d2l-pytorch-day2/image-20230405142328847.png" alt="image-20230405142328847" class="lazyload"></p>
-<p>例如输入三个通道，输出二个通道，第一个通道用对应的卷积核进行卷积操作并对输入的三个通道的结果进行叠加，得到输出的第一个通道的结果；第二个通道同理。</p>
-<h1><span id="65-汇聚层池化">6.5 汇聚层（池化）</span></h1><p><em>个人偏向于称其为池化层</em></p>
-<h2><span id="651-最大和平均池化层">6.5.1 最大和平均池化层</span></h2><p>池运算不包含参数，因此结果是确定的。通常计算池化核覆盖元素中的最大值或平均值</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/d2l-pytorch-day2/image-20230405141824701.png" alt="image-20230405141824701" class="lazyload"></p>
-<h2><span id="652-填充和步幅">6.5.2 填充和步幅</span></h2><h2><span id="653-多通道">6.5.3 多通道</span></h2><p>池化层在每个输入通道上单独运算，而不是像卷积层⼀样在通道上对输入进行汇总</p>
-<h1><span id="66-lenet">6.6 LeNet</span></h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><br>LeNet = nn.Sequential(<br>    nn.Conv2d(<span class="hljs-number">1</span>, <span class="hljs-number">6</span>, kernel_size=<span class="hljs-number">5</span>, padding=<span class="hljs-number">2</span>), nn.Sigmoid(),<br>    nn.AvgPool2d(kernel_size=<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>),<br>    nn.Conv2d(<span class="hljs-number">6</span>, <span class="hljs-number">16</span>, kernel_size=<span class="hljs-number">5</span>), nn.Sigmoid(),<br>    nn.AvgPool2d(kernel_size=<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>),<br>    nn.Flatten(),<br>    nn.Linear(<span class="hljs-number">16</span> * <span class="hljs-number">5</span> * <span class="hljs-number">5</span>, <span class="hljs-number">120</span>), nn.Sigmoid(),<br>    nn.Linear(<span class="hljs-number">120</span>, <span class="hljs-number">84</span>), nn.Sigmoid(), <br>    <span class="hljs-comment">#nn.GELU(), 根据文献，省去的是这里的高斯激活函数 </span><br>    nn.Linear(<span class="hljs-number">84</span>, <span class="hljs-number">10</span>))<br></code></pre></td></tr></table></figure>
-
-
+<h2><span id="1112-深度学习中的优化挑战">11.1.2 深度学习中的优化挑战</span></h2><ul>
+<li>局部最小值</li>
+</ul>
+<p>​		全局最小与局部最小</p>
+<ul>
+<li><p>鞍点</p>
+<ul>
+<li>导致梯度消失的另一原因，因为在鞍点处对函数求一二阶导值为0，此时会导致优化停止</li>
+<li>如何辨别鞍点？引入Hessian矩阵（假设函数的输⼊是k维向量，其输出是标量，因此该矩阵将有k个特征值）<ul>
+<li>当函数在零梯度位置处的Hessian矩阵的特征值为负值和正值时，我们有该函数的⼀个鞍点</li>
+<li>当函数在零梯度位置处的Hessian矩阵的特征值全部为负值时，我们有该函数的局部最⼤值</li>
+<li>当函数在零梯度位置处的Hessian矩阵的特征值全部为正值时，我们有该函数的局部最⼩值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>梯度消失</p>
+</li>
+</ul>
+<hr>
+<h1><span id="112-凸性">11.2 凸性</span></h1>
 	</article>
 
 	 
     <div class="kira-post-copyright">
         <strong>本文作者：</strong>Kiryu Sento<br>
-        <strong>本文链接：</strong><a href="https://wandernforte.github.io/kirameki/d2l-pytorch-day2/" title="https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;d2l-pytorch-day2&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;d2l-pytorch-day2&#x2F;</a><br>
+        <strong>本文链接：</strong><a href="https://wandernforte.github.io/kirameki/d2l-pytorch-3/" title="https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;d2l-pytorch-3&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;d2l-pytorch-3&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
@@ -372,23 +380,17 @@
   
 	<div class="kira-post-nav">
 		<nav class="post-nav">
-			                  
+			                      
 			<!-- 先找到与当前文字相同的目录 -->
-			      
+			   
 			<!-- 在找到当前文章所在的 index -->
-			    
-			<!-- 上一篇文章 -->
-			<div class="old">
-				<span>上一章</span>
-				<a href="/kirameki/d2l-pytorch-day1/"> d2l_pytorch_day1</a>
-			</div>
 			          
 		</nav>
 	</div>
 	
 	<div class="kira-post-meta kira-rainbow">
 		
-			<a class="kirafont icon-appstore-fill -link" href="/kirameki/categories/dive-into-deep-learning/">dive into deep-learning</a>
+			<a class="kirafont icon-appstore-fill -link" href="/kirameki/categories/d2l/">d2l</a>
 		
 		
 			<a class="kirafont icon-tag-fill -none-link" href="/kirameki/tags/Note/" rel="tag">Note</a>

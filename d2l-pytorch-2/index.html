@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/kirameki/css/layout.css">
 
 		
-		<title> 计网的某道题 -  Wandern</title>
+		<title> d2l-pytorch-day2 -  Wandern</title>
 		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
 		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 		<!-- lazyload -->
@@ -329,39 +329,48 @@
 			<img
 				data-src="https://cdn.jsdelivr.net/gh/WandernForte/roselia/bkg.jpg"
 				data-sizes="auto"
-				alt="计网的某道题"
+				alt="d2l-pytorch-day2"
 				class="lazyload kira-post-cover-image disabled-kira-image"
 			/>
-			<h1>计网的某道题</h1>
+			<h1>d2l-pytorch-day2</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2023年03月17日</a>
-			<a><i class="kirafont icon-areachart"></i>379 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2023年04月03日</a>
+			<a><i class="kirafont icon-areachart"></i>615 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
 		</div>
-		<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/WandernForte/roselia/problem.jpg" alt="problem" class="lazyload"></p>
-<hr>
-<p><em>已经算出一周期可以传7.2个帧。答案是B</em></p>
-<h2><span id="我个人的解释是">我个人的解释是</span></h2><p>信道一次只能确认一序号周期最大传输量少一帧，如果使用<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>3</mn></msup><mo>=</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">2^3=8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span></span></span></span>的序号周期会因为7.2&gt;7(8-1),有接收重复序号的风险，所以要多用1位的序号扩大序号周期。</p>
-<p>得出的结论是</p>
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>−</mo><mn>1</mn><mo>&lt;</mo><mi>n</mi><mi>u</mi><msub><mi>m</mi><mrow><mi>f</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi>e</mi></mrow></msub><mo>&lt;</mo><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>n</mi><mtext>是序号</mtext><mi>b</mi><mi>i</mi><mi>t</mi><mtext>数</mtext><mo separator="true">,</mo><mi>n</mi><mi>u</mi><msub><mi>m</mi><mrow><mi>f</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi>e</mi></mrow></msub><mtext>是一个传输确认周期可传输的最大帧数</mtext></mrow><annotation encoding="application/x-tex">2^{n-1}-1&lt;num_{frame}&lt;2^n-1,n是序号bit数,num_{frame}是一个传输确认周期可传输的最大帧数</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8252079999999999em;vertical-align:-0.286108em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">u</span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.747722em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">序</span><span class="mord cjk_fallback">号</span><span class="mord mathnormal">b</span><span class="mord mathnormal">i</span><span class="mord mathnormal">t</span><span class="mord cjk_fallback">数</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">u</span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">一</span><span class="mord cjk_fallback">个</span><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">输</span><span class="mord cjk_fallback">确</span><span class="mord cjk_fallback">认</span><span class="mord cjk_fallback">周</span><span class="mord cjk_fallback">期</span><span class="mord cjk_fallback">可</span><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">输</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">最</span><span class="mord cjk_fallback">大</span><span class="mord cjk_fallback">帧</span><span class="mord cjk_fallback">数</span></span></span></span>
-<h2><span id="但是">但是</span></h2><p>课程老师的回复是</p>
-<p>T: </p>
-<p>是因为接收窗口最小是1，把这个1加上不就是8.2了吗，序号空间要大于等于8.2，所以需要4比特的序号</p>
-<p>Me:<br>为什么还要带上接收窗口的大小呢，这7.2里不是已经包含到达接收方的一个帧了吗?我觉得应该和接收窗口大小无关</p>
-<p>T: </p>
-<p>这是滑动窗口协议为确保协议正常运行，必须满足的发送窗口、接收窗口与序号空间之间的约束关系</p>
-<hr>
-<p>我找了很多地方也没有找到这所谓的约束关系。</p>
-<p>所以这有什么统一解释的判准吗？</p>
+		<h1><span id="61-从全连接层到卷积">6.1 从全连接层到卷积</span></h1><p>多层感知机等全连接层结构对于高维数据并不实用，例如高像素的图片数据，因此引入了学习数字图像一些结构特征的卷积神经网络</p>
+<h2><span id="611-空间不变性">6.1.1 （空间）不变性</span></h2><ol>
+<li>平移不变性（translation invariance）：不管检测对象出现在图像中的哪个位置，<strong>神经网络的前面⼏层 应该对相同的图像区域具有相似的反应，即为“平移不变性”</strong>。 </li>
+<li>局部性（locality）：<strong>神经⽹络的前⾯⼏层应该只探索输⼊图像中的局部区域</strong>，⽽不过度在意图像中相隔较远区域的关系，这就是“局部性”原则。最终，可以聚合这些局部特征，以在整个图像级别进⾏预测。</li>
+</ol>
+<p><em>下面讨论如何将这两个特性转化为数值表示</em></p>
+<h2><span id="612">6.1.2</span></h2><p>平移不变性</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/d2l-pytorch-day2/image-20230405113213319.png" alt="image-20230405113213319" class="lazyload"></p>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mi>e</mi><mi>s</mi><mi>t</mi><mo>−</mo><mi>t</mi><mi>e</mi><mi>x</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">test-text</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69841em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span class="mord mathnormal">t</span></span></span></span>
+
+<p>局部性</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/d2l-pytorch-day2/image-20230405113244566.png" alt="image-20230405113244566" class="lazyload"></p>
+<p>可以看出，平移不变性表示的就是卷积操作，局部性表示的就是一个卷积层的操作，V被称为卷积核或滤波器，或者可以简称为该卷积层的权重。</p>
+<h2><span id="613-卷积">6.1.3 卷积</span></h2><p>数值形式</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/d2l-pytorch-day2/image-20230405114406495.png" alt="image-20230405114406495" class="lazyload"></p>
+<h1><span id="62-图像卷积">6.2 图像卷积</span></h1><h2><span id="621-互相关运算">6.2.1 互相关运算</span></h2><p><em>其实对于图像而言没有卷积算法，只有互相关算法</em></p>
+<h1><span id="63-填充和步幅">6.3 填充和步幅</span></h1><h1><span id="64-多输入多输出通道">6.4 多输入多输出通道</span></h1><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/d2l-pytorch-day2/image-20230405142328847.png" alt="image-20230405142328847" class="lazyload"></p>
+<p>例如输入三个通道，输出二个通道，第一个通道用对应的卷积核进行卷积操作并对输入的三个通道的结果进行叠加，得到输出的第一个通道的结果；第二个通道同理。</p>
+<h1><span id="65-汇聚层池化">6.5 汇聚层（池化）</span></h1><p><em>个人偏向于称其为池化层</em></p>
+<h2><span id="651-最大和平均池化层">6.5.1 最大和平均池化层</span></h2><p>池运算不包含参数，因此结果是确定的。通常计算池化核覆盖元素中的最大值或平均值</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/d2l-pytorch-day2/image-20230405141824701.png" alt="image-20230405141824701" class="lazyload"></p>
+<h2><span id="652-填充和步幅">6.5.2 填充和步幅</span></h2><h2><span id="653-多通道">6.5.3 多通道</span></h2><p>池化层在每个输入通道上单独运算，而不是像卷积层⼀样在通道上对输入进行汇总</p>
+<h1><span id="66-lenet">6.6 LeNet</span></h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><br>LeNet = nn.Sequential(<br>    nn.Conv2d(<span class="hljs-number">1</span>, <span class="hljs-number">6</span>, kernel_size=<span class="hljs-number">5</span>, padding=<span class="hljs-number">2</span>), nn.Sigmoid(),<br>    nn.AvgPool2d(kernel_size=<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>),<br>    nn.Conv2d(<span class="hljs-number">6</span>, <span class="hljs-number">16</span>, kernel_size=<span class="hljs-number">5</span>), nn.Sigmoid(),<br>    nn.AvgPool2d(kernel_size=<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>),<br>    nn.Flatten(),<br>    nn.Linear(<span class="hljs-number">16</span> * <span class="hljs-number">5</span> * <span class="hljs-number">5</span>, <span class="hljs-number">120</span>), nn.Sigmoid(),<br>    nn.Linear(<span class="hljs-number">120</span>, <span class="hljs-number">84</span>), nn.Sigmoid(), <br>    <span class="hljs-comment">#nn.GELU(), 根据文献，省去的是这里的高斯激活函数 </span><br>    nn.Linear(<span class="hljs-number">84</span>, <span class="hljs-number">10</span>))<br></code></pre></td></tr></table></figure>
+
 
 	</article>
 
 	 
     <div class="kira-post-copyright">
         <strong>本文作者：</strong>Kiryu Sento<br>
-        <strong>本文链接：</strong><a href="https://wandernforte.github.io/kirameki/%E8%AE%A1%E7%BD%91%E7%9A%84%E6%9F%90%E9%81%93%E9%A2%98/" title="https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;计网的某道题&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;计网的某道题&#x2F;</a><br>
+        <strong>本文链接：</strong><a href="https://wandernforte.github.io/kirameki/d2l-pytorch-2/" title="https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;d2l-pytorch-2&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;d2l-pytorch-2&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
@@ -370,26 +379,26 @@
   
 	<div class="kira-post-nav">
 		<nav class="post-nav">
-			  
+			                  
 			<!-- 先找到与当前文字相同的目录 -->
-			   
+			      
 			<!-- 在找到当前文章所在的 index -->
-			       
-			<!-- 下一篇文章 -->
-			<div class="new">
-				<span>下一章</span>
-				<a href="/kirameki/Transition-Layer/"> Transition Layer</a>
+			    
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/kirameki/d2l-pytorch-1/"> d2l_pytorch_day1</a>
 			</div>
-			                                            
+			              
 		</nav>
 	</div>
 	
 	<div class="kira-post-meta kira-rainbow">
 		
-			<a class="kirafont icon-appstore-fill -link" href="/kirameki/categories/Computer-Network/">Computer Network</a>
+			<a class="kirafont icon-appstore-fill -link" href="/kirameki/categories/dive-into-deep-learning/">dive into deep-learning</a>
 		
 		
-			<a class="kirafont icon-tag-fill -none-link" href="/kirameki/tags/hw-exam/" rel="tag">hw&exam</a>
+			<a class="kirafont icon-tag-fill -none-link" href="/kirameki/tags/Note/" rel="tag">Note</a>
 		
 	</div>
 	
