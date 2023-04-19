@@ -337,8 +337,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月10日</a>
-			<a><i class="kirafont icon-areachart"></i>381 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>958 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
 		</div>
 		<h1><span id="31-历史观点">3.1 历史观点</span></h1><p>略</p>
 <h1><span id="32-程序编码">3.2 程序编码</span></h1><h2><span id="321-机器级代码">3.2.1 机器级代码</span></h2><p>两个重要抽象</p>
@@ -377,6 +377,33 @@
 <li>内存引用：直接给出一个数值，这个数值被当做将访问数据的地址</li>
 </ul>
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch3/image-20230417121836030.png" alt="image-20230417121836030" class="lazyload"></p>
+<p>这里的r通常的形式就是%r，即访问一个寄存器中存储的值</p>
+<p>上述比较特殊的有(ra, )和Imm(ra, )型操作数， 是进行一些运算得到索引后才开始访问内存</p>
+<p>要利用寄存器中存储的值作为地址访问内存， 使用 (r)作为操作数进行访问</p>
+<p>只有$ Imm是直接使用立即数，其他的都是根据立即数值寻址</p>
+<h2><span id="342-数据传送指令">3.4.2 数据传送指令</span></h2><p>mov src, dst</p>
+<p>这里的src操作数必然是一个立即数， dst操作数指定一个位置，要么是一个寄存器要么是内存地址</p>
+<p>要实现内存到内存的传送需要两条指令：第一条将src位置的数据读入寄存器，然后再将这个寄存器中的值写入目的位置</p>
+<p><strong>特殊性：</strong> 除了movl以寄存器作为dst操作数时会在高4字节填充0， 其他的操作均是应该影响多少位就影响多少位</p>
+<p>movz src, dst 以零扩展进行传送</p>
+<p>movs src, dst 以符号扩展（复制src操作数的最高位填充）进行传送</p>
+<h2><span id="343-示例">3.4.3 示例</span></h2><p>pass</p>
+<h2><span id="344-压入和弹出栈数据">3.4.4 压入和弹出栈数据</span></h2><p>pushq src 存储栈指针的寄存器rsp中的值-8（栈指针值-8）， 将四字src存到新的栈指针值指向的内存位置</p>
+<blockquote>
+<p>等价于subq $8, %rsp; movq src, (%rsp)</p>
+</blockquote>
+<p>popq dst 将此时栈指针指向内存位置的值赋给dst，然后将栈指针寄存器的值增加8</p>
+<blockquote>
+<p>等价于movq (%rsp), dst; addq $8, %rsp</p>
+</blockquote>
+<h1><span id="35-算术逻辑和操作">3.5 算术逻辑和操作</span></h1><p><strong>重点: leaq操作</strong></p>
+<p>leaq	src, dst # 将src的有效地址赋给dst</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch3/image-20230419112042438.png" alt="image-20230419112042438" class="lazyload"></p>
+<h2><span id="351-加载有效地址">3.5.1 加载有效地址</span></h2><p>leaq实际上是movq的变形。它的指令形式是从内存读到寄存器，但实际上根本没有引用内存，<strong>仅仅是将有效地址写入寄存器</strong> ，但同时也可以用于计算一些普通的算术操作</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">long</span> <span class="hljs-title function_">scale</span><span class="hljs-params">(<span class="hljs-type">long</span> x, <span class="hljs-type">long</span> y, <span class="hljs-type">long</span> z)</span> &#123;<br>    <span class="hljs-type">long</span> t = x + <span class="hljs-number">4</span> * y + <span class="hljs-number">12</span> * z;<br>    <span class="hljs-keyword">return</span> t;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs assembly"># long scale(long x, long y, long z)<br># x in %rdi, y in %rsi, z in %rdx<br>scale:<br>    leaq (%rdi,%rsi,4), %rax # x + 4*y<br>    leaq (%rdx,%rdx,2), %rdx # z + 2*z = 3*z<br>    leaq (%rax,%rdx,4), %rax # (x+4*y) + 4*(3*z) = x + 4*y + 12*z<br>    ret<br></code></pre></td></tr></table></figure>
+
 
 	</article>
 
