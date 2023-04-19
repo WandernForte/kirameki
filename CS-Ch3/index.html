@@ -337,8 +337,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月10日</a>
-			<a><i class="kirafont icon-areachart"></i>958 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>1.3k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
 		</div>
 		<h1><span id="31-历史观点">3.1 历史观点</span></h1><p>略</p>
 <h1><span id="32-程序编码">3.2 程序编码</span></h1><h2><span id="321-机器级代码">3.2.1 机器级代码</span></h2><p>两个重要抽象</p>
@@ -402,9 +402,47 @@
 <h2><span id="351-加载有效地址">3.5.1 加载有效地址</span></h2><p>leaq实际上是movq的变形。它的指令形式是从内存读到寄存器，但实际上根本没有引用内存，<strong>仅仅是将有效地址写入寄存器</strong> ，但同时也可以用于计算一些普通的算术操作</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">long</span> <span class="hljs-title function_">scale</span><span class="hljs-params">(<span class="hljs-type">long</span> x, <span class="hljs-type">long</span> y, <span class="hljs-type">long</span> z)</span> &#123;<br>    <span class="hljs-type">long</span> t = x + <span class="hljs-number">4</span> * y + <span class="hljs-number">12</span> * z;<br>    <span class="hljs-keyword">return</span> t;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs assembly"># long scale(long x, long y, long z)<br># x in %rdi, y in %rsi, z in %rdx<br>scale:<br>    leaq (%rdi,%rsi,4), %rax # x + 4*y<br>    leaq (%rdx,%rdx,2), %rdx # z + 2*z = 3*z<br>    leaq (%rax,%rdx,4), %rax # (x+4*y) + 4*(3*z) = x + 4*y + 12*z<br>    ret<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs assembly"># long scale(long x, long y, long z)<br># x in %rdi, y in %rsi, z in %rdx<br>scale:<br>    leaq (%rdi,%rsi,4), %rax # x + 4*y<br>    leaq (%rdx,%rdx,2), %rdx # z + 2*z = 3*z<br>    leaq (%rax,%rdx,4), %rax # (x+4*y) + 4*(3*z) = x + 4*y + 12*z<br>    ret<br># 得益于x86的奇怪地址计算操作?<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2><span id="352-一元和二元操作">3.5.2 一元和二元操作</span></h2><p>pass</p>
+<h2><span id="353-移位操作">3.5.3 移位操作</span></h2><ul>
+<li>区分算术移位和逻辑移位</li>
+<li>x86的操作特性<ul>
+<li>移位量w是寄存器%cl的低m位决定的， <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mo stretchy="false">⌈</mo><mo stretchy="false">(</mo><msub><mo><mi>log</mi><mo>⁡</mo></mo><mn>2</mn></msub><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">⌉</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">m = \lceil(\log_2(w))\rceil -1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌈</span><span class="mopen">(</span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mclose">)</span><span class="mclose">⌉</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>， 高位被忽略</li>
+<li>例如当%cl的值为0xFF时，指令salb会移动7位， salw会移动15位， sall会移动31位</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2><span id="354-特殊算术操作">3.5.4 特殊算术操作</span></h2><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch3/image-20230419115532559.png" alt="image-20230419115532559" class="lazyload"></p>
+<hr>
+<h1><span id="36-控制">3.6 控制</span></h1><p><em>这里主要是分支、跳转指令</em></p>
+<h2><span id="361-条件码">3.6.1 条件码</span></h2><p>常用条件码</p>
+<ul>
+<li>CF: 进位标志</li>
+<li>ZF: 零标志</li>
+<li>SF: 符号标志</li>
+<li>OF: 溢出标志（最近的操作导致了一个补码溢出–正或负）</li>
+</ul>
+<p>相关的操作：比较和测试指令<code>comp</code>和<code>test</code>类</p>
+<h2><span id="362-访问条件码">3.6.2 访问条件码</span></h2><p><strong>!!!条件码通常不会被直接读取!!!</strong></p>
+<p>常用的使用条件码的方法有:</p>
+<ul>
+<li>根据条件码的某种组合将一个字节设置成0或1<ul>
+<li><code>set</code>类指令</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs assembly">cmpq %rsi, %rdi # 比较得到条件码<br>setl %al # 将条件码存在%al寄存器<br>movz %al, %eax <br></code></pre></td></tr></table></figure>
 
 
+
+<ul>
+<li>可以条件跳转到程序的某个其他的部分</li>
+<li>有条件地传送数据</li>
+</ul>
+<h2><span id="363-跳转指令">3.6.3 跳转指令</span></h2>
 	</article>
 
 	 
