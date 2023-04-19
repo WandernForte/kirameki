@@ -337,8 +337,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月10日</a>
-			<a><i class="kirafont icon-areachart"></i>1.3k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>1.7k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 7 分钟</a>
 		</div>
 		<h1><span id="31-历史观点">3.1 历史观点</span></h1><p>略</p>
 <h1><span id="32-程序编码">3.2 程序编码</span></h1><h2><span id="321-机器级代码">3.2.1 机器级代码</span></h2><p>两个重要抽象</p>
@@ -442,7 +442,46 @@
 <li>可以条件跳转到程序的某个其他的部分</li>
 <li>有条件地传送数据</li>
 </ul>
-<h2><span id="363-跳转指令">3.6.3 跳转指令</span></h2>
+<h2><span id="363-跳转指令">3.6.3 跳转指令</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs assembly">jmp %rax # 直接跳转<br>jmp *oprand # 间接跳转，根据oprand寻址从内存读值<br></code></pre></td></tr></table></figure>
+
+<p><strong>???条件跳转只能是直接跳转???</strong></p>
+<h2><span id="364-跳转指令的编码">3.6.4 跳转指令的编码</span></h2><p><strong>pc相对编码</strong>: 将跳转的目标指令的地址与紧跟在跳转指令后一条指令的地址之间的差作为编码</p>
+<p>根据机器码计算跳转的目标地址</p>
+<p>例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs assembly">4003fa: 74 02 je 4003fe # 0x4003fe = 0x4003fc + 0x02<br>4003fc: ff d0 callq *%rax<br></code></pre></td></tr></table></figure>
+
+<h2><span id="365-用条件控制实现条件分支">3.6.5 用条件控制实现条件分支</span></h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 一般的c语言条件分支的实现</span><br><span class="hljs-keyword">if</span>(test-expr)<br>    then-statement;<br><span class="hljs-keyword">else</span><br>    <span class="hljs-keyword">else</span>-statement;<br><span class="hljs-comment">// 利于编译器汇编的实现</span><br><span class="hljs-keyword">if</span>(!test-expr)<br>    <span class="hljs-keyword">goto</span> <span class="hljs-literal">false</span>; <span class="hljs-comment">// 在代码层面不满足语句先出现</span><br>then-statement;<br><span class="hljs-keyword">return</span>;<br><span class="hljs-literal">false</span>:<br>    <span class="hljs-keyword">else</span>-statement;<br><span class="hljs-keyword">return</span>;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2><span id="366-用条件传送实现条件分支">3.6.6 用条件传送实现条件分支</span></h2><p>条件控制转移指依据代码的条件结果来选择运行的路径。条件传送指先把结果运行，在依据条件结果选择结果值<br>在同样的情况下，条件传送性能比条件控制转移高（需要回退的代价比较少）</p>
+<p>x86中条件传送指令实现的操作: <strong>当传送条件满足时，指令把源值复制到目的</strong></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch3/image-20230419150657475.png" alt="image-20230419150657475" class="lazyload"></p>
+<hr>
+<h2><span id="367-循环的实现">3.6.7 循环的实现</span></h2><h2><span id="368-switch语句的实现">3.6.8 switch语句的实现</span></h2><p><em>其实7，8section按照goto语句来理解非常简单</em></p>
+<hr>
+<h1><span id="37-过程">3.7 过程</span></h1><ul>
+<li>过程的形式<ul>
+<li>function</li>
+<li>method</li>
+<li>subroutine</li>
+<li>handler</li>
+</ul>
+</li>
+<li>过程的必要行为<ul>
+<li>传递控制<ul>
+<li>进入过程时把PC值设置为过程的起始地址</li>
+<li>在退出过程（返回）时，把PC设置为调用过程的指令的后一个指令的地址</li>
+</ul>
+</li>
+<li>传递数据<ul>
+<li>调用者必须能够为被调用的过程提供参数，被调用者必须向调用者返回一个值</li>
+</ul>
+</li>
+<li>分配和释放内存</li>
+</ul>
+</li>
+</ul>
+<h2><span id="371-运行时栈">3.7.1 运行时栈</span></h2>
 	</article>
 
 	 
