@@ -337,8 +337,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月10日</a>
-			<a><i class="kirafont icon-areachart"></i>1.7k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 7 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>1.8k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 8 分钟</a>
 		</div>
 		<h1><span id="31-历史观点">3.1 历史观点</span></h1><p>略</p>
 <h1><span id="32-程序编码">3.2 程序编码</span></h1><h2><span id="321-机器级代码">3.2.1 机器级代码</span></h2><p>两个重要抽象</p>
@@ -481,7 +481,17 @@
 </ul>
 </li>
 </ul>
-<h2><span id="371-运行时栈">3.7.1 运行时栈</span></h2>
+<h2><span id="371-运行时栈">3.7.1 运行时栈</span></h2><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch3/image-20230419151710442.png" alt="image-20230419151710442" class="lazyload"></p>
+<p>调用过程（调用者P, 被调用者Q）</p>
+<ol>
+<li>把返回地址压入栈（设此时栈指针值为ra），指明当Q返回时从哪个位置继续执行（一般将这个栈帧视为P的栈帧的一部分）</li>
+<li>Q扩展当前栈的边界，分配他所需要空间</li>
+<li>Q运行完毕，栈指针值恢复至ra</li>
+</ol>
+<h2><span id="372-转移控制">3.7.2 转移控制</span></h2><p><code>call</code>和<code>ret</code></p>
+<hr>
+<p>TODO: 后续的没有什么需要点明的特性，待做题后补充</p>
+
 	</article>
 
 	 
