@@ -330,7 +330,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年03月20日</a>
-			<a><i class="kirafont icon-areachart"></i>1k 字</a>
+			<a><i class="kirafont icon-areachart"></i>1.1k 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
 		</div>
 		<h1><span id="chapter-5-transition-layer">Chapter 5 Transition-Layer</span></h1><h2><span id="53-tcp">5.3 TCP</span></h2><h3><span id="531-tcp协议的特点">5.3.1 TCP协议的特点</span></h3><ol>
@@ -409,6 +409,7 @@
 </ol>
 <h3><span id="535-tcp流量控制">5.3.5 TCP流量控制</span></h3><p>   接收方为TCP提供缓冲区，在传输过程中动态调整（</p>
 <h3><span id="536-tcp拥塞控制">5.3.6 TCP拥塞控制</span></h3><p><em>发送窗口的上限&#x3D;min[rwnd, cwnd]</em></p>
+<p><em>rwnd接收窗口， cwnd拥塞窗口</em></p>
 <h4><span id="慢开始和拥塞避免算法">慢开始和拥塞避免算法</span></h4><ol>
 <li><p>慢开始算法</p>
 <p>设置cwnd初值为1，并在每收到一个对新报文段的确认后自增<code>cwnd++</code></p>
@@ -428,7 +429,10 @@
 </ol>
 </li>
 </ol>
-<h4><span id="快重传与快恢复">快重传与快恢复</span></h4><p>如上文</p>
+<h4><span id="快重传与快恢复">快重传与快恢复</span></h4><p><strong>快恢复</strong></p>
+<p>当发送方重复确认三次（收到三个相同的ACK）时，执行<em>乘法减小</em>算法，把慢开始的ssthreshold设置为此时发送方拥塞窗口cwnd的一半</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/Transition-Layer-TCP/image-20230420091943730.png" alt="image-20230420091943730" class="lazyload"></p>
+<hr>
 
 	</article>
 
