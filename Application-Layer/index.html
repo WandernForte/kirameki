@@ -330,8 +330,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月18日</a>
-			<a><i class="kirafont icon-areachart"></i>1.1k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>1.2k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
 		</div>
 		<h1><span id="61-网络应用体系结构">6.1 网络应用体系结构</span></h1><ul>
 <li><p>客户机&#x2F;服务器结构(C&#x2F;S)</p>
@@ -456,7 +456,18 @@
 <p>如何注册域名</p>
 </blockquote>
 <h1><span id="ftp">FTP</span></h1><p>文件传输协议</p>
-<h2><span id="分离控制数据连接">分离控制，数据连接</span></h2><h2><span id="命令响应">命令，响应</span></h2><h1><span id="email">Email</span></h1><h2><span id="email应用构成">email应用构成</span></h2><p><strong>构成组件</strong></p>
+<h2><span id="分离控制数据连接">分离控制，数据连接</span></h2><ul>
+<li>客户机通过TCP与服务器连通</li>
+<li>客户机通过<em>控制连接</em>进行授权</li>
+<li>客户机通过控制连接访问服务器的目录</li>
+<li>服务器接收到传输请求后。打开另一条TCP数据链路连接客户端<ul>
+<li>服务器维护这样的状态变化：当前目录， 预认证</li>
+</ul>
+</li>
+<li>传输完毕关闭数据链路</li>
+</ul>
+<h2><span id="命令响应">命令，响应</span></h2><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/Application-Layer/image-20230420115337782.png" alt="image-20230420115337782" class="lazyload"></p>
+<h1><span id="email">Email</span></h1><h2><span id="email应用构成">email应用构成</span></h2><p><strong>构成组件</strong></p>
 <ul>
 <li>邮件客户端<ul>
 <li>读写email消息</li>
@@ -490,6 +501,7 @@
 </li>
 </ul>
 <p>交互示例</p>
+<p>1. </p>
 <p><strong>email消息格式</strong></p>
 <ul>
 <li>header<ul>
@@ -498,8 +510,10 @@
 <li>主题</li>
 </ul>
 </li>
+<li>空白行</li>
 <li>body</li>
 </ul>
+<p><strong>MIME</strong></p>
 <h1><span id="web">web</span></h1>
 	</article>
 
