@@ -71,9 +71,9 @@
 		</a>
 	</div>
 	<div class="kira-count">
-		<div><span>文章</span>15</div>
-		<div><span>标签</span>5</div>
-		<div><span>分类</span>5</div>
+		<div><span>文章</span>16</div>
+		<div><span>标签</span>6</div>
+		<div><span>分类</span>6</div>
 	</div>
 	<div class="kira-list">
 		
@@ -196,7 +196,7 @@
 
       <li class="category-list-item">
         <a class="category-list-link" href="/kirameki/categories/Adversarial-Example/">Adversarial Example</a>
-        <span class="category-list-count">4</span>
+        <span class="category-list-count">1</span>
       </li>
 
       
@@ -228,13 +228,20 @@
       </li>
 
       
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/kirameki/categories/对抗样本/">对抗样本</a>
+        <span class="category-list-count">4</span>
+      </li>
+
+      
     </ul>
 
   </div>
 </div>
   
 <div class="kira-widget-wrap">
-	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/kirameki/tags/Code/" style="font-size: 10px;">Code</a> <a href="/kirameki/tags/Note/" style="font-size: 20px;">Note</a> <a href="/kirameki/tags/TransitionLayer/" style="font-size: 10px;">TransitionLayer</a> <a href="/kirameki/tags/getStarted/" style="font-size: 10px;">getStarted</a> <a href="/kirameki/tags/hw-exam/" style="font-size: 10px;">hw&exam</a></div>
+	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/kirameki/tags/Code/" style="font-size: 10px;">Code</a> <a href="/kirameki/tags/Note/" style="font-size: 20px;">Note</a> <a href="/kirameki/tags/TransitionLayer/" style="font-size: 10px;">TransitionLayer</a> <a href="/kirameki/tags/getStarted/" style="font-size: 10px;">getStarted</a> <a href="/kirameki/tags/hw-exam/" style="font-size: 10px;">hw&exam</a> <a href="/kirameki/tags/plan/" style="font-size: 10px;">plan</a></div>
 	
 </div>
 
@@ -242,7 +249,7 @@
 <div class="kira-widget-wrap">
 	<h3 class="kira-widget-title">文章归档</h3>
 	<div class="kira-widget">
-		<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/kirameki/archives/2023/">2023</a><span class="archive-list-count">15</span></li></ul>
+		<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/kirameki/archives/2023/">2023</a><span class="archive-list-count">16</span></li></ul>
 	</div>
 </div>
 
@@ -330,7 +337,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月08日</a>
-			<a><i class="kirafont icon-areachart"></i>628 字</a>
+			<a><i class="kirafont icon-areachart"></i>651 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
 		</div>
 		<h1><span id="用于多标签分类的mnist数据集的制作">用于多标签分类的mnist数据集的制作</span></h1><p>主要参考了<a target="_blank" rel="noopener" href="https://www.kaggle.com/code/boascent/multi-label-image-classification-pytorch-gpu">Multi Label Image Classification - Pytorch &amp; GPU | Kaggle</a> 中数据集的写法</p>
@@ -338,6 +345,7 @@
 
 <h1><span id="自己随便写的网络">自己随便写的网络</span></h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomNet</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, in_ch=<span class="hljs-number">3</span>, out_ch=<span class="hljs-number">10</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.in_ch = in_ch<br>        self.out_ch = out_ch<br>        self.conv1 = nn.Conv2d(in_channels=in_ch, out_channels=<span class="hljs-number">2</span> * out_ch, kernel_size=<span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>)<br>        self.relu = nn.ReLU()<br>        self.conv2 = nn.Conv2d(in_channels=<span class="hljs-number">2</span> * out_ch, out_channels=out_ch, kernel_size=<span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = self.conv1(x)<br>        x = self.relu(x)<br>        x = self.conv2(x)<br>        <span class="hljs-keyword">return</span> torch.argmax(torch.argmax(self.relu(x), dim=<span class="hljs-number">2</span>), dim=<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
 
+<p><del>现在决定用学长的模型以及数据集代码，此帖内容作废</del></p>
 
 	</article>
 
@@ -353,7 +361,7 @@
   
 	<div class="kira-post-nav">
 		<nav class="post-nav">
-			          
+			                      
 			<!-- 先找到与当前文字相同的目录 -->
 			         
 			<!-- 在找到当前文章所在的 index -->
@@ -367,15 +375,15 @@
 			<!-- 下一篇文章 -->
 			<div class="new">
 				<span>下一章</span>
-				<a href="/kirameki/Differential-Evolution/"> Differential Evolution</a>
+				<a href="/kirameki/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1get-Started/"> 毕业设计get_Started</a>
 			</div>
-			                  
+			          
 		</nav>
 	</div>
 	
 	<div class="kira-post-meta kira-rainbow">
 		
-			<a class="kirafont icon-appstore-fill -link" href="/kirameki/categories/Adversarial-Example/">Adversarial Example</a>
+			<a class="kirafont icon-appstore-fill -link" href="/kirameki/categories/%E5%AF%B9%E6%8A%97%E6%A0%B7%E6%9C%AC/">对抗样本</a>
 		
 		
 			<a class="kirafont icon-tag-fill -none-link" href="/kirameki/tags/Code/" rel="tag">Code</a>
