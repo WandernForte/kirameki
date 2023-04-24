@@ -330,10 +330,56 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月19日</a>
-			<a><i class="kirafont icon-areachart"></i>0 字</a>
+			<a><i class="kirafont icon-areachart"></i>306 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
-		
+		<h1><span id="41-y86-64指令集体系结构">4.1 Y86-64指令集体系结构</span></h1><h2><span id="411-y86程序中可见的状态">4.1.1 Y86程序中可见的状态</span></h2><ul>
+<li><p>15个程序寄存器</p>
+</li>
+<li><p>3个条件码</p>
+</li>
+<li><p>程序状态</p>
+</li>
+<li><p>程序计数器</p>
+</li>
+<li><p>内存</p>
+</li>
+</ul>
+<h2><span id="412-y86-64指令">4.1.2 Y86-64指令</span></h2><p><em>仅列出与x86不同部分</em></p>
+<ul>
+<li>4个整数操作指令只能对寄存器数据进行操作，而x86可以对内存数据进行操作</li>
+<li>halt暂停指令的执行，并将程序状态码设为HLT</li>
+<li>算术指令中不能直接使用立即数</li>
+</ul>
+<h2><span id="413-指令编码">4.1.3 指令编码</span></h2><p>每条指令需要1~10个字节不等，这取决于需要哪些字段。</p>
+<p>每条指令的第一个字节表明指令的类型，高4位为代码部分， 低4位为功能部分，区分指令先看代码部分，再看功能部分</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch4/image-20230424094206521.png" alt="image-20230424094206521" class="lazyload"></p>
+<h2><span id="414-y86-64异常">4.1.4 Y86-64异常</span></h2><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch4/image-20230424095913301.png" alt="image-20230424095913301" class="lazyload"></p>
+<p>依次为：</p>
+<ol>
+<li>正常操作</li>
+<li>暂停</li>
+<li>非法地址</li>
+<li>非法指令</li>
+</ol>
+<hr>
+<h1><span id="42-逻辑设计">4.2 逻辑设计</span></h1><p>pass</p>
+<h1><span id="43-y86-64的顺序实现">4.3 Y86-64的顺序实现</span></h1><h2><span id="431-将处理组织成阶段">4.3.1 将处理组织成阶段</span></h2><ul>
+<li>取指<ul>
+<li>取指阶段从内存读取指令字节， 地址为PC的值</li>
+</ul>
+</li>
+<li>译码</li>
+<li>执行</li>
+<li>访存</li>
+<li>写回</li>
+<li>更新PC</li>
+</ul>
+<p><strong>指令格式</strong></p>
+<p>[icode(4)|ifun(4)|free(24)]</p>
+<hr>
+<p>弃坑，开始面向例题学习</p>
+
 	</article>
 
 	 
