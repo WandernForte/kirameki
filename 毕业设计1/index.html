@@ -330,7 +330,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月24日</a>
-			<a><i class="kirafont icon-areachart"></i>467 字</a>
+			<a><i class="kirafont icon-areachart"></i>519 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
 		</div>
 		<p>主要记录一下基于置信度和基于决策的攻击方法, 迁移攻击不是重点</p>
@@ -352,7 +352,8 @@
 </li>
 </ol>
 <p>如此这样就能对x进行梯度下降优化了</p>
-<h2><span id="square-attack">Square Attack</span></h2><h2><span id="projection-and-probability-driven-attack">Projection and Probability Driven Attack</span></h2><h2><span id="zeroth-order-natural-gradient-descent-attack">Zeroth-Order Natural Gradient Descent Attack</span></h2><h1><span id="基于决策的攻击方法decision-based">基于决策的攻击方法(decision-based)</span></h1><h2><span id="boundary-attack">Boundary Attack</span></h2><p>基本的思想：不断优化生成的扰动（或对抗样本），使之可以让模型输出与想要的决策结果一致的结果。</p>
+<h2><span id="square-attack">Square Attack</span></h2><p>基本方法：随机搜索，在随机位置选择局部的方形更新，使每次迭代扰动近似位于约束区域的边界。每次迭代减小方形的大小。</p>
+<h2><span id="projection-and-probability-driven-attack">Projection and Probability Driven Attack</span></h2><h2><span id="zeroth-order-natural-gradient-descent-attack">Zeroth-Order Natural Gradient Descent Attack</span></h2><h1><span id="基于决策的攻击方法decision-based">基于决策的攻击方法(decision-based)</span></h1><h2><span id="boundary-attack">Boundary Attack</span></h2><p>基本的思想：不断优化生成的扰动（或对抗样本），使之可以让模型输出与想要的决策结果一致的结果。</p>
 <p>使用的方法是正交扰动：所谓正交扰动，就是先水平动一下，然后垂直靠近边界，动态调整参数。(如Figure 2)</p>
 <p>过程中需要满足如下约束条件：</p>
 <ol>

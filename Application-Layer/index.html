@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/kirameki/css/layout.css">
 
 		
-		<title> Application Layer -  Wandern</title>
+		<title> 应用层 -  Wandern</title>
 		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
 		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 		<!-- lazyload -->
@@ -322,15 +322,15 @@
 			<img
 				data-src="https://cdn.jsdelivr.net/gh/WandernForte/roselia/bkg.jpg"
 				data-sizes="auto"
-				alt="Application Layer"
+				alt="应用层"
 				class="lazyload kira-post-cover-image disabled-kira-image"
 			/>
-			<h1>Application Layer</h1>
+			<h1>应用层</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月18日</a>
-			<a><i class="kirafont icon-areachart"></i>1.2k 字</a>
+			<a><i class="kirafont icon-areachart"></i>1.4k 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
 		</div>
 		<h1><span id="61-网络应用体系结构">6.1 网络应用体系结构</span></h1><ul>
@@ -514,7 +514,46 @@
 <li>body</li>
 </ul>
 <p><strong>MIME</strong></p>
-<h1><span id="web">web</span></h1>
+<p><strong>邮件访问协议</strong></p>
+<ul>
+<li>POP<ul>
+<li>认证过程<ul>
+<li>客户端命令</li>
+<li>服务器响应<ul>
+<li>+OK</li>
+<li>-ERR</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>事务阶段<ul>
+<li>List</li>
+<li>Retr</li>
+<li>Dele</li>
+<li>Quit</li>
+</ul>
+</li>
+<li>模式<ul>
+<li>下载并删除：更换客户端软件则无法重读</li>
+<li>下载并保持：保留消息的拷贝</li>
+</ul>
+</li>
+<li>POP3是无状态协议：上下文无关</li>
+</ul>
+</li>
+<li>IMAP<ul>
+<li>所有消息存在服务器</li>
+<li>允许用户利用文件夹组织</li>
+<li>支持跨会话的用户状态</li>
+</ul>
+</li>
+<li>HTTP</li>
+</ul>
+<h1><span id="66-web应用">6.6 web应用</span></h1><h2><span id="web-与-http">Web 与 HTTP</span></h2><p>万维网</p>
+<p>网页</p>
+<p>对象</p>
+<p>对象寻址 Url:[hostname&#x2F;path]</p>
+
 	</article>
 
 	 
