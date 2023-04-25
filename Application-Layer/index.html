@@ -330,8 +330,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月18日</a>
-			<a><i class="kirafont icon-areachart"></i>1.4k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>1.5k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 6 分钟</a>
 		</div>
 		<h1><span id="61-网络应用体系结构">6.1 网络应用体系结构</span></h1><ul>
 <li><p>客户机&#x2F;服务器结构(C&#x2F;S)</p>
@@ -552,7 +552,27 @@
 <h1><span id="66-web应用">6.6 web应用</span></h1><h2><span id="web-与-http">Web 与 HTTP</span></h2><p>万维网</p>
 <p>网页</p>
 <p>对象</p>
-<p>对象寻址 Url:[hostname&#x2F;path]</p>
+<p>对象寻址 Url:[scheme:&#x2F;&#x2F;hostname:port&#x2F;path]</p>
+<h2><span id="http协议概述">HTTP协议概述</span></h2><h3><span id="万维网应用遵循什么协议">万维网应用遵循什么协议？</span></h3><ul>
+<li>HTTP协议</li>
+<li>客户&#x2F;服务器结构</li>
+<li>使用TCP传输</li>
+<li>无状态，上下文无关</li>
+</ul>
+<h3><span id="浏览器的工作">浏览器的工作</span></h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/Application-Layer/image-20230425105952939.png" alt="image-20230425105952939" class="lazyload"></p>
+<h3><span id="http请求消息">HTTP请求消息</span></h3><p>ASCII：直接可读</p>
+<ul>
+<li>请求-响应过程<ul>
+<li>每个TCP连接传输一个对象</li>
+<li>非持久性连接</li>
+</ul>
+</li>
+</ul>
+<h3><span id="http-响应时间优化">HTTP 响应时间优化</span></h3><p>并行连接</p>
+<p>持久连接</p>
+<p>HTTP&#x2F;2</p>
+<p>HTTP&#x2F;3</p>
+<p>Web缓存&#x2F;代理服务器</p>
 
 	</article>
 
