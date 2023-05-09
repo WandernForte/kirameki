@@ -327,8 +327,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月09日</a>
-			<a><i class="kirafont icon-areachart"></i>2k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 8 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>2.4k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 10 分钟</a>
 		</div>
 		<h1><span id="11-计算机网络概述">1.1 计算机网络概述</span></h1><h2><span id="111-计算机网络的概念">1.1.1 计算机网络的概念</span></h2><p><em>计算机网络就是若干互联、自治的计算机系统的集合</em></p>
 <h3><span id="三种定义观点">三种定义观点</span></h3><ol>
@@ -350,7 +350,7 @@
 </ul>
 </li>
 </ol>
-<p>世界上最早的计算机网络是ARPAnet</p>
+<p><strong>世界上最早的计算机网络是ARPAnet</strong></p>
 <h2><span id="112-计算机网络的组成">1.1.2 计算机网络的组成</span></h2><ol>
 <li>从组成成分上看<ul>
 <li>硬件<ul>
@@ -379,6 +379,7 @@
 <li>通信子网<ul>
 <li>传输介质，通信设备，相应网络协议</li>
 <li>网桥、交换机、路由器</li>
+<li>是决定网络拓扑结构的主要因素</li>
 </ul>
 </li>
 <li>资源子网<ul>
@@ -403,9 +404,13 @@
 <li><strong>拓扑结构通常采用网状结构</strong></li>
 </ul>
 </li>
-<li>城域网MAN 使用以太网技术</li>
+<li>城域网MAN 使用以太网技术<ul>
+<li>拓扑结构通常是环形结构或者网状结构</li>
+</ul>
+</li>
 <li><strong>局域网LAN 使用广播技术</strong><ul>
-<li>局域网和广域网之间通过路由器进行互联</li>
+<li>局域网和广域网之间通过路由器进行互联，网关将局域网的数据转换为适合在互联网上传输的数据格式和协议</li>
+<li>拓扑结构通常采用星形</li>
 </ul>
 </li>
 <li>个人区域网PAN</li>
@@ -416,7 +421,11 @@
 <ol start="2">
 <li><p>按传输技术</p>
 <ol>
-<li>广播式网络 所有联网计算机共享一个公共通信信道</li>
+<li>广播式网络 <ul>
+<li>所有联网计算机共享一个公共通信信道<strong>（共享信道）</strong></li>
+<li>不存在路由选择-&gt;可以不需要网络层</li>
+</ul>
+</li>
 <li>点对点网络</li>
 </ol>
 </li>
@@ -429,6 +438,9 @@
 <li>网状</li>
 </ul>
 </li>
+</ol>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/Structure/image-20230509092237810.png" alt="image-20230509092237810" class="lazyload"></p>
+<ol start="4">
 <li><p>按使用者</p>
 <ol>
 <li>专用网</li>
@@ -466,9 +478,12 @@
 <h2><span id="115-计算机网络标准化工作略">1.1.5 计算机网络标准化工作（略）</span></h2><h2><span id="116-计算机网络的性能指标">1.1.6 计算机网络的性能指标</span></h2><ol>
 <li>带宽 bit&#x2F;s(bps)</li>
 <li>时延 <ul>
-<li>发送时延&#x3D;分组长度&#x2F;信道带宽</li>
-<li>传播时延&#x3D;信道长度&#x2F;电磁波在信道上的传播速率</li>
-<li>处理时延（HIT版为传输时延）（一般忽略不计）</li>
+<li>发送时延（HIT版为传输时延）&#x3D;分组长度&#x2F;信道带宽<ul>
+<li>是结点将分组的所有bit推向传输链路所需的时间</li>
+</ul>
+</li>
+<li>传播时延&#x3D;信道长度&#x2F;电磁波在信道上的传播速率（一般由题目给出）</li>
+<li>处理时延（一般忽略不计）</li>
 <li>排队时延（一般忽略不计）</li>
 <li>转发时延 端口状态改变的延迟。<code>例如，端口从空闲状态转变为工作状态的时延</code></li>
 </ul>
@@ -482,9 +497,9 @@
 <h1><span id="12-计算机网络体系结构与参考模型">1.2 计算机网络体系结构与参考模型</span></h1><h2><span id="121-计算机网络分层结构">1.2.1 计算机网络分层结构</span></h2><p><em>计算机网络的各层及其协议的集合称为网络的体系结构</em></p>
 <h2><span id="122-计算机网络协议-接口-服务的概念">1.2.2 计算机网络协议、接口、服务的概念</span></h2><ol>
 <li>协议<ul>
-<li>语法：定义传输格式</li>
-<li>语义：规定所要完成的功能</li>
-<li>同步：规定时序关系</li>
+<li><strong>语法</strong>：定义传输格式</li>
+<li><strong>语义</strong>：规定所要完成的功能</li>
+<li><strong>同步</strong>：规定时序关系</li>
 <li>功能：线路管理，差错控制，数据转换</li>
 </ul>
 </li>
@@ -492,7 +507,7 @@
 <li>服务访问点（SAP)：跨层次访问的逻辑接口</li>
 </ul>
 </li>
-<li>服务<ul>
+<li>服务**[下层为紧邻的上层提供的功能调用]**<ul>
 <li>服务原语<ul>
 <li>请求 服务用户方-&gt;服务提供方</li>
 <li>指示 提供方-&gt;用户方</li>
@@ -519,7 +534,14 @@
 </ul>
 </li>
 </ol>
-<h2><span id="123-isox2fosi参考模型和tcpx2fip模型">1.2.3 ISO&#x2F;OSI参考模型和TCP&#x2F;IP模型</span></h2><h3><span id="osi参考模型">OSI参考模型</span></h3><ol>
+<h2><span id="123-isox2fosi参考模型和tcpx2fip模型">1.2.3 ISO&#x2F;OSI参考模型和TCP&#x2F;IP模型</span></h2><h3><span id="为什么需要分层">为什么需要分层？</span></h3><ul>
+<li>简化网络通信过程</li>
+<li>提高可靠性</li>
+<li>支持多种协议，增加功能之间的独立性</li>
+<li>促进标准化，包括定义标准界面以及提供标准语言</li>
+<li>方便管理和维护等方面</li>
+</ul>
+<h3><span id="osi参考模型">OSI参考模型</span></h3><ol>
 <li><p>物理层</p>
 <ol>
 <li>定义数据终端设备和数据通信设备的物理与逻辑连接方法，传输原始比特流（节点到节点）</li>
@@ -534,8 +556,8 @@
 </li>
 <li><p>功能：</p>
 <ol>
-<li>成帧（定义数据格式），</li>
-<li><strong>差错控制</strong>，流量控制，传输管理（提供了结点间的可靠传输），</li>
+<li>成帧（定义数据格式），<strong>保证数据正确的顺序和完整性</strong></li>
+<li><strong>差错控制</strong>，<strong>流量控制</strong>，<strong>传输管理（物理寻址）</strong>（提供了结点间的可靠传输），</li>
 <li>链路管理（控制对物理传输介质的访问）</li>
 </ol>
 </li>
@@ -557,7 +579,7 @@
 </li>
 <li><p>传输层</p>
 <ol>
-<li>负责不同主机的进程之间的通信，包括建立、维护、拆除等操作（端（口）到端（口））</li>
+<li>负责不同主机的进程之间的通信，包括建立、维护、拆除等操作<strong>端到端</strong></li>
 <li><strong>差错控制</strong>，<strong>流量控制</strong>，<strong>拥塞控制</strong>，服务质量，数据传输管理</li>
 <li>接口协议：TCP,UDP</li>
 <li>服务访问点：<strong>端口号</strong></li>
@@ -599,6 +621,23 @@
 <li>与物理网络的接口</li>
 </ol>
 </li>
+</ol>
+<hr>
+<p>考试中涉及的是OSI模型（从高到低）</p>
+<ul>
+<li>应用层</li>
+<li>传输层</li>
+<li>网络层</li>
+<li>数据链路层</li>
+<li>物理层</li>
+</ul>
+<p>考试中需要熟记各个层次的功能</p>
+<ol>
+<li>物理层（Physical Layer）：负责在物理媒介上传输比特流（0和1），并定义物理层面的电气特性、连接器和传输速率等参数。</li>
+<li>数据链路层（Data Link Layer）：负责将比特流组装成帧（Frame），并为每一帧添加标识和校验等信息，以确保数据的可靠传输。</li>
+<li>网络层（Network Layer）：负责进行路由选择和流量控制等工作，以确保数据在网络中的正确传输和到达目标地址。</li>
+<li>传输层（Transport Layer）：提供端到端的可靠数据传输服务，负责数据分段、数据重组、数据传输可靠性的保证，以及控制数据的流量和拥塞等问题。</li>
+<li>应用层（Application Layer）：为用户提供各种网络应用服务，如电子邮件、文件传输、远程登录、Web服务等。</li>
 </ol>
 
 	</article>
