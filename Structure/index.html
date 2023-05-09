@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/kirameki/css/layout.css">
 
 		
-		<title> 计网的某道题 -  Wandern</title>
+		<title> 计算机网络体系结构 -  Wandern</title>
 		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
 		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 		<!-- lazyload -->
@@ -315,46 +315,298 @@
 <div class="kira-post">
 	<article>
 		
-		<div
-			class="kira-post-cover"
-			style="padding-bottom: '56.25%'"
-		>
+		<div class="kira-post-cover">
 			<img
-				data-src="https://cdn.jsdelivr.net/gh/WandernForte/roselia/bkg.jpg"
+				data-src="https://wandernforte.github.io/kirameki/images/SD302B.png"
 				data-sizes="auto"
-				alt="计网的某道题"
+				alt="计算机网络体系结构"
 				class="lazyload kira-post-cover-image disabled-kira-image"
 			/>
-			<h1>计网的某道题</h1>
+			<h1>计算机网络体系结构</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2023年03月17日</a>
-			<a><i class="kirafont icon-areachart"></i>379 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2023年05月09日</a>
+			<a><i class="kirafont icon-areachart"></i>2k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 8 分钟</a>
 		</div>
-		<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/WandernForte/roselia/problem.jpg" alt="problem" class="lazyload"></p>
-<hr>
-<p><em>已经算出一周期可以传7.2个帧。答案是B</em></p>
-<h2><span id="我个人的解释是">我个人的解释是</span></h2><p>信道一次只能确认一序号周期最大传输量少一帧，如果使用<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>3</mn></msup><mo>=</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">2^3=8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span></span></span></span>的序号周期会因为7.2&gt;7(8-1),有接收重复序号的风险，所以要多用1位的序号扩大序号周期。</p>
-<p>得出的结论是</p>
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>−</mo><mn>1</mn><mo>&lt;</mo><mi>n</mi><mi>u</mi><msub><mi>m</mi><mrow><mi>f</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi>e</mi></mrow></msub><mo>&lt;</mo><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>n</mi><mtext>是序号</mtext><mi>b</mi><mi>i</mi><mi>t</mi><mtext>数</mtext><mo separator="true">,</mo><mi>n</mi><mi>u</mi><msub><mi>m</mi><mrow><mi>f</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi>e</mi></mrow></msub><mtext>是一个传输确认周期可传输的最大帧数</mtext></mrow><annotation encoding="application/x-tex">2^{n-1}-1&lt;num_{frame}&lt;2^n-1,n是序号bit数,num_{frame}是一个传输确认周期可传输的最大帧数</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8252079999999999em;vertical-align:-0.286108em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">u</span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.747722em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">序</span><span class="mord cjk_fallback">号</span><span class="mord mathnormal">b</span><span class="mord mathnormal">i</span><span class="mord mathnormal">t</span><span class="mord cjk_fallback">数</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">u</span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">一</span><span class="mord cjk_fallback">个</span><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">输</span><span class="mord cjk_fallback">确</span><span class="mord cjk_fallback">认</span><span class="mord cjk_fallback">周</span><span class="mord cjk_fallback">期</span><span class="mord cjk_fallback">可</span><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">输</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">最</span><span class="mord cjk_fallback">大</span><span class="mord cjk_fallback">帧</span><span class="mord cjk_fallback">数</span></span></span></span>
-<h2><span id="但是">但是</span></h2><p>课程老师的回复是</p>
-<p>T: </p>
-<p>是因为接收窗口最小是1，把这个1加上不就是8.2了吗，序号空间要大于等于8.2，所以需要4比特的序号</p>
-<p>Me:<br>为什么还要带上接收窗口的大小呢，这7.2里不是已经包含到达接收方的一个帧了吗?我觉得应该和接收窗口大小无关</p>
-<p>T: </p>
-<p>这是滑动窗口协议为确保协议正常运行，必须满足的发送窗口、接收窗口与序号空间之间的约束关系</p>
-<hr>
-<p>我找了很多地方也没有找到这所谓的约束关系。</p>
-<p>所以这有什么统一解释的判准吗？</p>
+		<h1><span id="11-计算机网络概述">1.1 计算机网络概述</span></h1><h2><span id="111-计算机网络的概念">1.1.1 计算机网络的概念</span></h2><p><em>计算机网络就是若干互联、自治的计算机系统的集合</em></p>
+<h3><span id="三种定义观点">三种定义观点</span></h3><ol>
+<li>广义观点<ul>
+<li>远程资源共享就是计算机网络</li>
+<li>是最原始的观点</li>
+</ul>
+</li>
+<li>资源共享观点<ul>
+<li>符合目前计算机网络的特点</li>
+<li>目的：资源共享</li>
+<li>组成单元：互联但自治的若干计算机系统</li>
+<li>资源共享统一规则：网络协议</li>
+</ul>
+</li>
+<li>用户透明性观点<ul>
+<li>网络未来发展目标</li>
+<li>（现在没啥意义就是说）</li>
+</ul>
+</li>
+</ol>
+<p>世界上最早的计算机网络是ARPAnet</p>
+<h2><span id="112-计算机网络的组成">1.1.2 计算机网络的组成</span></h2><ol>
+<li>从组成成分上看<ul>
+<li>硬件<ul>
+<li>主机</li>
+<li>通信链路</li>
+<li>交换设备</li>
+<li>通信处理机</li>
+</ul>
+</li>
+<li>软件</li>
+<li>协议</li>
+</ul>
+</li>
+<li>从工作方式上看<ul>
+<li>边缘部分<ul>
+<li>主机</li>
+</ul>
+</li>
+<li>核心部分<ul>
+<li>路由器，负责连通与交换</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>功能组成上看（同时也是计算机网络系统的基本组成）<ul>
+<li>通信子网<ul>
+<li>传输介质，通信设备，相应网络协议</li>
+<li>网桥、交换机、路由器</li>
+</ul>
+</li>
+<li>资源子网<ul>
+<li>实现资源共享的设备及其软件的集合</li>
+<li>计算机软件，进程</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2><span id="113-计算机网络的功能">1.1.3 计算机网络的功能</span></h2><ol>
+<li>数据通信</li>
+<li>资源共享</li>
+<li>分布式处理</li>
+<li>提高可靠性，提高工作效率</li>
+<li>负载均衡</li>
+</ol>
+<h2><span id="114-计算机网络的分类">1.1.4 计算机网络的分类</span></h2><ol>
+<li><p>按分布范围（降序）</p>
+<ol>
+<li><strong>广域网WAN 使用交换技术</strong><ul>
+<li><strong>拓扑结构通常采用网状结构</strong></li>
+</ul>
+</li>
+<li>城域网MAN 使用以太网技术</li>
+<li><strong>局域网LAN 使用广播技术</strong><ul>
+<li>局域网和广域网之间通过路由器进行互联</li>
+</ul>
+</li>
+<li>个人区域网PAN</li>
+</ol>
+</li>
+</ol>
+<p>这些类别的差异主要体现在覆盖范围以及使用的技术协议上</p>
+<ol start="2">
+<li><p>按传输技术</p>
+<ol>
+<li>广播式网络 所有联网计算机共享一个公共通信信道</li>
+<li>点对点网络</li>
+</ol>
+</li>
+<li><p>按拓扑结构</p>
+<ul>
+<li>拓扑结构是指网中结点与通信线路之间的几何关系表示的网络结构</li>
+<li>总线形</li>
+<li>星形</li>
+<li>环形</li>
+<li>网状</li>
+</ul>
+</li>
+<li><p>按使用者</p>
+<ol>
+<li>专用网</li>
+<li>共用网</li>
+</ol>
+</li>
+<li><h3><span id="按交换技术">按交换技术</span></h3><ol>
+<li>电路交换网络<ol>
+<li>在源节点和目的结点之间建立一条占用的通路用于传输数据，包括建立连接，传输数据和断开连接三个阶段。</li>
+<li>优点：数据直接传输，时延小</li>
+<li>缺点：线路利用率低，不便于进行差错控制</li>
+</ol>
+</li>
+<li>报文交换网络（存储-转发网络）<ol>
+<li>报文：用户数据，源地址，目标地址，校验码等辅助信息的封装</li>
+<li>特点：整个报文到达相邻结点，<strong>全部存储后</strong>（就是接收成功，存储在结点的存储空间中，与全部不全部无关联，怎么翻译的这是），查找转发表，转发到下一个节点</li>
+<li>优点：充分利用线路，实现不同链路不同传输速率的转换，可以实现格式转换，可以实现一对多，多对一的访问，可以实现差错控制</li>
+<li>缺点：增大资源开销（每个结点都要存储一份报文的副本，缓冲区管理难度大，以及封装操作的开销），增加了缓冲时延</li>
+</ol>
+</li>
+<li>分组交换网络<ol>
+<li>将数据分成较短的定长的数据块，在每个数据块中加上目的地址、源地址等辅助信息组成分组（或包），以存储-转发方式传输</li>
+<li>优点：缓冲易于管理，平均时延更小，更易于标准化(<strong>相对于报文交换改进的直接结果就是减少了传输时延</strong>)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>按传输介质</p>
+<ol>
+<li>有线</li>
+<li>无线</li>
+</ol>
+</li>
+</ol>
+<h2><span id="115-计算机网络标准化工作略">1.1.5 计算机网络标准化工作（略）</span></h2><h2><span id="116-计算机网络的性能指标">1.1.6 计算机网络的性能指标</span></h2><ol>
+<li>带宽 bit&#x2F;s(bps)</li>
+<li>时延 <ul>
+<li>发送时延&#x3D;分组长度&#x2F;信道带宽</li>
+<li>传播时延&#x3D;信道长度&#x2F;电磁波在信道上的传播速率</li>
+<li>处理时延（HIT版为传输时延）（一般忽略不计）</li>
+<li>排队时延（一般忽略不计）</li>
+<li>转发时延 端口状态改变的延迟。<code>例如，端口从空闲状态转变为工作状态的时延</code></li>
+</ul>
+</li>
+<li>时延带宽积&#x3D;传播时延*信道带宽</li>
+<li>往返时延</li>
+<li>吞吐量</li>
+<li>速率</li>
+<li>信道利用率&#x3D;有数据通过时间&#x2F;总时间</li>
+</ol>
+<h1><span id="12-计算机网络体系结构与参考模型">1.2 计算机网络体系结构与参考模型</span></h1><h2><span id="121-计算机网络分层结构">1.2.1 计算机网络分层结构</span></h2><p><em>计算机网络的各层及其协议的集合称为网络的体系结构</em></p>
+<h2><span id="122-计算机网络协议-接口-服务的概念">1.2.2 计算机网络协议、接口、服务的概念</span></h2><ol>
+<li>协议<ul>
+<li>语法：定义传输格式</li>
+<li>语义：规定所要完成的功能</li>
+<li>同步：规定时序关系</li>
+<li>功能：线路管理，差错控制，数据转换</li>
+</ul>
+</li>
+<li>接口<ul>
+<li>服务访问点（SAP)：跨层次访问的逻辑接口</li>
+</ul>
+</li>
+<li>服务<ul>
+<li>服务原语<ul>
+<li>请求 服务用户方-&gt;服务提供方</li>
+<li>指示 提供方-&gt;用户方</li>
+<li>响应 用户方-&gt;提供方</li>
+<li>证实 提供方-&gt;用户方</li>
+</ul>
+</li>
+<li>服务分类<ul>
+<li>面向连接服务与无连接服务<ul>
+<li>面向连接服务双方必须先建立连接，分配相应的资源。例如TCP协议</li>
+<li>无连接服务双方无需先建立连接，数据通过线路传输，不可靠。例如IP，UDP协议</li>
+</ul>
+</li>
+<li>可靠服务与不可靠服务<ul>
+<li>是否具有纠错能力</li>
+</ul>
+</li>
+<li>有应答服务与无应答服务<ul>
+<li>有应答服务的实例：文件传输协议 ftp</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2><span id="123-isox2fosi参考模型和tcpx2fip模型">1.2.3 ISO&#x2F;OSI参考模型和TCP&#x2F;IP模型</span></h2><h3><span id="osi参考模型">OSI参考模型</span></h3><ol>
+<li><p>物理层</p>
+<ol>
+<li>定义数据终端设备和数据通信设备的物理与逻辑连接方法，传输原始比特流（节点到节点）</li>
+<li><strong>不参与数据封装，因为数据封装是当前层将数据传输给下一层必须要</strong></li>
+<li>接口协议：EIA-232C、EIA&#x2F;TIA RS-449、CCITT的X.21等</li>
+<li>服务访问点：<strong>网卡接口</strong></li>
+</ol>
+</li>
+<li><p>数据链路层</p>
+<ol>
+<li><p>任务是将网络层传来的IP数据封装成帧，检测差错并进行处理。即数据接收与发送。（设备到设备，节点到节点）</p>
+</li>
+<li><p>功能：</p>
+<ol>
+<li>成帧（定义数据格式），</li>
+<li><strong>差错控制</strong>，流量控制，传输管理（提供了结点间的可靠传输），</li>
+<li>链路管理（控制对物理传输介质的访问）</li>
+</ol>
+</li>
+<li><h4><span id="接口协议sdlchdlcpppsilpstp和帧中继等">接口协议：SDLC,HDLC,PPP（SILP）,STP和帧中继等</span></h4></li>
+<li><p><strong>在不可靠的物理介质上提供可靠的传输–存在纠错</strong></p>
+</li>
+<li><p>服务访问点：<strong>MAC地址（网卡地址）</strong></p>
+</li>
+</ol>
+</li>
+<li><p>网络层</p>
+<ol>
+<li>任务是把网络层的协议数据单元从源端传到目的端，分发数据分组（起路由作用，主机到主机，节点到节点）</li>
+<li>功能：<strong>流量控制</strong>，<strong>拥塞控制</strong>，<strong>差错控制</strong>，网际交互</li>
+<li><strong>可提供有连接与无连接服务</strong></li>
+<li>接口协议：IP、IPX、ICMP,ARP,RARP,OSPF</li>
+<li>服务访问点：<strong>IP地址（网络地址）</strong></li>
+</ol>
+</li>
+<li><p>传输层</p>
+<ol>
+<li>负责不同主机的进程之间的通信，包括建立、维护、拆除等操作（端（口）到端（口））</li>
+<li><strong>差错控制</strong>，<strong>流量控制</strong>，<strong>拥塞控制</strong>，服务质量，数据传输管理</li>
+<li>接口协议：TCP,UDP</li>
+<li>服务访问点：<strong>端口号</strong></li>
+</ol>
+</li>
+<li><p>会话层</p>
+<ol>
+<li>校验，管理主机间的会话进程（端到端）</li>
+</ol>
+</li>
+<li><p>表示层</p>
+<ol>
+<li>数据格式转换，设计数据封装（端到端）</li>
+</ol>
+</li>
+<li><p>应用层</p>
+<ol>
+<li>端到端</li>
+<li>接口协议：FTP,SMTP,HTTP</li>
+<li>服务访问点：<strong>用户界面</strong></li>
+</ol>
+</li>
+</ol>
+<h3><span id="tcpx2fip模型">TCP&#x2F;IP模型</span></h3><p><em>提供无连接不可靠的数据报（文）服务</em>，包含<strong>TCP、IP、UDP、Telnet、FTP、SMTP、ICMP</strong>等协议</p>
+<ol>
+<li>应用层<ol>
+<li>包含所有高层网络协议</li>
+</ol>
+</li>
+<li>传输层<ol>
+<li>接口协议：TCP,UDP（与OSI模型类似）</li>
+</ol>
+</li>
+<li>网际层<ol>
+<li>定义了标准的分组格式和协议</li>
+</ol>
+</li>
+<li>网络接口层<ol>
+<li>与物理网络的接口</li>
+</ol>
+</li>
+</ol>
 
 	</article>
 
 	 
     <div class="kira-post-copyright">
         <strong>本文作者：</strong>Kiryu Sento<br>
-        <strong>本文链接：</strong><a href="https://wandernforte.github.io/kirameki/%E8%AE%A1%E7%BD%91%E7%9A%84%E6%9F%90%E9%81%93%E9%A2%98/" title="https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;计网的某道题&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;计网的某道题&#x2F;</a><br>
+        <strong>本文链接：</strong><a href="https://wandernforte.github.io/kirameki/Structure/" title="https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;Structure&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;Structure&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
@@ -365,15 +617,15 @@
 		<nav class="post-nav">
 			  
 			<!-- 先找到与当前文字相同的目录 -->
-			   
+			               
 			<!-- 在找到当前文章所在的 index -->
-			       
-			<!-- 下一篇文章 -->
-			<div class="new">
-				<span>下一章</span>
-				<a href="/kirameki/Transition-Layer/"> Transition Layer</a>
+			                
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/kirameki/Application-Layer/"> 应用层</a>
 			</div>
-			                                               
+			                          
 		</nav>
 	</div>
 	
@@ -382,7 +634,7 @@
 			<a class="kirafont icon-appstore-fill -link" href="/kirameki/categories/Computer-Network/">Computer Network</a>
 		
 		
-			<a class="kirafont icon-tag-fill -none-link" href="/kirameki/tags/hw-exam/" rel="tag">hw&exam</a>
+			<a class="kirafont icon-tag-fill -none-link" href="/kirameki/tags/note/" rel="tag">note</a>
 		
 	</div>
 	
