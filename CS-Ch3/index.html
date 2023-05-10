@@ -330,8 +330,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月10日</a>
-			<a><i class="kirafont icon-areachart"></i>1.9k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 8 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>2.2k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 9 分钟</a>
 		</div>
 		<h1><span id="31-历史观点">3.1 历史观点</span></h1><p>略</p>
 <h1><span id="32-程序编码">3.2 程序编码</span></h1><h2><span id="321-机器级代码">3.2.1 机器级代码</span></h2><p>两个重要抽象</p>
@@ -363,6 +363,7 @@
 <h1><span id="34-访问信息">3.4 访问信息</span></h1><p><strong>x86-64通用寄存器，同一行代表一个寄存器的不同访问部分。如%al实际就是%rax的低8位</strong></p>
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch3/image-20230417120350905.png" alt="x86-64通用寄存器" class="lazyload"></p>
 <p>（汉化版120页，en.ver p216）</p>
+<p>需要记住的寄存器，返回值%rax, 4个参数寄存器</p>
 <h2><span id="341-操作指示符">3.4.1 操作指示符</span></h2><p><strong>操作数的类型</strong></p>
 <ul>
 <li>立即数：$</li>
@@ -410,6 +411,8 @@
 <hr>
 <h2><span id="354-特殊算术操作">3.5.4 特殊算术操作</span></h2><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch3/image-20230419115532559.png" alt="image-20230419115532559" class="lazyload"></p>
 <hr>
+<p><strong>如图，这里隐式地将%rdx和%rax拼接成一个128位寄存器，同时，第一个操作数被定为%rax，所以在进行我们需要的操作前，需要先将操作数移动至%rax;</strong></p>
+<p><strong>在进行除法操作时，余数存储在%rdx中，商存储在%rax中</strong></p>
 <h1><span id="36-控制">3.6 控制</span></h1><p><em>这里主要是分支、跳转指令</em></p>
 <h2><span id="361-条件码">3.6.1 条件码</span></h2><p>常用条件码</p>
 <ul>
@@ -418,22 +421,29 @@
 <li>SF: 符号标志</li>
 <li>OF: 溢出标志（最近的操作导致了一个补码溢出–正或负）</li>
 </ul>
-<p>相关的操作：比较和测试指令<code>comp</code>和<code>test</code>类</p>
-<h2><span id="362-访问条件码">3.6.2 访问条件码</span></h2><p><strong>!!!条件码通常不会被直接读取!!!</strong></p>
+<p>相关的操作：比较和测试指令<code>cmp</code>和<code>test</code>类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs assembly">cmp s1, s2 # S2 - S1<br>test s1, s2 # S1 &amp; S2<br></code></pre></td></tr></table></figure>
+
+
+
+<h2><span id="362-访问条件码">3.6.2 访问条件码</span></h2><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch3/%E7%BD%91%E9%A1%B5%E6%8D%95%E8%8E%B7_10-5-2023_11936_.jpeg" alt="网页捕获_10-5-2023_11936_" class="lazyload"></p>
+<p><strong>!!!条件码通常不会被直接读取!!!</strong></p>
 <p>常用的使用条件码的方法有:</p>
 <ul>
-<li>根据条件码的某种组合将一个字节设置成0或1<ul>
+<li>根据条件码的某种组合将一个<strong>字节</strong>设置成0或1<ul>
 <li><code>set</code>类指令</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs assembly">cmpq %rsi, %rdi # 比较得到条件码<br>setl %al # 将条件码存在%al寄存器<br>movz %al, %eax <br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs assembly">cmpq %rsi, %rdi # 比较得到条件码<br>setl %al # 如果条件符合将%al置1， 否则置0<br>movz %al, %eax <br></code></pre></td></tr></table></figure>
 
 
 
 <ul>
 <li>可以条件跳转到程序的某个其他的部分</li>
 <li>有条件地传送数据</li>
+<li>有符号的大于是great, 小于是less</li>
+<li>无符号的大于是above，小于是below</li>
 </ul>
 <h2><span id="363-跳转指令">3.6.3 跳转指令</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs assembly">jmp %rax # 直接跳转<br>jmp *oprand # 间接跳转，根据oprand寻址从内存读值<br></code></pre></td></tr></table></figure>
 
@@ -447,6 +457,10 @@
 
 <hr>
 <h2><span id="366-用条件传送实现条件分支">3.6.6 用条件传送实现条件分支</span></h2><p>条件控制转移指依据代码的条件结果来选择运行的路径。条件传送指先把结果运行，在依据条件结果选择结果值<br>在同样的情况下，条件传送性能比条件控制转移高（需要回退的代价比较少）</p>
+<h3><span id="如何确定分支预测错误的惩罚">如何确定分支预测错误的惩罚</span></h3><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>无差错执行代码的时间</mtext><msub><mi>T</mi><mrow><mi>O</mi><mi>K</mi></mrow></msub><mo separator="true">,</mo><mtext>预测错误的惩罚是</mtext><msub><mi>T</mi><mrow><mi>M</mi><mi>P</mi></mrow></msub><mo separator="true">,</mo><mtext>预测出错的概率为</mtext><mi>p</mi><mo stretchy="false">(</mo><mtext>默认为</mtext><mn>0.5</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mspace linebreak="newline"></mspace><mtext>那么执行代码的平均时间是</mtext><msub><mi>T</mi><mrow><mi>a</mi><mi>v</mi><mi>g</mi></mrow></msub><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>T</mi><mrow><mi>O</mi><mi>K</mi></mrow></msub><mo>+</mo><mi>p</mi><mo separator="true">⋅</mo><msub><mi>T</mi><mrow><mi>M</mi><mi>P</mi></mrow></msub></mrow><annotation encoding="application/x-tex">
+无差错执行代码的时间T_{OK}, 预测错误的惩罚是T_{MP}, 预测出错的概率为p(默认为0.5), \\那么执行代码的平均时间是T_{avg}(p)=T_{OK}+p·T_{MP}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">无</span><span class="mord cjk_fallback">差</span><span class="mord cjk_fallback">错</span><span class="mord cjk_fallback">执</span><span class="mord cjk_fallback">行</span><span class="mord cjk_fallback">代</span><span class="mord cjk_fallback">码</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">间</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">O</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">K</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">预</span><span class="mord cjk_fallback">测</span><span class="mord cjk_fallback">错</span><span class="mord cjk_fallback">误</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">惩</span><span class="mord cjk_fallback">罚</span><span class="mord cjk_fallback">是</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">预</span><span class="mord cjk_fallback">测</span><span class="mord cjk_fallback">出</span><span class="mord cjk_fallback">错</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">概</span><span class="mord cjk_fallback">率</span><span class="mord cjk_fallback">为</span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord cjk_fallback">默</span><span class="mord cjk_fallback">认</span><span class="mord cjk_fallback">为</span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose">)</span><span class="mpunct">,</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord cjk_fallback">那</span><span class="mord cjk_fallback">么</span><span class="mord cjk_fallback">执</span><span class="mord cjk_fallback">行</span><span class="mord cjk_fallback">代</span><span class="mord cjk_fallback">码</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">平</span><span class="mord cjk_fallback">均</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">间</span><span class="mord cjk_fallback">是</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">p</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">O</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">K</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+
 <p>x86中条件传送指令实现的操作: <strong>当传送条件满足时，指令把源值复制到目的</strong></p>
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch3/image-20230419150657475.png" alt="image-20230419150657475" class="lazyload"></p>
 <hr>
