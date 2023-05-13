@@ -71,7 +71,7 @@
 		</a>
 	</div>
 	<div class="kira-count">
-		<div><span>文章</span>19</div>
+		<div><span>文章</span>20</div>
 		<div><span>标签</span>10</div>
 		<div><span>分类</span>4</div>
 	</div>
@@ -203,7 +203,7 @@
 
       <li class="category-list-item">
         <a class="category-list-link" href="/kirameki/categories/Computer-Network/">Computer Network</a>
-        <span class="category-list-count">5</span>
+        <span class="category-list-count">6</span>
       </li>
 
       
@@ -227,7 +227,7 @@
 </div>
   
 <div class="kira-widget-wrap">
-	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/kirameki/tags/Code/" style="font-size: 10px;">Code</a> <a href="/kirameki/tags/Note/" style="font-size: 20px;">Note</a> <a href="/kirameki/tags/TransitionLayer/" style="font-size: 10px;">TransitionLayer</a> <a href="/kirameki/tags/getStarted/" style="font-size: 10px;">getStarted</a> <a href="/kirameki/tags/hw-exam/" style="font-size: 10px;">hw&exam</a> <a href="/kirameki/tags/idea/" style="font-size: 10px;">idea</a> <a href="/kirameki/tags/note/" style="font-size: 10px;">note</a> <a href="/kirameki/tags/plan/" style="font-size: 10px;">plan</a> <a href="/kirameki/tags/survey/" style="font-size: 10px;">survey</a> <a href="/kirameki/tags/%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" style="font-size: 15px;">代码模板</a></div>
+	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/kirameki/tags/Code/" style="font-size: 10px;">Code</a> <a href="/kirameki/tags/Note/" style="font-size: 20px;">Note</a> <a href="/kirameki/tags/TransitionLayer/" style="font-size: 10px;">TransitionLayer</a> <a href="/kirameki/tags/getStarted/" style="font-size: 10px;">getStarted</a> <a href="/kirameki/tags/hw-exam/" style="font-size: 10px;">hw&exam</a> <a href="/kirameki/tags/idea/" style="font-size: 10px;">idea</a> <a href="/kirameki/tags/note/" style="font-size: 15px;">note</a> <a href="/kirameki/tags/plan/" style="font-size: 10px;">plan</a> <a href="/kirameki/tags/survey/" style="font-size: 10px;">survey</a> <a href="/kirameki/tags/%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" style="font-size: 15px;">代码模板</a></div>
 	
 </div>
 
@@ -235,7 +235,7 @@
 <div class="kira-widget-wrap">
 	<h3 class="kira-widget-title">文章归档</h3>
 	<div class="kira-widget">
-		<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/kirameki/archives/2023/">2023</a><span class="archive-list-count">19</span></li></ul>
+		<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/kirameki/archives/2023/">2023</a><span class="archive-list-count">20</span></li></ul>
 	</div>
 </div>
 
@@ -320,8 +320,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月13日</a>
-			<a><i class="kirafont icon-areachart"></i>332 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>442 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
 		</div>
 		<h1><span id="用foolbox移植一部分已知的多标签分类">用foolbox移植一部分已知的多标签分类</span></h1><h2><span id="面临的问题">面临的问题</span></h2><blockquote>
 <p>foolbox在生成对抗样本时， 会进行is_adv的判定，这个is_adv是大小为[num_classes, 1] 的bool 类型的tensor. 而且生成时使用的方法是where，这导致了无法对齐</p>
@@ -337,6 +337,8 @@
 <hr>
 <h2><span id="2023x2f5x2f13更新">2023&#x2F;5&#x2F;13更新</span></h2><p><strong>自己仿写的一个criterion</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># custom function</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TargetedMisclassificationML</span>(<span class="hljs-title class_ inherited__">Criterion</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;Considers those perturbed inputs adversarial whose predicted class</span><br><span class="hljs-string">    matches the target classes. Multi-Label</span><br><span class="hljs-string"></span><br><span class="hljs-string">    Args:</span><br><span class="hljs-string">        target_classes: Tensor with target classes ``(batch,)``.</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, target_classes: <span class="hljs-type">Any</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.target_classes: ep.Tensor = ep.astensor(target_classes)<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__repr__</span>(<span class="hljs-params">self</span>) -&gt; <span class="hljs-built_in">str</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;self.__class__.__name__&#125;</span>(<span class="hljs-subst">&#123;self.target_classes!r&#125;</span>)&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__call__</span>(<span class="hljs-params">self, perturbed: transforms, outputs: transforms</span>) -&gt; transforms:<br>        outputs_, restore_type = ep.astensor_(outputs)<br>        <span class="hljs-keyword">del</span> perturbed, outputs<br>        <br>        classes = (outputs_&gt;=<span class="hljs-number">0.5</span>)+<span class="hljs-number">0</span> <span class="hljs-comment"># transform logits to predict results</span><br>        <br>        <span class="hljs-keyword">assert</span> classes.shape == self.target_classes.shape<br>        is_adv = ep.<span class="hljs-built_in">all</span>(classes == self.target_classes, axis=<span class="hljs-number">1</span>)<br>        <br>        <span class="hljs-keyword">return</span> restore_type(is_adv)<br></code></pre></td></tr></table></figure>
+
+<h3><span id="简单粗暴把boundary-attack的初始攻击样本改成随机的了">简单粗暴把Boundary Attack的初始攻击样本改成随机的了</span></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">run</span>(<span class="hljs-params"></span><br><span class="hljs-params">    self,</span><br><span class="hljs-params">    model: Model,</span><br><span class="hljs-params">    inputs: T,</span><br><span class="hljs-params">    criterion: <span class="hljs-type">Union</span>[Criterion, T],</span><br><span class="hljs-params">    *,</span><br><span class="hljs-params">    early_stop: <span class="hljs-type">Optional</span>[<span class="hljs-built_in">float</span>] = <span class="hljs-literal">None</span>,</span><br><span class="hljs-params">    starting_points: <span class="hljs-type">Optional</span>[T] = <span class="hljs-literal">None</span>,</span><br><span class="hljs-params">    **kwargs: <span class="hljs-type">Any</span>,</span><br><span class="hljs-params"></span>) -&gt; T:<br>    raise_if_kwargs(kwargs)<br>    _, t_restore_type = ep.astensor_(torch.zeros(<span class="hljs-number">1</span>))<br>    originals, restore_type = ep.astensor_(inputs)<br>    <span class="hljs-comment"># del inputs, kwargs</span><br><br>    verify_input_bounds(originals, model)<br><br>    criterion = get_criterion(criterion)<br>    is_adversarial = get_is_adversarial(criterion, model)<br><br>    init_attack = LinearSearchBlendedUniformNoiseAttack(steps=<span class="hljs-number">50</span>)<br>    logging.info(<br>            <span class="hljs-string">f&quot;Neither starting_points nor init_attack given. Falling&quot;</span><br>            <span class="hljs-string">f&quot; back to <span class="hljs-subst">&#123;init_attack!r&#125;</span> for initialization.&quot;</span><br>        )<br>  <br>    best_advs = ep.astensor(torch.rand_like(t_restore_type(inputs)))<br>    <span class="hljs-keyword">del</span> inputs, kwargs<br>    tb = TensorBoard(logdir=self.tensorboard)<br></code></pre></td></tr></table></figure>
 
 
 	</article>
