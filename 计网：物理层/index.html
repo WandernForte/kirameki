@@ -320,8 +320,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月13日</a>
-			<a><i class="kirafont icon-areachart"></i>1.3k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>1.4k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 6 分钟</a>
 		</div>
 		<h1><span id="第二章-物理层">第二章 物理层</span></h1><h2><span id="21-通信基础">2.1 通信基础</span></h2><h3><span id="211-基本概念">2.1.1 基本概念</span></h3><ol>
 <li><p>数据、信号与码元</p>
@@ -404,16 +404,19 @@
 <ol>
 <li><p>编码</p>
 <ol>
-<li>归零编码（RZ）:高电平为1低电平为0（双极正电平为1，负电平为0），同时每个时钟周期的中间时刻均跳回0（可同步时钟）<ul>
+<li>归零编码（RZ）:高电平为1低电平为0（双极正电平为1，负电平为0），同时每个时钟周期的中间时刻均跳回0（可同步时钟）【即只有前半周期信号被记为有效】<ul>
 <li>由于归零需要占用带宽，所以传输速率有所下降</li>
+<li>同步时钟</li>
 </ul>
 </li>
 <li>非归零编码：相对于归零编码，一个周期全用于传输数据，不归零<ul>
 <li>缺点是难以与时钟信号同步，故无法传输时钟信号。如果要传输高速同步数据，需要带有时钟线</li>
+<li>不同步时钟</li>
 </ul>
 </li>
-<li>反向非归零编码：信号翻转代表1，信号不翻转代表0，不归零<ul>
+<li>反向非归零编码：与上一周期相比，信号翻转代表0，信号不翻转代表1，不归零<ul>
 <li>集成了上述2种的优点，既能传输时钟信号，又尽量不损失系统带宽</li>
+<li>同步时钟</li>
 </ul>
 </li>
 <li>AMI码（信号交替反转码）<ol>
@@ -422,13 +425,15 @@
 </ol>
 </li>
 <li>曼彻斯特编码<ul>
-<li>将一个码元分为两个相等的间隔，前高后低为1，反之为0；</li>
-<li>是以太网的编码方式</li>
+<li>分为两个相等的间隔，前高后低为1，反之为0；</li>
+<li><strong>是以太网的编码方式</strong></li>
+<li>同步时钟信号</li>
 </ul>
 </li>
 <li>差分曼彻斯特编码<ul>
-<li>将一个码元分为两个相等的间隔，若码元为1，前半个码元的电平与上一码元的后半个码元的电平相同，若码元为0，则情形相反。</li>
+<li>分为两个相等的间隔，若为1，前半个周期的电平与上一周期的后半个周期的电平相同，若为0，则情形相反。</li>
 <li>每个码元中间都有一次电平跳转，可以实现自同步，抗干扰性好。</li>
+<li>同步时钟信号</li>
 </ul>
 </li>
 </ol>
@@ -436,26 +441,26 @@
 <li><p>数字数据调制为模拟信号$y(t)&#x3D;a\cos(2\pi ft+\varphi)$</p>
 <ol>
 <li>幅移键控（2ASK):利用二进制基带（数字）信号控制载波信号的幅值<ol>
-<li>$y’(t)&#x3D;s(t)\cos(2\pi ft)$</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>s</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mi>cos</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>2</mn><mi>π</mi><mi>f</mi><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y&#x27;(t)=s(t)\cos(2\pi ft)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">cos</span><span class="mopen">(</span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></li>
 <li>抗干扰能力差，误码率最高</li>
 </ol>
 </li>
 <li>频移键控(2FSK) <ol>
-<li>选择两个不同频率的载波$f_1和f_2$,根据0&#x2F;1选择对应频率的载波</li>
+<li>选择两个不同频率的载波<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mn>1</mn></msub><mtext>和</mtext><msub><mi>f</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">f_1和f_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">和</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>,根据0&#x2F;1选择对应频率的载波</li>
 <li>频带利用率低，抗干扰能力强，目前应用较为广泛</li>
 </ol>
 </li>
 <li>相移键控(2PSK)<ol>
-<li>$y’(t)&#x3D;\cos(2\pi ft+\varphi_0+b_n\pi),b_n&#x3D;0,1$</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>cos</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>2</mn><mi>π</mi><mi>f</mi><mi>t</mi><mo>+</mo><msub><mi>φ</mi><mn>0</mn></msub><mo>+</mo><msub><mi>b</mi><mi>n</mi></msub><mi>π</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><msub><mi>b</mi><mi>n</mi></msub><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">y&#x27;(t)=\cos(2\pi ft+\varphi_0+b_n\pi),b_n=0,1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">cos</span><span class="mopen">(</span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal">φ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span></span></span></span></li>
 <li>误码率最低</li>
 </ol>
 </li>
 <li>差分相移键控(2DPSK)<ol>
 <li>利用相邻两个码元载波间的相对相位变化表示数字基带信号的数字信息</li>
-<li>$y_n’(t)&#x3D;\cos(2\pi ft +\varphi_{n-1}+\Delta\varphi(b_n))$</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>y</mi><mi>n</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>cos</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>2</mn><mi>π</mi><mi>f</mi><mi>t</mi><mo>+</mo><msub><mi>φ</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><mi mathvariant="normal">Δ</mi><mi>φ</mi><mo stretchy="false">(</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y_n&#x27;(t)=\cos(2\pi ft +\varphi_{n-1}+\Delta\varphi(b_n))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">cos</span><span class="mopen">(</span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.791661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal">φ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Δ</span><span class="mord mathnormal">φ</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></li>
 </ol>
 </li>
-<li>正交振幅调制（QAM）:数据传输速率$R&#x3D;B\log_2(mn),波特率为B,相位为m，振幅为n$</li>
+<li>正交振幅调制（QAM）:数据传输速率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mi>B</mi><msub><mo><mi>log</mi><mo>⁡</mo></mo><mn>2</mn></msub><mo stretchy="false">(</mo><mi>m</mi><mi>n</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mtext>波特率为</mtext><mi>B</mi><mo separator="true">,</mo><mtext>相位为</mtext><mi>m</mi><mtext>，振幅为</mtext><mi>n</mi></mrow><annotation encoding="application/x-tex">R=B\log_2(mn),波特率为B,相位为m，振幅为n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">波</span><span class="mord cjk_fallback">特</span><span class="mord cjk_fallback">率</span><span class="mord cjk_fallback">为</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">相</span><span class="mord cjk_fallback">位</span><span class="mord cjk_fallback">为</span><span class="mord mathnormal">m</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">振</span><span class="mord cjk_fallback">幅</span><span class="mord cjk_fallback">为</span><span class="mord mathnormal">n</span></span></span></span></li>
 </ol>
 </li>
 <li><p>模拟数据编码为数字信号</p>
@@ -464,11 +469,14 @@
 <li>量化</li>
 <li>编码</li>
 </ol>
-<h3><span id="214-三种交换方式">2.1.4 三种交换方式</span></h3><p>一些实现见 <a href="#%E6%8C%89%E4%BA%A4%E6%8D%A2%E6%8A%80%E6%9C%AF">三种交换网络</a></p>
-<h4><span id="电路交换">电路交换</span></h4><h4><span id="报文交换">报文交换</span></h4><h4><span id="分组交换">分组交换</span></h4><h3><span id="215-数据报与虚电路">2.1.5 数据报与虚电路</span></h3><p><em>分组交换的子集部分内容</em></p>
-</li>
+<h3><span id="214-三种交换方式">2.1.4 三种交换方式</span></h3><h4><span id="电路交换">电路交换</span></h4><h4><span id="报文交换">报文交换</span></h4><h4><span id="分组交换">分组交换</span></h4><h3><span id="215-数据报与虚电路">2.1.5 数据报与虚电路</span></h3></li>
 </ol>
-<h2><span id="22-传输介质">2.2 传输介质</span></h2><h3><span id="221">2.2.1</span></h3><p>直接贴图</p>
+<h2><span id="22-传输介质">2.2 传输介质</span></h2><ul>
+<li><p>双绞线</p>
+</li>
+<li><p>同轴电缆</p>
+</li>
+</ul>
 
 	</article>
 
