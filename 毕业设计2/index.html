@@ -319,8 +319,8 @@
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2023年05月10日</a>
-			<a><i class="kirafont icon-areachart"></i>208 字</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2023年05月13日</a>
+			<a><i class="kirafont icon-areachart"></i>332 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
 		<h1><span id="用foolbox移植一部分已知的多标签分类">用foolbox移植一部分已知的多标签分类</span></h1><h2><span id="面临的问题">面临的问题</span></h2><blockquote>
@@ -334,6 +334,10 @@
 <blockquote>
 <p>租的GPU平台没有科学上网的能力，整代理也是整了很久</p>
 </blockquote>
+<hr>
+<h2><span id="2023x2f5x2f13更新">2023&#x2F;5&#x2F;13更新</span></h2><p><strong>自己仿写的一个criterion</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># custom function</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TargetedMisclassificationML</span>(<span class="hljs-title class_ inherited__">Criterion</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;Considers those perturbed inputs adversarial whose predicted class</span><br><span class="hljs-string">    matches the target classes. Multi-Label</span><br><span class="hljs-string"></span><br><span class="hljs-string">    Args:</span><br><span class="hljs-string">        target_classes: Tensor with target classes ``(batch,)``.</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, target_classes: <span class="hljs-type">Any</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.target_classes: ep.Tensor = ep.astensor(target_classes)<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__repr__</span>(<span class="hljs-params">self</span>) -&gt; <span class="hljs-built_in">str</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;self.__class__.__name__&#125;</span>(<span class="hljs-subst">&#123;self.target_classes!r&#125;</span>)&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__call__</span>(<span class="hljs-params">self, perturbed: transforms, outputs: transforms</span>) -&gt; transforms:<br>        outputs_, restore_type = ep.astensor_(outputs)<br>        <span class="hljs-keyword">del</span> perturbed, outputs<br>        <br>        classes = (outputs_&gt;=<span class="hljs-number">0.5</span>)+<span class="hljs-number">0</span> <span class="hljs-comment"># transform logits to predict results</span><br>        <br>        <span class="hljs-keyword">assert</span> classes.shape == self.target_classes.shape<br>        is_adv = ep.<span class="hljs-built_in">all</span>(classes == self.target_classes, axis=<span class="hljs-number">1</span>)<br>        <br>        <span class="hljs-keyword">return</span> restore_type(is_adv)<br></code></pre></td></tr></table></figure>
+
 
 	</article>
 
@@ -351,21 +355,15 @@
 		<nav class="post-nav">
 			              
 			<!-- 先找到与当前文字相同的目录 -->
-			                     
+			                           
 			<!-- 在找到当前文章所在的 index -->
-			                        
+			                                
 			<!-- 上一篇文章 -->
 			<div class="old">
 				<span>上一章</span>
-				<a href="/kirameki/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A11/"> 过去的黑盒攻击主要方法</a>
+				<a href="/kirameki/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1ideas/"> 毕业设计_ideas</a>
 			</div>
-			       
-			<!-- 下一篇文章 -->
-			<div class="new">
-				<span>下一章</span>
-				<a href="/kirameki/%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF0/"> 基于foolbox的单标签攻击模板</a>
-			</div>
-			                 
+			          
 		</nav>
 	</div>
 	
