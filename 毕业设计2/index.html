@@ -319,8 +319,8 @@
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2023年05月13日</a>
-			<a><i class="kirafont icon-areachart"></i>442 字</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2023年05月14日</a>
+			<a><i class="kirafont icon-areachart"></i>514 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
 		</div>
 		<h1><span id="用foolbox移植一部分已知的多标签分类">用foolbox移植一部分已知的多标签分类</span></h1><h2><span id="面临的问题">面临的问题</span></h2><blockquote>
@@ -340,6 +340,11 @@
 
 <h3><span id="简单粗暴把boundary-attack的初始攻击样本改成随机的了">简单粗暴把Boundary Attack的初始攻击样本改成随机的了</span></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">run</span>(<span class="hljs-params"></span><br><span class="hljs-params">    self,</span><br><span class="hljs-params">    model: Model,</span><br><span class="hljs-params">    inputs: T,</span><br><span class="hljs-params">    criterion: <span class="hljs-type">Union</span>[Criterion, T],</span><br><span class="hljs-params">    *,</span><br><span class="hljs-params">    early_stop: <span class="hljs-type">Optional</span>[<span class="hljs-built_in">float</span>] = <span class="hljs-literal">None</span>,</span><br><span class="hljs-params">    starting_points: <span class="hljs-type">Optional</span>[T] = <span class="hljs-literal">None</span>,</span><br><span class="hljs-params">    **kwargs: <span class="hljs-type">Any</span>,</span><br><span class="hljs-params"></span>) -&gt; T:<br>    raise_if_kwargs(kwargs)<br>    _, t_restore_type = ep.astensor_(torch.zeros(<span class="hljs-number">1</span>))<br>    originals, restore_type = ep.astensor_(inputs)<br>    <span class="hljs-comment"># del inputs, kwargs</span><br><br>    verify_input_bounds(originals, model)<br><br>    criterion = get_criterion(criterion)<br>    is_adversarial = get_is_adversarial(criterion, model)<br><br>    init_attack = LinearSearchBlendedUniformNoiseAttack(steps=<span class="hljs-number">50</span>)<br>    logging.info(<br>            <span class="hljs-string">f&quot;Neither starting_points nor init_attack given. Falling&quot;</span><br>            <span class="hljs-string">f&quot; back to <span class="hljs-subst">&#123;init_attack!r&#125;</span> for initialization.&quot;</span><br>        )<br>  <br>    best_advs = ep.astensor(torch.rand_like(t_restore_type(inputs)))<br>    <span class="hljs-keyword">del</span> inputs, kwargs<br>    tb = TensorBoard(logdir=self.tensorboard)<br></code></pre></td></tr></table></figure>
 
+<h1><span id="2023x2f5x2f14-更新">2023&#x2F;5&#x2F;14 更新</span></h1><p>boundary attack转向多标签碰到的问题：</p>
+<ul>
+<li>初始攻击样本似乎是非常必要的，缺少的话会非常难搞[我觉得主要可以用来减少查询次数]</li>
+<li>优化算法我看不出来有什么大问题</li>
+</ul>
 
 	</article>
 
@@ -363,7 +368,7 @@
 			<!-- 上一篇文章 -->
 			<div class="old">
 				<span>上一章</span>
-				<a href="/kirameki/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1ideas/"> 毕业设计_ideas</a>
+				<a href="/kirameki/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A11/"> 过去的黑盒攻击主要方法</a>
 			</div>
 			          
 		</nav>
