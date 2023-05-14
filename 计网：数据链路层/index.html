@@ -320,7 +320,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月14日</a>
-			<a><i class="kirafont icon-areachart"></i>4.3k 字</a>
+			<a><i class="kirafont icon-areachart"></i>4.2k 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 17 分钟</a>
 		</div>
 		<h1><span id="31-数据链路层的功能">3.1 数据链路层的功能</span></h1><h2><span id="311-为网络层提供服务">3.1.1 为网络层提供服务</span></h2><blockquote>
@@ -524,43 +524,29 @@
 <li>最后发回到发送方检测是否出现差错。</li>
 <li>理论上不会发生碰撞或冲突，可以承担较大的网络负载</li>
 </ol>
-<h1><span id="36-局域网">3.6 局域网</span></h1><h2><span id="361-局域网的基本概念和体系结构">3.6.1 局域网的基本概念和体系结构</span></h2><p><strong>三要素</strong></p>
+<h1><span id="36-局域网">3.6 局域网</span></h1><h2><span id="361-局域网的基本概念和体系结构">3.6.1 局域网的基本概念和体系结构</span></h2><h3><span id="mac地址">MAC地址</span></h3><h3><span id="物理拓扑">物理拓扑</span></h3><p>❖总线(bus):  </p>
+<ul>
+<li>所有结点在同一冲突域</li>
+</ul>
+<p>❖星型(star): 目前主流网络拓扑 </p>
+<ul>
+<li>中心交换机(switch) </li>
+<li>每个结点一个单独冲突域(结点间彼此不冲突)</li>
+</ul>
+<p><strong>二进制指数退避算法</strong></p>
 <ol>
-<li>拓扑结构<ol>
-<li>星形</li>
-<li>环形</li>
-<li>总线形</li>
-<li>星形x总线形</li>
+<li>确定基本退避时间，一般取两倍的总线端到端传播时延2t</li>
+<li>定义参数k&#x3D;min{重传次数, 10}，</li>
+<li>从整数集<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mn>2</mn><mi>k</mi></msub><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0,1,...,2_k-1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>中随机取一个数r重传所需要的退避时间就是2rt</li>
+<li>重传16次仍未成功时放弃重传，并向上层报告出错</li>
+<li>重传次数越多，越能降低发生碰撞的概率</li>
 </ol>
-</li>
-<li>传输介质</li>
-<li>介质访问控制方式<ol>
-<li>CSMA&#x2F;CD 用于总线形拓扑结构</li>
-<li>令牌总线 用于总线形拓扑结构</li>
-<li>令牌环 用于环形局域网等负载较重的网络环境</li>
-</ol>
-</li>
-</ol>
+<h3><span id="以太网帧结构">以太网帧结构</span></h3><p>|前导码（64）|目的MAC地址(48)|源MAC地址（48）|类型|数据|校验和|</p>
 <h2><span id="362-以太网与ieee-8023">3.6.2 以太网与IEEE 802.3</span></h2><ol>
-<li><strong>以太网用两种方式简化通信</strong><ol>
-<li>无连接的工作方式，提供不可靠服务(有线介质，链路相对可靠)，对于差错的纠正由高层完成。</li>
-<li>发送的数据使用曼彻斯特编码，接收端利用电压转换的特性把位同步信号提取出来</li>
-</ol>
-</li>
 <li><strong>以太网的传输介质与网卡</strong><ol>
 <li><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93%E4%BB%8B%E8%B4%A8.jpeg" alt="以太网传输介质" class="lazyload"></li>
 <li>网卡：进行数据的串并（合并的意思）转换</li>
 <li>中继器：加强基带信号，延长网络所支持的长度</li>
-</ol>
-</li>
-<li><strong>以太网的MAC帧</strong><ol>
-<li>MAC地址长6字节（48位），高24位为厂商代码，低24位为网卡序列号</li>
-<li>MAC帧格式：|前导码（48）|目的MAC地址(48)|源(MAC)地址（48）|类型（16）|数据（46B~1500B）|FCS校验和(32)|<ol>
-<li>46B如何得到？最短帧长为64B，而首部和尾部共需要18B(6+6+2+4)，故最短数据段长度为46B</li>
-</ol>
-</li>
-<li>静态MAC相同时，设备都不能正常通信。</li>
-<li><strong>此前还有LLC为帧加序号</strong></li>
 </ol>
 </li>
 <li><strong>高速以太网</strong><ol>
