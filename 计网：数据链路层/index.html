@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html 
+	lang="zh_CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/kirameki/css/layout.css">
+
+		
+		<title> 计网：数据链路层 -  Wandern</title>
+		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+		<!-- lazyload -->
+		<script src="https://unpkg.com/lazysizes@5.1.0/lazysizes.min.js"></script>
+		<!-- smooth-scrolling -->
+		<script src="https://unpkg.com/smooth-scrolling.js@1.0.0"></script>
+		<!-- highlight -->
+		<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/atom-one-dark.min.css" />
+		<script src="//unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+		<!-- 预置 kiraicon -->
+		<link rel="stylesheet" href="/kirameki/lib/iconfont/iconfont.css" crossorigin />
+		
+			<link rel="stylesheet" href="//at.alicdn.com/t/font_3299330_el19bsi97h8.css" crossorigin />
+		
+		<link rel="stylesheet" href="/kirameki/lib/iconfont/iconfont.css" crossorigin />
+		<link
+			rel="shortcut icon"
+			href="https://cdn.jsdelivr.net/gh/WandernForte/roselia/favicon.png"
+			type="image/png"
+		/>
+		<link rel="stylesheet" href="/kirameki/deps/css/APlayer.min.css">
+		
+		<script src="/kirameki/deps/js/APlayer.min.js"></script>
+		<script src="/kirameki/deps/js/Meting.min.js"></script>
+	<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('https://cdn.jsdelivr.net/gh/WandernForte/roselia/bkg.jpg')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="Wandern">
+        <img
+			src="https://wandernforte.github.io/kirameki/images/SD102F.png"
+			alt="Kiryu Sento"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="https://wandernforte.github.io/kirameki/images/SD102F.png" title="Kiryu Sento">
+			<img
+				src="https://wandernforte.github.io/kirameki/images/SD102F.png"
+				alt="Kiryu Sento"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>21</div>
+		<div><span>标签</span>10</div>
+		<div><span>分类</span>4</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/kirameki/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont icon-home"
+			></i>
+			<div class="kira-list-item-content">回到首页</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/kirameki/Archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont icon-container"
+			></i>
+			<div class="kira-list-item-content">文章归档</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/kirameki/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont icon-user"
+			></i>
+			<div class="kira-list-item-content">关于本人</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/kirameki/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont icon-team"
+			></i>
+			<div class="kira-list-item-content">我的朋友</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		 <div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		<a
+			class="mdui-ripple"
+			href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1648639935&website=www.oicqzone.com"
+			target="_blank"
+			mdui-tooltip="{content: 'QQ'}"
+			style="
+				color: rgb(49, 174, 255);
+				background-color: rgba(49, 174, 255, .1);
+			"
+		>
+			<i
+				class="kirafont icon-QQ"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/57486455"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .15);
+			"
+		>
+			<i
+				class="kirafont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/WandernForte/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .15);
+			"
+		>
+			<i
+				class="kirafont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://gitee.com/lin-zhifan"
+			target="_blank"
+			mdui-tooltip="{content: 'Gitee'}"
+			style="
+				color: rgb(165, 15, 15);
+				background-color: rgba(165, 15, 15, .15);
+			"
+		>
+			<i
+				class="kirafont icon-gitee"
+			></i> </a
+		>
+	</div>
+</div>
+  
+<div class="kira-widget-wrap">
+  <h3 class="kira-widget-title">分类</h3>
+  <div class="kira-widget">
+
+    <ul class="category-list">
+
+      
+
+
+      
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/kirameki/categories/CSAPP/">CSAPP</a>
+        <span class="category-list-count">3</span>
+      </li>
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/kirameki/categories/Computer-Network/">Computer Network</a>
+        <span class="category-list-count">7</span>
+      </li>
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/kirameki/categories/System-Security/">System Security</a>
+        <span class="category-list-count">1</span>
+      </li>
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/kirameki/categories/对抗样本/">对抗样本</a>
+        <span class="category-list-count">9</span>
+      </li>
+
+      
+    </ul>
+
+  </div>
+</div>
+  
+<div class="kira-widget-wrap">
+	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/kirameki/tags/Code/" style="font-size: 10px;">Code</a> <a href="/kirameki/tags/Note/" style="font-size: 20px;">Note</a> <a href="/kirameki/tags/TransitionLayer/" style="font-size: 10px;">TransitionLayer</a> <a href="/kirameki/tags/getStarted/" style="font-size: 10px;">getStarted</a> <a href="/kirameki/tags/hw-exam/" style="font-size: 10px;">hw&exam</a> <a href="/kirameki/tags/idea/" style="font-size: 10px;">idea</a> <a href="/kirameki/tags/note/" style="font-size: 16.67px;">note</a> <a href="/kirameki/tags/plan/" style="font-size: 10px;">plan</a> <a href="/kirameki/tags/survey/" style="font-size: 10px;">survey</a> <a href="/kirameki/tags/%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" style="font-size: 13.33px;">代码模板</a></div>
+	
+</div>
+
+  
+<div class="kira-widget-wrap">
+	<h3 class="kira-widget-title">文章归档</h3>
+	<div class="kira-widget">
+		<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/kirameki/archives/2023/">2023</a><span class="archive-list-count">21</span></li></ul>
+	</div>
+</div>
+
+ 
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2023
+		<a href="/">Kiryu Sento</a
+		>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<!-- TODO: github 链接 -->
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+			<a href="https://beian.miit.gov.cn/" target="_blank">下北泽ICP备114514号-3</a>
+		
+		
+	</div>
+</div>
+<div class="kira-sidebar-modal" id="sidebar-modal" onclick="(function(self) {
+	self.classList.remove('show');
+	document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+})(this)"></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/kirameki/css/kira-image.css">
+
+<script src="/js/kira-image.js"></script>
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="https://wandernforte.github.io/kirameki/images/SD302B.png"
+				data-sizes="auto"
+				alt="计网：数据链路层"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>计网：数据链路层</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2023年05月14日</a>
+			<a><i class="kirafont icon-areachart"></i>4.8k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 20 分钟</a>
+		</div>
+		<h1><span id="31-数据链路层的功能">3.1 数据链路层的功能</span></h1><h2><span id="311-为网络层提供服务">3.1.1 为网络层提供服务</span></h2><blockquote>
+<p>数据链路层不关心与物理层的实现，以及对物理层的作用。</p>
+<p>例如，数据链路层不会对终端节点隐蔽物理传输的细节，因为它根本就不关心</p>
+</blockquote>
+<ol>
+<li>无确认的无连接服务<ul>
+<li>规则：源机器发送数据帧时不需先建立链路连接，目的机器收到数据帧时无需发回确认。</li>
+<li>差错处理：对于丢失的帧，数据链路层不负责重发而交给上层处理。</li>
+<li>适用范围：可靠的实时通信信道或误码率较低的通信信道，如<strong>以太网</strong></li>
+</ul>
+</li>
+<li>有确认的无连接服务<ul>
+<li>规则：源机器发送数据帧时不需先建立链路连接，目的机器收到数据帧时<strong>必须</strong>发回确认。</li>
+<li>差错处理：源机器在规定时间内未收到确定信号，就重传丢失的帧</li>
+<li>适用范围：误码率较高的通信信道，如无线通信</li>
+</ul>
+</li>
+<li>有确认的面向连接服务<ul>
+<li>规则：建立数据链路、传输帧、释放数据链路。目的机器对收到的每一帧都要给出确认，源机器收到确认后才能发送下一帧</li>
+<li>适用范围：实时可靠的通信要求（通信信道不一定实时可靠）</li>
+<li>不存在<strong>无确认的面向连接服务</strong>，因为有连接就肯定有确认</li>
+</ul>
+</li>
+</ol>
+<h2><span id="312-链路管理">3.1.2 链路管理</span></h2><p>数据链路层连接的建立、维持和释放过程称为链路管理。</p>
+<h2><span id="313-帧定界-帧同步与透明传输">3.1.3 帧定界、帧同步与透明传输</span></h2><p>HDLC协议标准帧格式：</p>
+<p>|标志|地址（8）|控制（8）|信息|帧校验序列（16）|标志|[标志固定为01111110]</p>
+<blockquote>
+<p> [数据链路层协议]：SDLC, HDLC, PPP（SILP）, STP和帧中继等)</p>
+</blockquote>
+<h2><span id="314-流量控制">3.1.4 流量控制</span></h2><blockquote>
+<p>一般在传输层讨论流量控制</p>
+</blockquote>
+<h2><span id="315-差错控制">3.1.5 差错控制</span></h2><ol>
+<li>循环冗余校验（CRC）用于发现位错</li>
+<li>自动重传请求（ARQ）用于重传出错的帧</li>
+<li>校验和</li>
+</ol>
+<h1><span id="32-组帧">3.2 组帧</span></h1><p><code>封装网络层数据包构成数据帧</code></p>
+<h2><span id="321-字节计数法">3.2.1 字节计数法</span></h2><ul>
+<li>在帧头部使用一个计数字段来标明帧内字节数，字节数包含自身这个字节</li>
+<li>计数字节出错将无法补救</li>
+</ul>
+<h2><span id="322-字节填充的首尾定界法">3.2.2 字节填充的首尾定界法</span></h2><p>字符填充法使用特定字节来定界一帧的开始（SOH<strong>0x7E</strong>）与结束(EOT)，转义字节ESC</p>
+<h2><span id="323-零比特填充的首尾计数法">3.2.3 零比特填充的首尾计数法</span></h2><p>以01111110作为开头与结尾的标志，数据域每5个1插入一个0</p>
+<h2><span id="324-违规编码法">3.2.4 违规编码法</span></h2><p>适用于冗余编码的环境</p>
+<h1><span id="33-差错控制">3.3 差错控制</span></h1><h2><span id="331-检错编码">3.3.1 检错编码</span></h2><ol>
+<li>奇偶校验码<ol>
+<li>无法检测到偶数个出错位时的错误</li>
+</ol>
+</li>
+<li>循环冗余码（CRC)<ol>
+<li>设定一个多项式G</li>
+<li>假设一个帧对应多项式为M(x),则计算冗余码的步骤如下<ol>
+<li>在M(x)的二进制系数低位后加G(x)阶数r个0，得到H(x)；</li>
+<li>模2除。H模2除以G，所得余数即为冗余码(校验码)</li>
+<li>M与冗余码拼接就得到了发送的数据X</li>
+<li>接收方通过将X模2除以G看是否有余数来确定数据是否出错</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>校验和<ol>
+<li>将数据划分为各个元素长16位的序列</li>
+<li>各个元素进行补码求和得到sum</li>
+<li>取sum反码得到校验和插入数据（头or尾？）</li>
+<li>接收方将收到的数据+校验和信息再进行分组&amp;补码求和计算，为16位全0或全1时无差错</li>
+</ol>
+</li>
+</ol>
+<h2><span id="332-纠错编码">3.3.2 纠错编码</span></h2><p><strong>汉明码</strong></p>
+<p>计组，不赘述，只补充计组不考的部分</p>
+<p><strong>汉明码纠错d位，需要码距为2d+1的编码方案；检错d位需要d+1位</strong></p>
+<h1><span id="34-流量控制与可靠传输机制">3.4 流量控制与可靠传输机制</span></h1><h2><span id="341-流量控制可靠传输滑动窗口机制">3.4.1 流量控制，可靠传输，滑动窗口机制</span></h2><h3><span id="停止-等待流量控制">停止-等待流量控制</span></h3><p>发送方每发送一帧，都要等待接收方的应答信号，之后才能发送下一帧</p>
+<h3><span id="滑动窗口流量控制">滑动窗口流量控制</span></h3><p>发送方维持一组连续的<strong>允许发送</strong>的帧的序号，称为<strong>发送窗口</strong>；同时接收方也维持一组连续的<strong>允许接收</strong>帧的序号。</p>
+<p><strong>重要特性</strong></p>
+<ol>
+<li>接收方发送回确认帧且发送方接收到的话，发送窗口才会向前滑动</li>
+<li>窗口大小决定了几种不同的传输协议<ol>
+<li>停止-等待协议：发送窗口&#x3D;接收窗口&#x3D;1；</li>
+<li>后退N帧协议：发送窗口&gt;1,接收窗口&#x3D;1；</li>
+<li>选择重传协议：发送窗口&gt;&#x3D;接收窗口&gt;1;<strong>$且发送窗口大小+接收窗口大小\leq2^n$</strong></li>
+</ol>
+</li>
+<li>接收窗口大小为1时，可保证帧的有序接收；</li>
+<li>数据链路层的滑动窗口协议中，窗口的大小在传输过程中是固定的</li>
+</ol>
+<h3><span id="可靠传输机制">可靠传输机制</span></h3><p>确认+重传+序号标识+校验+计数器</p>
+<p><strong>Rdt(reliable data transfer)</strong></p>
+<ul>
+<li>1.0</li>
+<li>2.0</li>
+<li>2.1</li>
+<li>2.2</li>
+<li>3.0</li>
+</ul>
+<h2><span id="342-单帧滑动窗口与停止-等待协议">3.4.2 单帧滑动窗口与停止-等待协议</span></h2><p>除数据帧丢失外的两种差错</p>
+<ol>
+<li>帧损坏</li>
+<li>确认帧损坏</li>
+<li>对数据帧和确认帧添加1bit编号，连续出现相同序号的数据帧，说明发送端进行了超时重传。<strong>连续出现相同序号的确认帧，说明接收端接收到了重复帧。这种方法要求双方均保存一个帧的副本以进行比对。（Rdt2.1）</strong></li>
+</ol>
+<h2><span id="343-多帧滑动窗口与后退n帧协议gbn">3.4.3 多帧滑动窗口与后退N帧协议（GBN）</span></h2><p>接收方只允许按顺序接收帧，同时可以在连续接收到多个正确的数据帧后才对最后一帧发送确认帧。</p>
+<p>即，对某一数据帧的确认代表该数据帧和此前所有数据帧均已正确收到。</p>
+<p><strong>发送窗口大小</strong>：若采用n位对帧编号，则发送窗口的大小Wt应满足$ 1\leq W_t\leq 2^n-1$</p>
+<p>Ps:在信道的误码率较大时，由于多次重发，效率可能劣于停止-等待协议</p>
+<h2><span id="344-多帧滑动窗口与选择重传协议sr">3.4.4 多帧滑动窗口与选择重传协议（SR)</span></h2><p>只重传出现差错的数据帧或计时器超时的数据帧,是一种无序接收的滑动窗口协议</p>
+<p><strong>窗口大小</strong>：双方的窗口大小W应满足$1&lt;W\leq 2^{(n-1)}$</p>
+<h1><span id="35-介质访问控制">3.5 介质访问控制</span></h1><p><code>为每个节点隔离来自同一信道上其他节点所传输的信号</code></p>
+<h2><span id="351-信道划分方法介质访问控制">3.5.1 信道划分（方法）介质访问控制</span></h2><h3><span id="多路复用静态信道划分">多路复用（静态信道划分）</span></h3><p><strong>静态信道划分没有碰撞发生的风险</strong></p>
+<ol>
+<li>频分多路复用（FDM)<ol>
+<li>频分多路复用的各用户占用不同的带宽资源（请注意，这里的 “带宽”是载波频率的域（单位：Hz）而不是数据的发送速率）</li>
+<li>用户在分配到一定的频带后，在通信过程中自始至终都占用这个频带</li>
+<li><strong>特点：充分利用传输介质的带宽，系统效率较高，技术成熟</strong></li>
+</ol>
+</li>
+<li>时分多路复用（TDM）<ol>
+<li>将一个时间段分成若干时间片，轮流分配给多个信号使用</li>
+<li>特点：抗干扰能力强，介质的位速率大于单个信号的位速率，可以传输数字信号</li>
+</ol>
+</li>
+<li>波分多路复用（WDM）<ol>
+<li>一束电磁波的不同频分分配给多个信号使用</li>
+</ol>
+</li>
+<li>码分多路复用（CDM）<ol>
+<li>广泛应用于无线链路共享（如蜂窝网，卫星通信等）</li>
+<li>每个用户分配一个唯一的m bit码片序列，其中“0”用”-1”表示，“1”用“+1”表示。各用户使用相同频率的载波</li>
+<li>编码信号&#x3D;原始数据x码片序列<ol>
+<li>即：发送1则发送m bit码片序列原码</li>
+<li>发送0则发送 m bit码片序列的反码</li>
+</ol>
+</li>
+<li><strong>各用户码片序列需要相互正交</strong></li>
+<li>解码：求码片序列与编码信号的内积，即可分理出所需的信号</li>
+</ol>
+</li>
+</ol>
+<h2><span id="352-随机访问协议介质访问控制">3.5.2 随机访问（协议）介质访问控制</span></h2><p><strong>动态划分信道，有碰撞的风险，需要设计检测碰撞策略来避免&#x2F;解除碰撞</strong></p>
+<h3><span id="aloha协议">ALOHA协议</span></h3><ol>
+<li><p>纯ALOHA协议</p>
+<ol>
+<li><p>基本思想：当网络中的任何一个站点需要发送数据时，可以不进行任何检测就发送数据。如果超时，就认为是在传输过程中发生了冲突。发送站点就将在一段<strong>随机的</strong>时延后重新发送数据，直至发送成功。</p>
+</li>
+<li><p>吞吐量为0.184</p>
+</li>
+</ol>
+</li>
+<li><p>时隙ALOHA协议</p>
+<ol>
+<li><p>吞吐量0.368</p>
+</li>
+<li><p>同步各站点的时间，不同的站点分配不同的时隙（类似于时间片，这个时隙足够发送一个数据帧）。如果发生冲突，则在下一个时隙开始时以概率重发数据帧。</p>
+</li>
+<li><p>优点：</p>
+<ol>
+<li>单个结点活动时，可以连续以信道全部速率传输（？）</li>
+<li>只需同步时隙，高度分散化</li>
+<li>简单</li>
+</ol>
+</li>
+<li><p>缺点：</p>
+<ol>
+<li>不能消除冲突，浪费时隙</li>
+<li>存在空闲时隙，浪费时隙</li>
+<li></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3><span id="csma协议">CSMA协议</span></h3><ol>
+<li>1-坚持CSMA:<ol>
+<li>基本思想：一个节点要发送数据时，首先侦听信道如果信道空闲，那么<strong>必然</strong>立即发送数据；如果信道忙，则不发送，继续<strong>坚持</strong>侦听；如果信道发生冲突，那么随机等待一段时间再重新开始侦听。</li>
+</ol>
+</li>
+<li>非坚持CSMA:<ol>
+<li>与1-坚持不同的是，如果信道忙则放弃监听并在随机等待一段时间后继续侦听，（放弃，侦听，）直到信道空闲。</li>
+</ol>
+</li>
+<li>p-坚持CSMA:<ol>
+<li>基本思想：一个节点要发送数据时，首先侦听信道如果信道空闲，那么<strong>以p的概率</strong>立即发送数据，否则等待到下一个时隙，此期间继续<strong>坚持</strong>侦听；如果信道发生或忙碌，那么随机等待一段时间再重新开始侦听。</li>
+</ol>
+</li>
+</ol>
+<h3><span id="csmax2fcd协议">CSMA&#x2F;CD协议</span></h3><p><strong>“先听后发，边听边发，冲突停发，随机重发”</strong></p>
+<p><strong>争议期（也称争用期）：信号最远两个端点之间往返传输的时间, 即两次单向传播时延</strong></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/image-20230318114924392.png" alt="image-20230318114924392" class="lazyload"></p>
+<p>二进制指数退避算法</p>
+<ol>
+<li>确定基本退避时间，一般取两倍的总线端到端传播时延2t</li>
+<li>定义参数k&#x3D;min{重传次数, 10}，</li>
+<li>从整数集$[0,1,…,2_k-1]$中随机取一个数r重传所需要的退避时间就是2rt</li>
+<li>重传16次仍未成功时放弃重传，并向上层报告出错</li>
+<li>重传次数越多，越能降低发生碰撞的概率</li>
+</ol>
+<p><strong>最短帧长计算</strong></p>
+<p>$最小帧长&#x3D;总线传播时延\times 数据传输速率\times 2$</p>
+<p><strong>极限最短帧长为64B</strong></p>
+<p><strong>最长帧长为1518B(1500B数据+18B头部)</strong></p>
+<h3><span id="csmax2fac协议">CSMA&#x2F;AC协议</span></h3><p><strong>算法流程</strong></p>
+<ol>
+<li>若站点发送第一个数据帧，且检测到信道空闲，在等待时间DIFS后，发送整个数据帧</li>
+<li>否则（重传的情况或信道忙碌），站点执行CSMA&#x2F;AC退避算法（算法内容不重要，只需要知道有个随机倒计时决定是否重发），选取一个随机回退值。一旦检测到信道忙退避计时器就保持不变，一旦空闲就开始倒计时。</li>
+<li>当退避计时器为0时，重发并等待确认</li>
+</ol>
+<p><strong>对信道进行预约</strong></p>
+<p>先广播一个RTS(请求发送)帧，通知到范围内的所有站点。如果信道空闲，目的站点就广播一个CTS(允许发送)帧，到范围内所有的站点。刚才交换了RTS和CTS的两个站点开始建立传输。</p>
+<h2><span id="353-轮询访问令牌传递协议">3.5.3 轮询访问：令牌传递协议</span></h2><ol>
+<li>等待令牌</li>
+<li>接收令牌&amp;&amp;发送数据（通过接收到的令牌的数据块封装数据帧）&amp;&amp;重新生成令牌，发给下一个可以使用信道的结点</li>
+<li>最后发回到发送方检测是否出现差错。</li>
+<li>理论上不会发生碰撞或冲突，可以承担较大的网络负载</li>
+</ol>
+<h1><span id="36-局域网">3.6 局域网</span></h1><h2><span id="361-局域网的基本概念和体系结构">3.6.1 局域网的基本概念和体系结构</span></h2><p><strong>三要素</strong></p>
+<ol>
+<li>拓扑结构<ol>
+<li>星形</li>
+<li>环形</li>
+<li>总线形</li>
+<li>星形x总线形</li>
+</ol>
+</li>
+<li>传输介质</li>
+<li>介质访问控制方式<ol>
+<li>CSMA&#x2F;CD 用于总线形拓扑结构</li>
+<li>令牌总线 用于总线形拓扑结构</li>
+<li>令牌环 用于环形局域网等负载较重的网络环境</li>
+</ol>
+</li>
+</ol>
+<h2><span id="362-以太网与ieee-8023">3.6.2 以太网与IEEE 802.3</span></h2><ol>
+<li><strong>以太网用两种方式简化通信</strong><ol>
+<li>无连接的工作方式，提供不可靠服务(有线介质，链路相对可靠)，对于差错的纠正由高层完成。</li>
+<li>发送的数据使用曼彻斯特编码，接收端利用电压转换的特性把位同步信号提取出来</li>
+</ol>
+</li>
+<li><strong>以太网的传输介质与网卡</strong><ol>
+<li><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93%E4%BB%8B%E8%B4%A8.jpeg" alt="以太网传输介质" class="lazyload"></li>
+<li>网卡：进行数据的串并（合并的意思）转换</li>
+<li>中继器：加强基带信号，延长网络所支持的长度</li>
+</ol>
+</li>
+<li><strong>以太网的MAC帧</strong><ol>
+<li>MAC地址长6字节（48位），高24位为厂商代码，低24位为网卡序列号</li>
+<li>MAC帧格式：|前导码（48）|目的MAC地址(48)|源(MAC)地址（48）|类型（16）|数据（46B~1500B）|FCS校验和(32)|<ol>
+<li>46B如何得到？最短帧长为64B，而首部和尾部共需要18B(6+6+2+4)，故最短数据段长度为46B</li>
+</ol>
+</li>
+<li>静态MAC相同时，设备都不能正常通信。</li>
+<li><strong>此前还有LLC为帧加序号</strong></li>
+</ol>
+</li>
+<li><strong>高速以太网</strong><ol>
+<li>100BASE-T以太网</li>
+<li>吉比特以太网<ol>
+<li>两个标准IEEE 802.3z(光纤)，IEEE 802.3ab(UTP5类线)</li>
+<li>支持半双工（CSMA&#x2F;CD）与全双工两种工作方式</li>
+</ol>
+</li>
+<li>10吉比特以太网<strong>必须工作在全双工模式下, 不使用CSMA&#x2F;CD, 不使用广播链路</strong></li>
+</ol>
+</li>
+<li>以太网的特点<ol>
+<li>广播机制：在以太网中，如果一个节点要发送数据，那么它将以广播方式把数据通过总线发送出去，连在总线上的所有节点（包括自身）都能听到发送节点发送的数据信号</li>
+</ol>
+</li>
+</ol>
+<h2><span id="363-ieee-80211-无线局域网">3.6.3 IEEE 802.11 无线局域网</span></h2><h3><span id="无线局域网的组成">无线局域网的组成</span></h3><ol>
+<li>有固定基础设施无线局域网<ol>
+<li>使用星形拓扑结构，中心称为AP(接入点，又可称为基站)</li>
+<li>最小构件是基本服务集BSS：包含一个接入点和若干移动站，BSS的内外通信均要通过接入点中介。</li>
+</ol>
+</li>
+<li>无固定基础设施无线局域网<ol>
+<li>没有上述的所谓AP,网络结构中的移动站都可以作为转发节点。</li>
+</ol>
+</li>
+<li>802.11局域网的MAC帧<ol>
+<li><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/802%E5%B1%80%E5%9F%9F%E7%BD%91%E6%95%B0%E6%8D%AE%E5%B8%A7%E6%A0%BC%E5%BC%8F.jpeg" alt="802局域网数据帧格式" class="lazyload"></li>
+<li><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/%E4%BB%A5%E5%A4%AA%E7%BD%91%E6%95%B0%E6%8D%AE%E5%B8%A7%E5%9C%B0%E5%9D%80%E5%AD%97%E6%AE%B5%E6%A0%BC%E5%BC%8F.jpeg" alt="以太网数据帧地址字段格式" class="lazyload"></li>
+</ol>
+</li>
+<li>发送数据的过程<ol>
+<li><p>去往AP</p>
+<ol>
+<li>地址1为AP的MAC，地址2为自身的地址，地址3为目的地址</li>
+</ol>
+</li>
+<li><p>来自AP</p>
+<ol>
+<li>地址1为目的MAC，地址2为AP的地址，地址3为发送地址</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>​	<strong>无线局域网由于接收信号的强度往往远小于发送信号的强度，故如果要实现碰撞检测需要更大的消费</strong></p>
+<h2><span id="364-vlan基本概念与基本原理">3.6.4 VLAN基本概念与基本原理</span></h2><p><code>虚拟局域网</code></p>
+<p><strong>动机</strong>：</p>
+<ul>
+<li>单一广播域:<ul>
+<li>所有第2层广播流量(ARP,  DHCP, 未知目的MAC地 址位置)必须穿越整个LAN  </li>
+<li><strong>安全&#x2F;隐私、效率问题</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>基本思想：</strong></p>
+<p>把一个较大的局域网分割成较小的与地理位置无关的逻辑上的虚拟局域网，这样的每个虚拟局域网就是一个较小的广播域</p>
+<p><strong>分割标准</strong></p>
+<ul>
+<li>基于交换机端口</li>
+<li>基于网卡地址</li>
+<li>基于网络层地址</li>
+</ul>
+<p><strong>802.3ac标准下的VLAN</strong></p>
+<p>在以太网帧中插入一个4字节的标识符，用于标识属于哪个VLAN</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/VLAN%E6%95%B0%E6%8D%AE%E5%B8%A7%E6%A0%BC%E5%BC%8F.jpeg" alt="VLAN数据帧格式" class="lazyload"></p>
+<h1><span id="37-广域网">3.7 广域网</span></h1><h2><span id="371-广域网基本概念">3.7.1 广域网基本概念</span></h2><p><strong>广域网由若干节点交换机以及连接交换机的链路组成，重在资源共享</strong></p>
+<h2><span id="372-ppp协议">3.7.2 PPP协议</span></h2><p><code>某个HDLC协议已经被淘汰了</code></p>
+<p><strong>使用串行线路通信的面向字节的协议。该协议用在直接连接的两个节点的链路上，实现点对点的链接</strong>前身是SLIP协议</p>
+<p>三个组成部分</p>
+<ol>
+<li><p>链路控制协议(LCP)</p>
+<ol>
+<li><strong>建立数据链路：在建立状态阶段协商数据链路协议的选项</strong></li>
+<li>配置、测试和管理数据链路，身份验证</li>
+</ol>
+</li>
+<li><p>网络控制协议(NCP)</p>
+<ol>
+<li>为网络层协议建立和配置逻辑连接</li>
+</ol>
+</li>
+<li><p>封装ip数据报到串行链路单元(MTU)</p>
+</li>
+</ol>
+<hr>
+<p>PPP帧格式（字节为单位）：**|标志字段[7E]（1）|地址字段[FF]（1）|控制字段[03]（1）|协议（2）|IP数据报（&lt;&#x3D;1500）|FCS(2)|尾部（1）|**</p>
+<p>PS:如果标志字段7E出现在数据报字段中，需要对数据报字段中的出现进行字节填充，将信息字段中出现的0x7E 字节转变成为2字节序列(0x7D,  0x5E)  若信息字段中出现一个0x7D 字节, 则将其转变成为2字节序列 (0x7D, 0x5D)</p>
+<hr>
+<p><strong>PPP协议工作过程（运行状态变化）</strong></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/PPP.jpeg" alt="PPP" class="lazyload"></p>
+<p>初始状态为链路静止状态</p>
+<h3><span id="注意事项">注意事项</span></h3><ol>
+<li>PPP提供差错检测但不提供纠错功能，只保证无差错接收，是不可靠的传输协议，因此也不使用序号和确认机制</li>
+<li>仅支持点对点的链路通信，不支持多点线路</li>
+<li>只支持全双工链路</li>
+<li>ppp的两端可以运行不同的网络层协议，但仍然可以使用同一个ppp进行通信</li>
+<li>ppp是面向字节的</li>
+</ol>
+<h1><span id="38-数据链路设备">3.8 数据链路设备</span></h1><p><strong>3.8.1网桥</strong></p>
+<h2><span id="382-局域网交换机">3.8.2 局域网交换机</span></h2><ol>
+<li><p>交换机的原理和特点</p>
+<ol>
+<li>原理：本质上是一个多端口的网桥，分割碰撞域</li>
+<li>特点：<ol>
+<li>以太网交换机的每个端口都直接与单台主机相连，并且一般工作在<strong>全双工方式</strong></li>
+<li>以太网交换机能同时连接多对端口，使每对相互通信的的主机仿佛独占通信一样<strong>无碰撞地传输数据</strong></li>
+<li>以太交换机是一种<strong>即插即用</strong>设备，其内部的帧的转发是通过自学习算法自动地逐渐建立起来的</li>
+<li>以太交换机使用专用的交换结构芯片，<strong>交换速率较高</strong><ol>
+<li>存储转发</li>
+<li>直通交换 接收到帧的目的地址（不含前导码的前6B）即可开始转发</li>
+<li>无碎片模式 接收到前64B即可开始转发</li>
+</ol>
+</li>
+<li>以太交换机独占传输媒体的带宽</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>交换机的自学习功能</p>
+<ol>
+<li>交换机收到一个帧时，查看帧的目的和源地址是否在转发表内，如果在，则直接发送，如果不在，则将源地址直接添加进转发表，同时通过<strong>洪泛</strong>（不包括源地址端口），获取到目的地址的信息</li>
+<li><strong>洪泛</strong>：从中心主机向所有的<strong>端口</strong>发送信息（与广播并不相同）</li>
+</ol>
+</li>
+</ol>
+
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>Kiryu Sento<br>
+        <strong>本文链接：</strong><a href="https://wandernforte.github.io/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" title="https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;计网：数据链路层&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;计网：数据链路层&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			  
+			<!-- 先找到与当前文字相同的目录 -->
+			                     
+			<!-- 在找到当前文章所在的 index -->
+			                        
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/"> 计网：物理层</a>
+			</div>
+			                      
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+			<a class="kirafont icon-appstore-fill -link" href="/kirameki/categories/Computer-Network/">Computer Network</a>
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/kirameki/tags/note/" rel="tag">note</a>
+		
+	</div>
+	
+		<script src="/js/kira-code-copy.js"></script>
+	
+
+</div>
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

@@ -71,7 +71,7 @@
 		</a>
 	</div>
 	<div class="kira-count">
-		<div><span>文章</span>20</div>
+		<div><span>文章</span>21</div>
 		<div><span>标签</span>10</div>
 		<div><span>分类</span>4</div>
 	</div>
@@ -203,7 +203,7 @@
 
       <li class="category-list-item">
         <a class="category-list-link" href="/kirameki/categories/Computer-Network/">Computer Network</a>
-        <span class="category-list-count">6</span>
+        <span class="category-list-count">7</span>
       </li>
 
       
@@ -227,7 +227,7 @@
 </div>
   
 <div class="kira-widget-wrap">
-	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/kirameki/tags/Code/" style="font-size: 10px;">Code</a> <a href="/kirameki/tags/Note/" style="font-size: 20px;">Note</a> <a href="/kirameki/tags/TransitionLayer/" style="font-size: 10px;">TransitionLayer</a> <a href="/kirameki/tags/getStarted/" style="font-size: 10px;">getStarted</a> <a href="/kirameki/tags/hw-exam/" style="font-size: 10px;">hw&exam</a> <a href="/kirameki/tags/idea/" style="font-size: 10px;">idea</a> <a href="/kirameki/tags/note/" style="font-size: 15px;">note</a> <a href="/kirameki/tags/plan/" style="font-size: 10px;">plan</a> <a href="/kirameki/tags/survey/" style="font-size: 10px;">survey</a> <a href="/kirameki/tags/%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" style="font-size: 15px;">代码模板</a></div>
+	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/kirameki/tags/Code/" style="font-size: 10px;">Code</a> <a href="/kirameki/tags/Note/" style="font-size: 20px;">Note</a> <a href="/kirameki/tags/TransitionLayer/" style="font-size: 10px;">TransitionLayer</a> <a href="/kirameki/tags/getStarted/" style="font-size: 10px;">getStarted</a> <a href="/kirameki/tags/hw-exam/" style="font-size: 10px;">hw&exam</a> <a href="/kirameki/tags/idea/" style="font-size: 10px;">idea</a> <a href="/kirameki/tags/note/" style="font-size: 16.67px;">note</a> <a href="/kirameki/tags/plan/" style="font-size: 10px;">plan</a> <a href="/kirameki/tags/survey/" style="font-size: 10px;">survey</a> <a href="/kirameki/tags/%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" style="font-size: 13.33px;">代码模板</a></div>
 	
 </div>
 
@@ -235,7 +235,7 @@
 <div class="kira-widget-wrap">
 	<h3 class="kira-widget-title">文章归档</h3>
 	<div class="kira-widget">
-		<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/kirameki/archives/2023/">2023</a><span class="archive-list-count">20</span></li></ul>
+		<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/kirameki/archives/2023/">2023</a><span class="archive-list-count">21</span></li></ul>
 	</div>
 </div>
 
@@ -320,7 +320,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月13日</a>
-			<a><i class="kirafont icon-areachart"></i>1.4k 字</a>
+			<a><i class="kirafont icon-areachart"></i>1.5k 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 6 分钟</a>
 		</div>
 		<h1><span id="第二章-物理层">第二章 物理层</span></h1><h2><span id="21-通信基础">2.1 通信基础</span></h2><h3><span id="211-基本概念">2.1.1 基本概念</span></h3><ol>
@@ -425,13 +425,13 @@
 </ol>
 </li>
 <li>曼彻斯特编码<ul>
-<li>分为两个相等的间隔，前高后低为1，反之为0；</li>
-<li><strong>是以太网的编码方式</strong></li>
+<li>分为两个相等的间隔，<strong>前高后低为1</strong>，反之为0；</li>
+<li><strong>是以太网的编码方式，即10BaseT硬件的网络</strong></li>
 <li>同步时钟信号</li>
 </ul>
 </li>
 <li>差分曼彻斯特编码<ul>
-<li>分为两个相等的间隔，若为1，前半个周期的电平与上一周期的后半个周期的电平相同，若为0，则情形相反。</li>
+<li>分为两个相等的间隔，若为1，前半个周期的电平与上一周期的后半个周期的电平相同，若为0，则情形相反。<strong>相同为1，不同为0</strong></li>
 <li>每个码元中间都有一次电平跳转，可以实现自同步，抗干扰性好。</li>
 <li>同步时钟信号</li>
 </ul>
@@ -469,8 +469,22 @@
 <li>量化</li>
 <li>编码</li>
 </ol>
-<h3><span id="214-三种交换方式">2.1.4 三种交换方式</span></h3><h4><span id="电路交换">电路交换</span></h4><h4><span id="报文交换">报文交换</span></h4><h4><span id="分组交换">分组交换</span></h4><h3><span id="215-数据报与虚电路">2.1.5 数据报与虚电路</span></h3></li>
+<h3><span id="214-三种交换方式">2.1.4 三种交换方式</span></h3><blockquote>
+<p>这几种交换方式的特性也要记住，选择题会直接考， 应用题会隐含考</p>
+</blockquote>
+<p><strong>传输系统出错率高：传输结点容易出现故障，导致传输出错</strong></p>
+<p><strong>误码率高：典型的传输：无线传输</strong></p>
+<h4><span id="电路交换">电路交换</span></h4><h4><span id="报文交换">报文交换</span></h4><h4><span id="分组交换">分组交换</span></h4><h3><span id="215-数据报与虚电路">2.1.5 数据报与虚电路</span></h3><blockquote>
+<p>虚电报要求理解，其具有以下特点</p>
+</blockquote>
+</li>
 </ol>
+<ul>
+<li>有序传输</li>
+<li>连接建立后，传输路径即确定</li>
+<li>是可靠的面向连接的服务</li>
+<li>分组首部包含虚电路标识</li>
+</ul>
 <h2><span id="22-传输介质">2.2 传输介质</span></h2><ul>
 <li><p>双绞线</p>
 </li>
@@ -501,6 +515,12 @@
 			<div class="old">
 				<span>上一章</span>
 				<a href="/kirameki/Structure/"> 计算机网络体系结构</a>
+			</div>
+			       
+			<!-- 下一篇文章 -->
+			<div class="new">
+				<span>下一章</span>
+				<a href="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"> 计网：数据链路层</a>
 			</div>
 			                      
 		</nav>
