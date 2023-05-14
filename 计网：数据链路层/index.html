@@ -321,7 +321,7 @@
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月14日</a>
 			<a><i class="kirafont icon-areachart"></i>4.8k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 20 分钟</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 19 分钟</a>
 		</div>
 		<h1><span id="31-数据链路层的功能">3.1 数据链路层的功能</span></h1><h2><span id="311-为网络层提供服务">3.1.1 为网络层提供服务</span></h2><blockquote>
 <p>数据链路层不关心与物理层的实现，以及对物理层的作用。</p>
@@ -361,26 +361,25 @@
 <li>自动重传请求（ARQ）用于重传出错的帧</li>
 <li>校验和</li>
 </ol>
-<h1><span id="32-组帧">3.2 组帧</span></h1><p><code>封装网络层数据包构成数据帧</code></p>
-<h2><span id="321-字节计数法">3.2.1 字节计数法</span></h2><ul>
-<li>在帧头部使用一个计数字段来标明帧内字节数，字节数包含自身这个字节</li>
-<li>计数字节出错将无法补救</li>
-</ul>
-<h2><span id="322-字节填充的首尾定界法">3.2.2 字节填充的首尾定界法</span></h2><p>字符填充法使用特定字节来定界一帧的开始（SOH<strong>0x7E</strong>）与结束(EOT)，转义字节ESC</p>
-<h2><span id="323-零比特填充的首尾计数法">3.2.3 零比特填充的首尾计数法</span></h2><p>以01111110作为开头与结尾的标志，数据域每5个1插入一个0</p>
-<h2><span id="324-违规编码法">3.2.4 违规编码法</span></h2><p>适用于冗余编码的环境</p>
+<h1><span id="32-组帧">3.2 组帧</span></h1><p>pass </p>
+<blockquote>
+<p>考试不考，过！</p>
+</blockquote>
 <h1><span id="33-差错控制">3.3 差错控制</span></h1><h2><span id="331-检错编码">3.3.1 检错编码</span></h2><ol>
 <li>奇偶校验码<ol>
 <li>无法检测到偶数个出错位时的错误</li>
 </ol>
 </li>
-<li>循环冗余码（CRC)<ol>
+<li><strong>循环冗余码（CRC</strong>)<ol>
 <li>设定一个多项式G</li>
 <li>假设一个帧对应多项式为M(x),则计算冗余码的步骤如下<ol>
 <li>在M(x)的二进制系数低位后加G(x)阶数r个0，得到H(x)；</li>
 <li>模2除。H模2除以G，所得余数即为冗余码(校验码)</li>
 <li>M与冗余码拼接就得到了发送的数据X</li>
-<li>接收方通过将X模2除以G看是否有余数来确定数据是否出错</li>
+<li>接收方通过将X模2除以G看是否有余数来确定数据是否出错<blockquote>
+<p>需要熟练循环冗余码的计算</p>
+</blockquote>
+</li>
 </ol>
 </li>
 </ol>
@@ -392,10 +391,22 @@
 <li>接收方将收到的数据+校验和信息再进行分组&amp;补码求和计算，为16位全0或全1时无差错</li>
 </ol>
 </li>
+<li>汉明距离<ol>
+<li>结论：<ul>
+<li>如果编码集的汉明距离ds &#x3D;r+1，则该差错编码可以检测r位差错</li>
+<li>如果编码集的汉明距离ds&#x3D;2r+1，则该差错编码可以纠正r位差错</li>
+</ul>
+</li>
 </ol>
-<h2><span id="332-纠错编码">3.3.2 纠错编码</span></h2><p><strong>汉明码</strong></p>
-<p>计组，不赘述，只补充计组不考的部分</p>
-<p><strong>汉明码纠错d位，需要码距为2d+1的编码方案；检错d位需要d+1位</strong></p>
+</li>
+</ol>
+<blockquote>
+<p>编码集：编码中的合法出现称为编码集</p>
+</blockquote>
+<blockquote>
+<p>汉明距离：每个编码集中的编码之间相差的位数。</p>
+<p>例如编码集是[000, 111]， 000变为111需要改变3位，此时汉明距离就是3</p>
+</blockquote>
 <h1><span id="34-流量控制与可靠传输机制">3.4 流量控制与可靠传输机制</span></h1><h2><span id="341-流量控制可靠传输滑动窗口机制">3.4.1 流量控制，可靠传输，滑动窗口机制</span></h2><h3><span id="停止-等待流量控制">停止-等待流量控制</span></h3><p>发送方每发送一帧，都要等待接收方的应答信号，之后才能发送下一帧</p>
 <h3><span id="滑动窗口流量控制">滑动窗口流量控制</span></h3><p>发送方维持一组连续的<strong>允许发送</strong>的帧的序号，称为<strong>发送窗口</strong>；同时接收方也维持一组连续的<strong>允许接收</strong>帧的序号。</p>
 <p><strong>重要特性</strong></p>
