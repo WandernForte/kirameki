@@ -322,9 +322,9 @@
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2023年04月19日</a>
-			<a><i class="kirafont icon-areachart"></i>306 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2023年05月15日</a>
+			<a><i class="kirafont icon-areachart"></i>543 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
 		</div>
 		<h1><span id="41-y86-64指令集体系结构">4.1 Y86-64指令集体系结构</span></h1><h2><span id="411-y86程序中可见的状态">4.1.1 Y86程序中可见的状态</span></h2><ul>
 <li><p>15个程序寄存器</p>
@@ -372,6 +372,44 @@
 <p>[icode(4)|ifun(4)|free(24)]</p>
 <hr>
 <p>弃坑，开始面向例题学习</p>
+<blockquote>
+<p>重点在于指令的格式， 指令的执行过程</p>
+</blockquote>
+<h1><span id="43-顺序实现">4.3 顺序实现</span></h1><h2><span id="431-分阶段译码">4.3.1 分阶段译码</span></h2><p>6个阶段</p>
+<blockquote>
+<p>标题的译码（translate）和下文的译码(decode)不是一个东西</p>
+</blockquote>
+<ul>
+<li>取指(fetch)<ul>
+<li>从指令中取出前两个4比特， 得到 icode 和 ifun<code>icode, ifun = Mi[PC]</code></li>
+<li>得到操作数的地址，一般是在当前PC的基础上偏移一个字节<code>rA, rB = Mi[PC+1]</code>, 或是其他的要素</li>
+<li>得到下一条指令的地址valP</li>
+</ul>
+</li>
+<li>译码<ul>
+<li>索引操作数地址为真正的操作数值<code>valA, valB = R[rA], R[rB]</code></li>
+</ul>
+</li>
+<li>执行<ul>
+<li>计算最终结果的值， 但还没有进行存储</li>
+</ul>
+</li>
+<li>访存<ul>
+<li>将内存中的值写入寄存器或将寄存器的值写回内存</li>
+</ul>
+</li>
+<li>写回<ul>
+<li>将最终结果写回寄存器, 最多可以写两个结果到寄存器文件</li>
+</ul>
+</li>
+<li>更新PC<ul>
+<li>PC &#x3D; valP</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>每个阶段干每个阶段该干的事情就是</p>
+</blockquote>
 
 	</article>
 
@@ -389,18 +427,12 @@
 		<nav class="post-nav">
 			      
 			<!-- 先找到与当前文字相同的目录 -->
-			      
+			         
 			<!-- 在找到当前文章所在的 index -->
-			    
+			        
 			<!-- 上一篇文章 -->
 			<div class="old">
 				<span>上一章</span>
-				<a href="/kirameki/CS-Ch2/"> CS_Ch2</a>
-			</div>
-			       
-			<!-- 下一篇文章 -->
-			<div class="new">
-				<span>下一章</span>
 				<a href="/kirameki/CS-Ch3/"> Ch3 程序的机器级表示</a>
 			</div>
 			                  
