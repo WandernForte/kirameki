@@ -322,9 +322,9 @@
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2023年04月10日</a>
-			<a><i class="kirafont icon-areachart"></i>2.2k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 9 分钟</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2023年05月15日</a>
+			<a><i class="kirafont icon-areachart"></i>2.5k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 10 分钟</a>
 		</div>
 		<h1><span id="31-历史观点">3.1 历史观点</span></h1><p>略</p>
 <h1><span id="32-程序编码">3.2 程序编码</span></h1><h2><span id="321-机器级代码">3.2.1 机器级代码</span></h2><p>两个重要抽象</p>
@@ -458,7 +458,17 @@
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch3/image-20230419150657475.png" alt="image-20230419150657475" class="lazyload"></p>
 <hr>
 <p><strong>条件传送指令，当传送条件满足时，指令把源值S复制到目的R. 目的R的长度需要大于等于S的长度</strong></p>
-<h2><span id="367-循环的实现">3.6.7 循环的实现</span></h2><h2><span id="368-switch语句的实现">3.6.8 switch语句的实现</span></h2><p><em>其实7，8section按照goto语句来理解非常简单</em></p>
+<h2><span id="367-循环的实现">3.6.7 循环的实现</span></h2><h3><span id="while-循环">while 循环</span></h3><p>两种翻译方法：</p>
+<ul>
+<li>跳转到中间<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">goto test<br><br>loop:<br>    body-statement<br><br>test:<br>    t = test-expr<br>    <span class="hljs-keyword">if</span>(t):<br>        goto loop<br><span class="hljs-comment"># 先跳转测试语句</span><br><span class="hljs-comment"># 再跳转主体语句</span><br></code></pre></td></tr></table></figure></li>
+<li>guarded-do</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">t = test-expr<br><span class="hljs-keyword">if</span>( <span class="hljs-keyword">not</span> t):<br>    goto done<br><br>loop:<br>    body-statement<br>    t = test-expr<br>    <span class="hljs-keyword">if</span>(t)<br>        goto loop<br>    <br>done<br><span class="hljs-comment"># 先测试条件，如果不符直接退出</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这两种翻译方式的本质区别在于，”guarded-do”使用条件语句(cmp)来进行控制流的转移，而”jump-to-middle”使用跳转语句(jxx)来进行控制流的转移。</p>
+</blockquote>
+<h2><span id="368-switch语句的实现">3.6.8 switch语句的实现</span></h2><p><em>其实7，8section按照goto语句来理解非常简单</em></p>
 <hr>
 <h1><span id="37-过程">3.7 过程</span></h1><ul>
 <li>过程的形式<ul>
@@ -491,7 +501,16 @@
 </ol>
 <h2><span id="372-转移控制">3.7.2 转移控制</span></h2><p><code>call</code>和<code>ret</code></p>
 <hr>
-<p>TODO: 后续的没有什么需要点明的特性，待做题后补充</p>
+<h1><span id="38-数组分配与访问">3.8 数组分配与访问</span></h1><h2><span id="383-嵌套数组多维数组">3.8.3 嵌套数组（多维数组）</span></h2><blockquote>
+<p>以二维数组为例</p>
+</blockquote>
+<p> 这里的存储按照行优先进行存储</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-comment">// 对于一个声明如下的数组</span><br>T D[R][C];<br><span class="hljs-comment">// 其数组元素D[i][j]的内存地址为</span><br>&amp;D[i][j] = D + <span class="hljs-built_in">L</span>(C*i+j);<br><br></code></pre></td></tr></table></figure>
+
+<p>在汇编语言中，一般会先计算出偏移量，然后通过mov指令将数组元素内容移动到某个位置进行暂存</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch3/image-20230515115631435.png" alt="image-20230515115631435" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/CS-Ch3/image-20230515115648642.png" alt="image-20230515115648642" class="lazyload"></p>
+<h1><span id="39-结构">3.9 结构</span></h1><p>这里主要要分对齐与没对齐的差别，以及越界访问</p>
 
 	</article>
 
@@ -509,18 +528,12 @@
 		<nav class="post-nav">
 			      
 			<!-- 先找到与当前文字相同的目录 -->
-			      
+			         
 			<!-- 在找到当前文章所在的 index -->
-			    
+			        
 			<!-- 上一篇文章 -->
 			<div class="old">
 				<span>上一章</span>
-				<a href="/kirameki/CS-Ch2/"> CS_Ch2</a>
-			</div>
-			       
-			<!-- 下一篇文章 -->
-			<div class="new">
-				<span>下一章</span>
 				<a href="/kirameki/CS-Ch4/"> Ch4 处理器体系结构</a>
 			</div>
 			                  
