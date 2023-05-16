@@ -320,7 +320,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月14日</a>
-			<a><i class="kirafont icon-areachart"></i>4.3k 字</a>
+			<a><i class="kirafont icon-areachart"></i>4.4k 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 18 分钟</a>
 		</div>
 		<h1><span id="31-数据链路层的功能">3.1 数据链路层的功能</span></h1><h2><span id="311-为网络层提供服务">3.1.1 为网络层提供服务</span></h2><blockquote>
@@ -488,28 +488,21 @@ Rate = \frac{W_s\times L}{L+2R\times V}\\
 <li>纯ALOHA协议<ol>
 <li><p>基本思想：当网络中的任何一个站点不进行任何检测就发送数据。如果超时，就认为是在传输过程中发生了冲突。发送站点就将在一段<strong>随机的</strong>时延后重新发送数据，直至发送成功。</p>
 </li>
-<li><p>吞吐量为0.184</p>
+<li><p>吞吐率为0.184</p>
 </li>
 </ol>
 </li>
 <li>时隙ALOHA协议<ol>
-<li>吞吐量0.368</li>
+<li>吞吐率0.368</li>
 <li>同步各站点的时间，不同的站点分配不同的时隙（类似于时间片，这个时隙足够发送一个数据帧）。如果发生冲突，则在下一个时隙开始时以概率p重发数据帧</li>
 <li><strong>如果2个或以上的结点在同一时隙发送帧，结点即检测到冲突</strong></li>
-<li>优点：<ol>
-<li>单个结点活动时，可以连续以信道全部速率传输（虽然不知道什么意思，但是经常用到）</li>
-<li>只需同步时隙，高度分散化</li>
-<li>简单</li>
-</ol>
-</li>
-<li>缺点：<ol>
-<li>不能消除冲突，浪费时隙</li>
-<li>存在空闲时隙，浪费时隙</li>
 </ol>
 </li>
 </ol>
-</li>
-</ol>
+<blockquote>
+<p>与ALOHA协议相关的计算题中，实际带宽为吞吐率乘以额定带宽。</p>
+<p>信道负载为每个时隙发送的帧数，单位即帧&#x2F;时隙</p>
+</blockquote>
 <h3><span id="csma协议">CSMA协议</span></h3><ol>
 <li>1-坚持CSMA:<ol>
 <li>基本思想：一个节点要发送数据时，首先侦听信道如果信道空闲，那么<strong>必然</strong>立即发送数据；如果信道忙，则不发送，继续<strong>坚持</strong>侦听；如果信道发生冲突，那么随机等待一段时间再重新开始侦听。</li>
@@ -525,11 +518,17 @@ Rate = \frac{W_s\times L}{L+2R\times V}\\
 </li>
 </ol>
 <h3><span id="csmax2fcd协议">CSMA&#x2F;CD协议</span></h3><p><strong>“先听后发，边听边发，冲突停发，随机重发”</strong></p>
-<p><strong>争议期（也称争用期）：信号最远两个端点之间往返传输的时间, 即两次单向传播时延</strong></p>
+<p><strong>争议期（也称争用期）：信号最远两个端点之间往返传输的时间, 即两次单向传播时延</strong> </p>
+<blockquote>
+<p>这个定义也不是正确的</p>
+</blockquote>
 <p><strong>最短帧长计算</strong></p>
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub><mo>=</mo><msub><mi>d</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>×</mo><mi>V</mi><mo>×</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">L_{min}=d_{max}\times V\times 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>
 
-<p>L是帧长， d是延迟， V是速率</p>
+<p>L是帧长， d是物理链路上的传输时延， V是bit速率</p>
+<blockquote>
+<p>最短帧长是考试经常要考到的计算</p>
+</blockquote>
 <p><strong>极限最短帧长为64B</strong></p>
 <p><strong>最长帧长为1518B(1500B数据+18B头部)</strong></p>
 <h2><span id="353-轮询访问令牌传递协议">3.5.3 轮询访问：令牌传递协议</span></h2><ol>
@@ -550,7 +549,7 @@ Rate = \frac{W_s\times L}{L+2R\times V}\\
 <p><strong>二进制指数退避算法</strong></p>
 <ol>
 <li>确定基本退避时间，一般取两倍的总线端到端传播时延2t</li>
-<li>定义参数k&#x3D;min{重传次数, 10}，</li>
+<li>定义参数k&#x3D;min{重传次数, 10}，<strong>达到10次冲突之后，随机数的区间就将被固定在[0, 1023]</strong></li>
 <li>从整数集<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mn>2</mn><mi>k</mi></msub><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0,1,...,2_k-1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>中随机取一个数r重传所需要的退避时间就是2rt</li>
 <li>重传16次仍未成功时放弃重传，并向上层报告出错</li>
 <li>重传次数越多，越能降低发生碰撞的概率</li>
@@ -590,7 +589,11 @@ Rate = \frac{W_s\times L}{L+2R\times V}\\
 </li>
 <li>802.11局域网的MAC帧<ol>
 <li><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/802%E5%B1%80%E5%9F%9F%E7%BD%91%E6%95%B0%E6%8D%AE%E5%B8%A7%E6%A0%BC%E5%BC%8F.jpeg" alt="802局域网数据帧格式" class="lazyload"></li>
-<li><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/%E4%BB%A5%E5%A4%AA%E7%BD%91%E6%95%B0%E6%8D%AE%E5%B8%A7%E5%9C%B0%E5%9D%80%E5%AD%97%E6%AE%B5%E6%A0%BC%E5%BC%8F.jpeg" alt="以太网数据帧地址字段格式" class="lazyload"></li>
+<li><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/%E4%BB%A5%E5%A4%AA%E7%BD%91%E6%95%B0%E6%8D%AE%E5%B8%A7%E5%9C%B0%E5%9D%80%E5%AD%97%E6%AE%B5%E6%A0%BC%E5%BC%8F.jpeg" alt="以太网数据帧地址字段格式" class="lazyload"><ul>
+<li>上面的情形，是A-AP-B，即地址3如果是从AP发出，就标识src地址， 发往AP就标识为dst地址；</li>
+<li>地址1可以理解为是下一跳地址</li>
+</ul>
+</li>
 </ol>
 </li>
 <li>发送数据的过程<ol>
