@@ -320,10 +320,34 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月15日</a>
-			<a><i class="kirafont icon-areachart"></i>14 字</a>
+			<a><i class="kirafont icon-areachart"></i>278 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
-		<h1><span id="51-优化编译器的能力和局限性">5.1 优化编译器的能力和局限性</span></h1>
+		<blockquote>
+<p>这一章讲了很多原理性的东西，总结下来的优化方向有如下几种</p>
+</blockquote>
+<ul>
+<li>消除循环的低效率<ul>
+<li>将耗时且结果相同的操作移出循环</li>
+</ul>
+</li>
+<li>减少函数调用</li>
+<li>消除不必要的内存引用</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">vector_sum</span><span class="hljs-params">(vec *v, <span class="hljs-type">float</span> *sum)</span></span>&#123;<br>    <span class="hljs-type">long</span> <span class="hljs-type">int</span> i;<br>    <span class="hljs-comment">// for(i=0;i&lt;vec_length(v);i++)&#123;</span><br>    <span class="hljs-type">int</span> len = v-&gt;len;<br>    <span class="hljs-type">float</span> *data = v-&gt;data;<br>    <span class="hljs-type">float</span> t_sum=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;len;i++)&#123;<br>        <span class="hljs-comment">// float val;</span><br>        <span class="hljs-comment">// get_vec_element(v, i, &amp;val);</span><br>        <span class="hljs-comment">// *sum=*sum+val;</span><br>        t_sum=t_sum+data[i];<br><br>    &#125;<br>    *sum = t_sum;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>循环展开</p>
+<p>?通过增加每次迭代计算的元素的数量，减少循环的迭代次数</p>
+<p>增加循环的步长，减少迭代次数</p>
+</blockquote>
+<p>kx1循环展开, 循环展开因子为k即上述的步长</p>
+<blockquote>
+<p>以下是k&#x3D;5的情形</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">unroll5</span><span class="hljs-params">(vec v, <span class="hljs-type">data_t</span> *dest)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">long</span> i;<br>    <span class="hljs-type">long</span> length = <span class="hljs-built_in">vec_length</span>(v);<br>    <span class="hljs-type">long</span> limit = length<span class="hljs-number">-4</span>;<br>    <span class="hljs-type">data_t</span> *data = <span class="hljs-built_in">get_vec_start</span>(v);<br>    <span class="hljs-type">data_t</span> acc = IDENT;<br>    <span class="hljs-comment">/* Combine 5 elements at a time */</span><br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; limit; i+=<span class="hljs-number">5</span>) &#123;<br>        acc = acc OP data[i] OP data[i+<span class="hljs-number">1</span>];<br>        acc = acc OP data[i+<span class="hljs-number">2</span>] OP data[i+<span class="hljs-number">3</span>];<br>        acc = acc OP data[i+<span class="hljs-number">4</span>];<br>    &#125;<br><br>    <span class="hljs-comment">/* Finish any remaining elements */</span><br>    <span class="hljs-keyword">for</span> (; i &lt; length; i++) &#123;<br>        acc = acc OP data[i];<br>    &#125;<br>    *dest = acc;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
 	</article>
 
 	 
