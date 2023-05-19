@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/kirameki/css/layout.css">
 
 		
-		<title> Transition Layer -  Wandern</title>
+		<title> 计网：传输层 -  Wandern</title>
 		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
 		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 		<!-- lazyload -->
@@ -308,22 +308,19 @@
 <div class="kira-post">
 	<article>
 		
-		<div
-			class="kira-post-cover"
-			style="padding-bottom: '56.25%'"
-		>
+		<div class="kira-post-cover">
 			<img
-				data-src="https://cdn.jsdelivr.net/gh/WandernForte/roselia/bkg.jpg"
+				data-src="https://wandernforte.github.io/kirameki/images/SD302B.png"
 				data-sizes="auto"
-				alt="Transition Layer"
+				alt="计网：传输层"
 				class="lazyload kira-post-cover-image disabled-kira-image"
 			/>
-			<h1>Transition Layer</h1>
+			<h1>计网：传输层</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2023年03月20日</a>
-			<a><i class="kirafont icon-areachart"></i>632 字</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2023年05月19日</a>
+			<a><i class="kirafont icon-areachart"></i>650 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
 		</div>
 		<h1><span id="第5章-传输层">第5章 传输层</span></h1><h2><span id="51-传输层提供的服务">5.1 传输层提供的服务</span></h2><p>传输层为应用层提供<strong>可靠</strong>通信服务</p>
@@ -354,7 +351,7 @@
 </li>
 <li><p>服务端使用的端口号</p>
 <ul>
-<li><p>熟知端口号  数值为0~1023  被指派给TCP&#x2F;IP最重要的一些应用程序</p>
+<li><p><strong>熟知端口号</strong>  数值为0~1023  被指派给TCP&#x2F;IP最重要的一些应用程序</p>
 </li>
 <li><p>登记端口号  数值为1024~49151  </p>
 <ul>
@@ -409,18 +406,19 @@
 <ol>
 <li>在发送端<ol>
 <li>伪首部，首部，数据段分为每段2B长的数据，数据段若不足则填充0</li>
-<li>对上述各段数计算反码求和，结果填入检验和字段</li>
+<li>对上述各段数计算求和,进位也加在最低位，最终结果按位取反</li>
+<li>结果填入检验和字段</li>
 <li>去掉伪首部，发送</li>
 </ol>
 </li>
 <li>在接收端<ol>
 <li>填上伪首部</li>
-<li>同样的反码求和</li>
+<li>同样的求和取反码</li>
 <li>结果为全1则无差错，否则进行差错处理</li>
 </ol>
 </li>
 </ol>
-<h2><span id="53-tcp协议">5.3 TCP协议</span></h2><p>转<a href="https://wandernforte.github.io/kirameki/Transition-Layer-TCP/">Transition-Layer_TCP</a></p>
+<h2><span id="53-tcp协议">5.3 TCP协议</span></h2><p>转<a href="https://wandernforte.github.io/kirameki/Transition-Layer-TCP/">传输层-TCP</a></p>
 
 	</article>
 
@@ -438,21 +436,15 @@
 		<nav class="post-nav">
 			      
 			<!-- 先找到与当前文字相同的目录 -->
-			      
+			                        
 			<!-- 在找到当前文章所在的 index -->
-			    
+			                            
 			<!-- 上一篇文章 -->
 			<div class="old">
 				<span>上一章</span>
-				<a href="/kirameki/%E8%AE%A1%E7%BD%91%E7%9A%84%E6%9F%90%E9%81%93%E9%A2%98/"> 计网的某道题</a>
+				<a href="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82/"> 计网：网络层</a>
 			</div>
-			       
-			<!-- 下一篇文章 -->
-			<div class="new">
-				<span>下一章</span>
-				<a href="/kirameki/Transition-Layer-TCP/"> Transition-Layer_TCP</a>
-			</div>
-			                                                     
+			                  
 		</nav>
 	</div>
 	
@@ -460,6 +452,8 @@
 		
 			<a class="kirafont icon-appstore-fill -link" href="/kirameki/categories/Computer-Network/">Computer Network</a>
 		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/kirameki/tags/note/" rel="tag">note</a>
 		
 	</div>
 	
