@@ -320,8 +320,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月17日</a>
-			<a><i class="kirafont icon-areachart"></i>7.1k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 29 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>5.8k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 23 分钟</a>
 		</div>
 		<h1><span id="41-网络层的功能">4.1 网络层的功能</span></h1><p><code>无连接，不可靠，传输层负责错误处理</code></p>
 <h2><span id="411-异构网络互联">4.1.1 异构网络互联</span></h2><p><strong>中继系统</strong></p>
@@ -486,19 +486,6 @@
 </li>
 <li><p>传播类型：</p>
 <ol>
-<li>单播型地址<ol>
-<li>没有子网掩码<ul>
-<li>A类地址默认子网掩码8  所以判断后24位是否为全0或全1，不是就为单播地址</li>
-<li>B类地址默认子网掩码16 判断后16位 是否为全0或全1，不是就为单播地址</li>
-<li>C类地址默认子网掩码32 判断后8位 是否为全0或全1，不是就为单播地址</li>
-</ul>
-</li>
-<li>有子网掩码<ul>
-<li>根据子网掩码，可得出该ip地址的主机号，根据主机地址是否为全0或全1，不是就为单播地址</li>
-</ul>
-</li>
-</ol>
-</li>
 <li>组播型地址<ol>
 <li>D类地址从 224.0.0.0—239.255.255.255</li>
 </ol>
@@ -540,8 +527,6 @@
 <p><strong>注意事项</strong></p>
 <ol>
 <li>对外部网络来说，并不知道网络内部是否进行了子网划分</li>
-<li>RFC950规定下，IPV4地址子网号不能全为0或1</li>
-<li>不论是分类的ipv4还是cidr，子网中主机号为全0或全1的地址都不能被指派。（这里的指派是什么意思？使用吗）</li>
 </ol>
 <h3><span id="2-子网掩码">2. 子网掩码</span></h3><p>使用子网掩码来表示对原网络中主机号的借位</p>
 <p>子网掩码与IP地址进行诸位”与”运算后得到该主机所在子网的网络号</p>
@@ -574,7 +559,7 @@
 <ol>
 <li>主机A欲向本LAN上的某主机B发送IP数据报，先在其ARP高速缓存中查看有无主机B的IP地址。<ul>
 <li>有，查出对应MAC地址并写入MAC帧，通过局域网将该MAC帧发往此MAC地址</li>
-<li>无，通过使用目的MAC为FF-FF-FF-FF-FF-FF的帧来封装并广播ARP请求分组，使同一局域网的所有主机都收到此ARP请求。主机B收到后，返回给主机A ARP响应分组，分组中包含主机B的IP与MAC地址的映射关系，主机A将此信息写入ARP缓存然后发送MAC帧。</li>
+<li>无，通过使用目的MAC为FF-FF-FF-FF-FF-FF的帧来封装并广播ARP请求分组，使同一局域网的所有主机都收到此ARP请求。主机B收到后，返回给主机A ARP响应分组，分组中包含主机B的IP与MAC地址的映射关系，主机A将此信息写入ARP缓存然后发送MAC帧</li>
 </ul>
 </li>
 </ol>
@@ -621,31 +606,6 @@
 </ol>
 </li>
 </ol>
-<h1><span id="44-ipv6">4.4 IPv6</span></h1><h2><span id="441-ipv6主要特点">4.4.1 IPv6主要特点</span></h2><ol>
-<li>更大的地址空间。从32位扩展到了128位。</li>
-<li>扩展的地址层次结构（？）<ol>
-<li>顶级 全球的公共拓扑结构</li>
-<li>场点级 单个场点</li>
-<li>接口级（这个是个人定义的标准） 单个网络接口</li>
-<li>便于路由器查找路由</li>
-</ol>
-</li>
-<li>灵活的首部格式</li>
-<li>改进的选项</li>
-<li>允许协议继续扩充</li>
-<li>支持即插即用（即自动配置）</li>
-<li>支持资源预分配</li>
-<li>ipv6只有在数据报的源节点才能分片，是端到端的（这点与IPv4不同）</li>
-<li>首部长度必须为8B的整数倍</li>
-<li>具有身份验证与保密功能，增大了安全性</li>
-</ol>
-<p><code>IPv6与IPv4不能互相兼容，但可以通过双栈协议或隧道技术来实现两种协议的共用</code></p>
-<h2><span id="442-ipv6的地址">4.4.2 IPv6的地址</span></h2><p>地址每4位用一个十六进制数表示，并用” : “来分隔每16位，0可以省略，但一组中仅有0时要保留一个0（还可以用双冒号缩写连续的全0组）</p>
-<ul>
-<li>单播地址</li>
-<li>多播（组播）地址</li>
-<li>任意播地址</li>
-</ul>
 <h1><span id="45-路由协议">4.5 路由协议</span></h1><h2><span id="451-自治系统">4.5.1 自治系统</span></h2><p>单一技术管理下的一组路由器，这些路由器使用一种<strong>AS内部的路由选择协议</strong>和<strong>共同的度量</strong>来确定分组在该AS内的路由，同时还使用一种AS之间的路由选择协议来确定分组在AS之间的路由。</p>
 <p>一个自治系统的所有路由器在本自治系统内都必须是连通的。</p>
 <h2><span id="452-域内路由与域间路由">4.5.2 域内路由与域间路由</span></h2><ol>
@@ -665,19 +625,22 @@
 <li>RIP优先选择跳数最短的路径</li>
 <li>RIP允许的最大跳数为15跳。距离大于等于16跳的网络视为不可达网络</li>
 <li>默认在任意两个路由器之间每30秒广播一次RIP路由更新信息，以便动态维护路由表</li>
-<li>不支持子网掩码的RIP广播（但改进的RIP2中得到了支持）</li>
+<li><del>不支持子网掩码的RIP广播（但改进的RIP2中得到了支持）</del></li>
 </ol>
 <h3><span id="2-rip的特点">2. RIP的特点</span></h3><ol>
-<li>仅和相邻路由器交换信息</li>
-<li>路由器交换的信息是自身的路由表</li>
+<li><strong>仅和相邻路由器交换信息</strong></li>
+<li>记录了所有路由器的路由表，并根据路由表信息计算路径</li>
 <li>按固定时间间隔交换路由信息（不会发生碰撞吗？</li>
-<li>坏消息传得慢（距离远的信息会比距离近的信息晚到达源主机</li>
+<li>坏消息传得慢（<strong>距离远的信息会比距离近的信息晚到达源主机</strong></li>
 </ol>
 <h3><span id="3-距离向量算法">3. 距离向量算法</span></h3><p>有点递归计算的意味</p>
 <p><strong>信息交换过程</strong></p>
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi><mover><mo><mo><munder><mo><mo>⇌</mo></mo><mrow><mtext>返回所有路由表项</mtext><mo stretchy="false">(</mo><mi>R</mi><mi>I</mi><mi>P</mi><mtext>报文</mtext><mo stretchy="false">)</mo></mrow></munder></mo></mo><mtext>请求路由信息</mtext></mover></mi><mi>B</mi><mi><mover><mo><mo><munder><mo><mo>⇌</mo></mo><mtext>返回所有路由表项</mtext></munder></mo></mo><mtext>请求路由信息</mtext></mover></mi><mi>C</mi><mi><mover><mo><mo><munder><mo><mo>⇌</mo></mo><mtext>返回所有路由表项</mtext></munder></mo></mo><mtext>请求路由信息</mtext></mover></mi><mi>D</mi></mrow><annotation encoding="application/x-tex">A\overset{请求路由信息}{\underset{返回所有路由表项(RIP报文)}{\rightleftharpoons}}B\overset{请求路由信息}{\underset{返回所有路由表项}{\rightleftharpoons}}C\overset{请求路由信息}{\underset{返回所有路由表项}{\rightleftharpoons}}D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.4263310000000002em;vertical-align:-0.977em;"></span><span class="mord mathnormal">A</span><span class="mord"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4493310000000004em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop"><span class="mrel"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.671em;"><span style="top:-2.298em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">返</span><span class="mord cjk_fallback mtight">回</span><span class="mord cjk_fallback mtight">所</span><span class="mord cjk_fallback mtight">有</span><span class="mord cjk_fallback mtight">路</span><span class="mord cjk_fallback mtight">由</span><span class="mord cjk_fallback mtight">表</span><span class="mord cjk_fallback mtight">项</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="mord cjk_fallback mtight">报</span><span class="mord cjk_fallback mtight">文</span><span class="mclose mtight">)</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">⇌</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.977em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.8710000000000004em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">请</span><span class="mord cjk_fallback mtight">求</span><span class="mord cjk_fallback mtight">路</span><span class="mord cjk_fallback mtight">由</span><span class="mord cjk_fallback mtight">信</span><span class="mord cjk_fallback mtight">息</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.977em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.449331em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop"><span class="mrel"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.671em;"><span style="top:-2.344669em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">返</span><span class="mord cjk_fallback mtight">回</span><span class="mord cjk_fallback mtight">所</span><span class="mord cjk_fallback mtight">有</span><span class="mord cjk_fallback mtight">路</span><span class="mord cjk_fallback mtight">由</span><span class="mord cjk_fallback mtight">表</span><span class="mord cjk_fallback mtight">项</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">⇌</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.755331em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.871em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">请</span><span class="mord cjk_fallback mtight">求</span><span class="mord cjk_fallback mtight">路</span><span class="mord cjk_fallback mtight">由</span><span class="mord cjk_fallback mtight">信</span><span class="mord cjk_fallback mtight">息</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.755331em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.449331em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop"><span class="mrel"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.671em;"><span style="top:-2.344669em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">返</span><span class="mord cjk_fallback mtight">回</span><span class="mord cjk_fallback mtight">所</span><span class="mord cjk_fallback mtight">有</span><span class="mord cjk_fallback mtight">路</span><span class="mord cjk_fallback mtight">由</span><span class="mord cjk_fallback mtight">表</span><span class="mord cjk_fallback mtight">项</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">⇌</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.755331em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.871em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">请</span><span class="mord cjk_fallback mtight">求</span><span class="mord cjk_fallback mtight">路</span><span class="mord cjk_fallback mtight">由</span><span class="mord cjk_fallback mtight">信</span><span class="mord cjk_fallback mtight">息</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.755331em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span>
 
 <p><strong>计算最优路线</strong></p>
+<blockquote>
+<p>简而言之，递归生成距离向量，与邻接路由器分享路由表最终处理成自己的路由表和距离向量</p>
+</blockquote>
 <ol>
 <li>对于相邻路由器<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">X_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>发来的RIP报文，先修改此报文中的所有项目：把下一跳地址改为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">X_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，并把所有表项的距离字段值+1</li>
 <li>对于收到的修改后的RIP报文<ol>
@@ -695,11 +658,14 @@
 <li>路由器之间交换的是完整的路由表，网络开销较大</li>
 <li>网络出现故障时，会发生慢收敛现象（需要较长时间才能把信息传到所有的路由器），使更新过程的消耗时间变长</li>
 </ol>
-<h2><span id="454-开放最短路径优先协议ospf">4.5.4 开放最短路径优先协议（OSPF)</span></h2><h3><span id="基本特点">基本特点</span></h3><ol>
+<h2><span id="454-开放最短路径优先协议ospf">4.5.4 开放最短路径优先协议（OSPF)</span></h2><blockquote>
+<p>通过广播邻接状态（包括邻接路由以及代价），生成网络拓扑</p>
+</blockquote>
+<h3><span id="基本特点">基本特点</span></h3><ol>
 <li>OSPF是广播式交换信息，每个路由器向本自治系统中的所有路由器发送信息</li>
 <li>发送的信息是与本路由器相邻的路由器的状态</li>
 <li>只有当链路状态变化时，才会向其他路由器广播（与某个网络协议类似?)</li>
-<li>网络层协议，直接使用ip数据报进行数据传输（其数据报首部的协议字段为89）</li>
+<li><strong>网络层协议</strong>，直接使用ip数据报进行数据传输（其数据报首部的协议字段为89）</li>
 <li>对不同的链路可根据IP分组的不同服务类型（TOS)而设置成不同代价。因此可以按不同的业务计算不同的路由，<strong>更加灵活</strong></li>
 <li><strong>可平均分配网络负载</strong>，如果有多条同样代价的路由，可以将通信量分配给这些路由</li>
 <li>具有安全检验功能CIDR</li>
@@ -715,7 +681,10 @@
 <li>链路状态确认分组</li>
 </ol>
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82/image-20230313144330273.png" alt="image-20230313144330273" class="lazyload"></p>
-<h2><span id="455-边界网关协议">4.5.5 边界网关协议</span></h2><p>是不同自治系统的路由器之间交换路由信息的协议，是一种基于TCP的外部网关协议，处在应用层</p>
+<h2><span id="455-边界网关协议bgp">4.5.5 边界网关协议（BGP）</span></h2><p>是不同自治系统的路由器之间交换路由信息的协议，是一种基于TCP的外部网关协议，处在应用层</p>
+<blockquote>
+<p>路径信息作为可达性的判定因素</p>
+</blockquote>
 <p><strong>面临的困境</strong></p>
 <ul>
 <li>因特网规模太大</li>
@@ -727,43 +696,7 @@
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82/image-20230313150218555.png" alt="image-20230313150218555" class="lazyload"></p>
 <hr>
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82/image-20230313150253363.png" alt="image-20230313150253363" class="lazyload"></p>
-<h1><span id="46-ip组播">4.6 IP组播</span></h1><h2><span id="461-组播的概念">4.6.1 组播的概念</span></h2><p><strong>多播</strong>（英语：<strong>multicast</strong>，又称<strong>群播</strong>，中国大陆也译作<strong>组播</strong>），是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C">计算机网络</a>中的一种群组通信，<strong>它把信息同时传递给一组目的计算机</strong>。多播可以是一对多或多对多布置。不应将其与物理层的点到多点通信混淆。</p>
-<p>群组通信可由<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BA%94%E7%94%A8%E5%B1%82">应用层</a>多播实现，也可由网络级多播协助实现，后者能让一个源地址用一次传输将数据发给群组。数据到达包含该组成员的网络区域时，由<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%B7%AF%E7%94%B1%E5%99%A8">路由器</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%B6%B2%E8%B7%AF%E4%BA%A4%E6%8F%9B%E5%99%A8">交换机</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%9F%BA%E7%AB%99%E5%AD%90%E7%B3%BB%E7%BB%9F">基站子系统</a>等网络组件自动完成复制分发。网络级多播可能通过<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82">数据链路层</a>的一对多地址交换实现，如以太网多播地址、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BC%82%E6%AD%A5%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F">异步传输模式</a>(ATM)、P2MP及<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Infiniband">Infiniband</a>多播，也可能通过<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E5%B1%82">网络层</a>由IP多播实现。在IP多播中，多播发生在IP路由层面，路由器创建一个最佳路径将数据发往多播目的地址。</p>
-<p>多播通常应用于IP网络上的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%B5%81%E5%AA%92%E4%BD%93">流媒体</a>传输，如<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/IPTV">IPTV</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=%E5%A4%9A%E7%82%B9%E8%A7%86%E9%A2%91%E4%BC%9A%E8%AE%AE&action=edit&redlink=1">多点视频会议</a>（Multipoint videoconferencing） 等。</p>
-<p>IP多播协议：</p>
-<ul>
-<li><strong>互联网组管理协议（IGMP）</strong></li>
-<li>协议无关多播（PIM）</li>
-<li>距离矢量多播路由协议DVMRP）</li>
-<li>多播OSPF（MOSPF）</li>
-<li>多播BGP（MBGP）</li>
-<li>多播源发现协议（MSDP）</li>
-<li>多播监听器发现（MLD）</li>
-</ul>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82/image-20230313153309116.png" alt="image-20230313153309116" class="lazyload"></p>
-<h2><span id="462-ip组播地址">4.6.2 IP组播地址</span></h2><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82/image-20230313153709253.png" alt="image-20230313153709253" class="lazyload"></p>
-<h2><span id="463-igmp与组播路由算法">4.6.3 IGMP与组播路由算法</span></h2><h3><span id="igmp">IGMP</span></h3><p>IGMP在因特网范围内并不对所有组播组成员进行管理。</p>
-<p>IGMP不知道IP组播组包含的成员数，也<strong>不知道成员的网络分布</strong>。</p>
-<p>IGMP让本地局域网上的组播路由器知道本局域网上组播组的主机变动</p>
-<p><strong>IGMP的工作过程</strong></p>
-<ol>
-<li>当某主机加入新的组播组时，需要向组播组的组播地址（即组播路由器的地址）发送一个IGMP报文，声明自己要成为该组的成员。本地的组播路由器收到IGMP报文后，将组成员关系转发给因特网上的其他组播路由器</li>
-<li>动态调整。本地组播路由器周期性查询本地局域网上的主机是否仍为该组成员。只要组中有至少一台主机响应，就认为这个组是活跃的。否则就不再将该组的成员关系转发给其他组播路由器</li>
-</ol>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82/image-20230313155027299.png" alt="image-20230313155027299" class="lazyload"></p>
-<h1><span id="47-移动ip">4.7 移动IP</span></h1><h3><span id="471-移动ip的概念">4.7.1 移动IP的概念</span></h3><p><code>简单说：支持移动性的因特网体系结构与协议共称为移动IP</code></p>
-<p>移动IP技术是指移动结点以固定的网络IP地址实现不同网段的<strong>漫游功能</strong>，并保证基于网络IP的<strong>网络权限在漫游过程中不发生任何改变</strong>。</p>
-<p>移动IP的目的是把分组自动地投递给移动节点。一个移动节点是把其连接点从一个网络或子网改变到另一个网络或子网的主机<strong>（从原来的网络（子网）迁移到新的网络（子网）的主机）</strong></p>
-<p>使用移动IP，一个移动结点可以在不改变其IP地址的情况下改变其驻留位置。</p>
-<p><strong>相关概念</strong></p>
-<ol>
-<li>移动结点 具有永久IP地址的移动结点</li>
-<li>本地代理 在一个网络环境中一个移动结点的永久“居所”被称为归属网络。在归属网络中代表移动结点执行移动管理功能的实体被称为归属代理（或本地代理），它根据移动用户的转交地址，<strong>采用隧道技术转交移动结点的数据包</strong></li>
-<li>外部代理 在外部网络中帮助移动结点完成移动管理功能的实体</li>
-</ol>
-<h2><span id="472-移动ip通信过程">4.7.2 移动IP通信过程</span></h2><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82/mobileip01.awebp" alt="img" class="lazyload"></p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82/mobileip02.awebp" alt="img" class="lazyload"></p>
-<h1><span id="48-网络层设备">4.8 网络层设备</span></h1><h2><span id="481-路由器router">4.8.1 路由器Router</span></h2>
+
 	</article>
 
 	 
