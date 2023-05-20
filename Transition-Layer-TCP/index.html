@@ -72,7 +72,7 @@
 	</div>
 	<div class="kira-count">
 		<div><span>文章</span>25</div>
-		<div><span>标签</span>10</div>
+		<div><span>标签</span>9</div>
 		<div><span>分类</span>4</div>
 	</div>
 	<div class="kira-list">
@@ -227,7 +227,7 @@
 </div>
   
 <div class="kira-widget-wrap">
-	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/kirameki/tags/Code/" style="font-size: 10px;">Code</a> <a href="/kirameki/tags/Note/" style="font-size: 20px;">Note</a> <a href="/kirameki/tags/TransitionLayer/" style="font-size: 10px;">TransitionLayer</a> <a href="/kirameki/tags/getStarted/" style="font-size: 10px;">getStarted</a> <a href="/kirameki/tags/hw-exam/" style="font-size: 10px;">hw&exam</a> <a href="/kirameki/tags/idea/" style="font-size: 10px;">idea</a> <a href="/kirameki/tags/note/" style="font-size: 16.67px;">note</a> <a href="/kirameki/tags/plan/" style="font-size: 10px;">plan</a> <a href="/kirameki/tags/survey/" style="font-size: 10px;">survey</a> <a href="/kirameki/tags/%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" style="font-size: 13.33px;">代码模板</a></div>
+	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/kirameki/tags/Code/" style="font-size: 10px;">Code</a> <a href="/kirameki/tags/Note/" style="font-size: 20px;">Note</a> <a href="/kirameki/tags/getStarted/" style="font-size: 10px;">getStarted</a> <a href="/kirameki/tags/hw-exam/" style="font-size: 10px;">hw&exam</a> <a href="/kirameki/tags/idea/" style="font-size: 10px;">idea</a> <a href="/kirameki/tags/note/" style="font-size: 16.67px;">note</a> <a href="/kirameki/tags/plan/" style="font-size: 10px;">plan</a> <a href="/kirameki/tags/survey/" style="font-size: 10px;">survey</a> <a href="/kirameki/tags/%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" style="font-size: 13.33px;">代码模板</a></div>
 	
 </div>
 
@@ -308,12 +308,9 @@
 <div class="kira-post">
 	<article>
 		
-		<div
-			class="kira-post-cover"
-			style="padding-bottom: '56.25%'"
-		>
+		<div class="kira-post-cover">
 			<img
-				data-src="https://cdn.jsdelivr.net/gh/WandernForte/roselia/bkg.jpg"
+				data-src="https://wandernforte.github.io/kirameki/images/SD302B.png"
 				data-sizes="auto"
 				alt="Transition-Layer_TCP"
 				class="lazyload kira-post-cover-image disabled-kira-image"
@@ -322,11 +319,11 @@
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2023年03月20日</a>
-			<a><i class="kirafont icon-areachart"></i>1.1k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2023年05月20日</a>
+			<a><i class="kirafont icon-areachart"></i>1.3k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
 		</div>
-		<h1><span id="chapter-5-transition-layer">Chapter 5 Transition-Layer</span></h1><h2><span id="53-tcp">5.3 TCP</span></h2><h3><span id="531-tcp协议的特点">5.3.1 TCP协议的特点</span></h3><ol>
+		<h1><span id="53-tcp">5.3 TCP</span></h1><h2><span id="531-tcp协议的特点">5.3.1 TCP协议的特点</span></h2><ol>
 <li>面向连接的逻辑连接</li>
 <li>每条TCP连接都只能有两个端点。</li>
 <li>提供可靠交付服务，保证传输数据无差错，不丢失，不重复且有序</li>
@@ -334,11 +331,11 @@
 <li>面向字节流</li>
 <li>发送数据报的适应性调整<em>（这里暂时只是个人说法）</em></li>
 </ol>
-<h3><span id="532-tcp报文">5.3.2 TCP报文</span></h3><p><code>TCP报文可以运载数据，建立连接，释放连接以及应答</code></p>
+<h2><span id="532-tcp报文">5.3.2 TCP报文</span></h2><p><code>TCP报文可以运载数据，建立连接，释放连接以及应答</code></p>
 <p>TCP报文各字段意义</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/images/tcp_component.png" alt="image-20230322150452430" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/Transition-Layer-TCP/tcp_component.png" alt="image-20230322150452430" class="lazyload"></p>
 <ol>
-<li>序号：TCP传送的字节流中的每个字节都按顺序编号，序号字段指的是本报文所发送的数据的第一个字节的序号</li>
+<li>序号：TCP传送的字节流中的每个字节都按顺序编号，有多个分片时，序号字段依本报文所发送的数据的第一个字节的序号而定；<em>收到报文乱不乱序TCP不管</em></li>
 <li>数据偏移：指出数据起始位置到报文起始位置的距离</li>
 <li>保留位：目前应置0</li>
 <li>紧急位：表示数据报的优先级</li>
@@ -349,7 +346,14 @@
 <li>终止位：表示该报文段已完全传输完毕</li>
 <li>校验和：和UDP的校验和类似，只需把协议字段由17改为6</li>
 </ol>
-<h3><span id="533-tcp连接管理">5.3.3 TCP连接管理</span></h3><p>主动发起连接建立的应用进程称为客户，被动等待的称为服务器</p>
+<blockquote>
+<p>ACK&#x3D;1时，标识确认序号字段有效 </p>
+<p>RST&#x3D;1时，重新建立TCP连接 </p>
+<p>SYN&#x3D;1时，表示该TCP段是一个建 立新连接请求控制段</p>
+<p>FIN&#x3D;1时， 表明请求释放TCP连接</p>
+<p>需要记住两个端口号，序号(seq)和确认号(ack是小写的)， 六个标志位，校验和的位置</p>
+</blockquote>
+<h2><span id="533-tcp连接管理">5.3.3 TCP连接管理</span></h2><p>主动发起连接建立的应用进程称为客户，被动等待的称为服务器</p>
 <ol>
 <li><p>三次握手建立连接</p>
 <ol>
@@ -365,32 +369,41 @@
 <li>最后确认：客户端-&gt;服务端；服务端-&gt;客户端</li>
 </ol>
 <p><strong>数据报表示为</strong></p>
+<blockquote>
+<p>下面的x,y是两个初始序列号</p>
+</blockquote>
 <ol>
 <li>连接建立<ol>
-<li>SYN&#x3D;1, SEQ&#x3D;X</li>
-<li>SYN&#x3D;1, ACK&#x3D;1, SEQ&#x3D;Y, ACK&#x3D;X+1</li>
-<li>ACK&#x3D;1, SE1&#x3D;X+1, ACK&#x3D;Y+1</li>
+<li>SYN&#x3D;1, seq&#x3D;X[C:S]</li>
+<li>SYN&#x3D;1, ACK&#x3D;1, seq&#x3D;Y, ack&#x3D;X+1[S:C]</li>
+<li>ACK&#x3D;1, seq&#x3D;X+1, ack&#x3D;Y+1[C:S]</li>
 </ol>
 </li>
 <li>释放连接<ol>
-<li>FIN&#x3D;1, SEQ&#x3D;U</li>
-<li>ACK&#x3D;1,SE1&#x3D;V, ACK&#x3D;U+1</li>
-<li>FIN&#x3D;1, ACK&#x3D;1, SEQ&#x3D;W, ACK&#x3D;U+1</li>
-<li>ACK&#x3D;1, SEQ&#x3D;U+1, ACK&#x3D;W+1</li>
-</ol>
+<li>FIN&#x3D;1, seq&#x3D;U[C:S]</li>
+<li>ACK&#x3D;1,seq&#x3D;V, ack&#x3D;U+1[S:C]</li>
+<li>FIN&#x3D;1, ACK&#x3D;1, seq&#x3D;W, ack&#x3D;U+1[S:C]<ul>
+<li>此后服务器不再发送数据</li>
+</ul>
+</li>
+<li>ACK&#x3D;1, seq&#x3D;U+1, ack&#x3D;W+1[C:S]<ul>
+<li>此前的客户端都只能接受数据而不能换发送数据</li>
+</ul>
 </li>
 </ol>
 </li>
 </ol>
-<h3><span id="534-tcp可靠传输">5.3.4 TCP可靠传输</span></h3><ol>
+</li>
+</ol>
+<h2><span id="534-tcp可靠传输">5.3.4 TCP可靠传输</span></h2><blockquote>
+<p>引入两个变量：拥塞窗口CongWin和最大段大小MSS</p>
+<p><strong>SendWin&#x3D;min{CongWin,RecvWin}</strong></p>
+</blockquote>
+<ol>
 <li>流水线机制</li>
 <li>累计确认</li>
 <li>重传<ol>
-<li>超时TCP<ul>
-<li>使用单一重传定时器</li>
-<li>慢开始和拥塞避免</li>
-</ul>
-</li>
+<li>超时TCP</li>
 <li>重复确认<ul>
 <li>发送方会背靠背地发送多个 分组</li>
 <li>如果发送方收到对同一数据的3个ACK，则假定该数据之后的段已经丢失</li>
@@ -400,31 +413,33 @@
 </ol>
 </li>
 </ol>
-<h3><span id="535-tcp流量控制">5.3.5 TCP流量控制</span></h3><p>   接收方为TCP提供缓冲区，在传输过程中动态调整（</p>
-<h3><span id="536-tcp拥塞控制">5.3.6 TCP拥塞控制</span></h3><p><em>发送窗口的上限&#x3D;min[rwnd, cwnd]</em></p>
-<p><em>rwnd接收窗口， cwnd拥塞窗口</em></p>
-<h4><span id="慢开始和拥塞避免算法">慢开始和拥塞避免算法</span></h4><ol>
+<h2><span id="535-tcp流量控制">5.3.5 TCP流量控制</span></h2><p>   接收方为TCP提供缓冲区，在传输过程中动态调整（</p>
+<h2><span id="536-tcp拥塞控制">5.3.6 TCP拥塞控制</span></h2><h3><span id="加性增乘性减-aimd">加性增—乘性减: AIMD</span></h3><p>加性增：每个RTT将CongWin增大一个MSS</p>
+<p>乘性减：发生丢包后将CongWin减半</p>
+<blockquote>
+<p>通过加上一个MSS实现CongWin就是加性增</p>
+<p>通过乘以1&#x2F;2实现CongWin减小就是乘性减</p>
+</blockquote>
+<h3><span id="慢开始和拥塞避免算法">慢开始和拥塞避免算法</span></h3><ol>
 <li><p>慢开始算法</p>
-<p>设置cwnd初值为1，并在每收到一个对新报文段的确认后自增<code>cwnd++</code></p>
+<p>每个RTT将CongWin翻倍</p>
+<p>收到每个新的确认报文进行CongWin++操作</p>
 </li>
 <li><p>拥塞避免算法</p>
-<p>与慢启动不同的是，cwnd在每个往返时延后自增</p>
+<p>与慢启动不同的是，cwnd在每个往返时延后自增实现线性增长</p>
 </li>
 </ol>
 <p>​	使用的时机</p>
-<pre><code>1. cwnd&lt;ssthresh, 慢开始
-2. cwnd&gt;ssthresh, 拥塞避免
-3. cwnd=ssthresh, 二者均可
+<pre><code>1. CongWin&lt;Threshold, 慢启动
+2. CongWin&gt;Threshold, 拥塞避免
+3. CongWin=Threshold, 二者均可
 </code></pre>
-<ol start="3">
-<li>网络拥塞的处理<ol>
-<li>只要发送方判断网络出现拥塞（超时），就将ssthresh设置为出现拥塞时发送方的cwnd大小的一半，然后把cwnd重置</li>
-</ol>
-</li>
-</ol>
-<h4><span id="快重传与快恢复">快重传与快恢复</span></h4><p><strong>快恢复</strong></p>
-<p>当发送方重复确认三次（收到三个相同的ACK）时，执行<em>乘法减小</em>算法，把慢开始的ssthreshold设置为此时发送方拥塞窗口cwnd的一半</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/Transition-Layer-TCP/image-20230420091943730.png" alt="image-20230420091943730" class="lazyload"></p>
+<blockquote>
+<p>变量Threshold初始化时被设置为一个很大的值，可以就是初始的CongWin</p>
+</blockquote>
+<h3><span id="快重传与快恢复">快重传与快恢复</span></h3><p><strong>快速恢复</strong></p>
+<p>当发送方重复确认三次（收到三个相同的ACK）时，执行<em>乘法减小</em>算法，把慢开始的ssthreshold设置为此时发送方拥塞窗口CongWin的一半</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/Transition-Layer-TCP/image-20230520103958547.png" alt="image-20230520103958547" class="lazyload"></p>
 <hr>
 
 	</article>
@@ -443,21 +458,15 @@
 		<nav class="post-nav">
 			      
 			<!-- 先找到与当前文字相同的目录 -->
-			      
+			                        
 			<!-- 在找到当前文章所在的 index -->
-			    
+			                            
 			<!-- 上一篇文章 -->
 			<div class="old">
 				<span>上一章</span>
-				<a href="/kirameki/%E8%AE%A1%E7%BD%91%E7%9A%84%E6%9F%90%E9%81%93%E9%A2%98/"> 计网的某道题</a>
+				<a href="/kirameki/Transition-Layer/"> 计网：传输层</a>
 			</div>
-			       
-			<!-- 下一篇文章 -->
-			<div class="new">
-				<span>下一章</span>
-				<a href="/kirameki/Application-Layer/"> 应用层</a>
-			</div>
-			                                                     
+			                  
 		</nav>
 	</div>
 	
@@ -466,7 +475,7 @@
 			<a class="kirafont icon-appstore-fill -link" href="/kirameki/categories/Computer-Network/">Computer Network</a>
 		
 		
-			<a class="kirafont icon-tag-fill -none-link" href="/kirameki/tags/TransitionLayer/" rel="tag">TransitionLayer</a>
+			<a class="kirafont icon-tag-fill -none-link" href="/kirameki/tags/note/" rel="tag">note</a>
 		
 	</div>
 	
