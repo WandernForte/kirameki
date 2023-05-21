@@ -320,7 +320,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月20日</a>
-			<a><i class="kirafont icon-areachart"></i>1.3k 字</a>
+			<a><i class="kirafont icon-areachart"></i>1.4k 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
 		</div>
 		<h1><span id="53-tcp">5.3 TCP</span></h1><h2><span id="531-tcp协议的特点">5.3.1 TCP协议的特点</span></h2><ol>
@@ -335,11 +335,11 @@
 <p>TCP报文各字段意义</p>
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/Transition-Layer-TCP/tcp_component.png" alt="image-20230322150452430" class="lazyload"></p>
 <ol>
-<li>序号：TCP传送的字节流中的每个字节都按顺序编号，有多个分片时，序号字段依本报文所发送的数据的第一个字节的序号而定；<em>收到报文乱不乱序TCP不管</em></li>
+<li>序号：TCP传送的<strong>字节流</strong>中的每个字节都按顺序编号，有多个分片时，序号字段依本报文所发送的数据的第一个字节的序号而定；<em>收到报文乱不乱序TCP不管</em></li>
 <li>数据偏移：指出数据起始位置到报文起始位置的距离</li>
 <li>保留位：目前应置0</li>
 <li>紧急位：表示数据报的优先级</li>
-<li>确认号：期望收到对方下一个报文段的第一个数据字节的序号</li>
+<li>确认号：<strong>期望收到对方下一个报文段的第一个数据字节的序号</strong></li>
 <li>推送位：是否跳过缓存</li>
 <li>复位位：是否出现严重差错（需要重启主机级别的），若为1，需要释放连接</li>
 <li>同步位：表示报文是一个请求连接报文</li>
@@ -434,13 +434,20 @@
 2. CongWin&gt;Threshold, 拥塞避免
 3. CongWin=Threshold, 二者均可
 </code></pre>
-<blockquote>
-<p>变量Threshold初始化时被设置为一个很大的值，可以就是初始的CongWin</p>
-</blockquote>
 <h3><span id="快重传与快恢复">快重传与快恢复</span></h3><p><strong>快速恢复</strong></p>
 <p>当发送方重复确认三次（收到三个相同的ACK）时，执行<em>乘法减小</em>算法，把慢开始的ssthreshold设置为此时发送方拥塞窗口CongWin的一半</p>
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/Transition-Layer-TCP/image-20230520103958547.png" alt="image-20230520103958547" class="lazyload"></p>
 <hr>
+<blockquote>
+<p>当CongWin第一次从小于Threshold变为大于等于Threshold时，置CongWin&#x3D;Threshold;</p>
+<p>变量Threshold初始化时被设置为一个很大的值，可以就是初始的CongWin;</p>
+<p>发生超时时，Threshold被设置为CongWin&#x2F;2，并将CongWin重置为1;</p>
+<p>重复确认三次， Threshold和CongWin都设置为原CongWin的一半，而后执行拥塞避免算法;</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>问题1: 窗口到底是如何在接收确认帧后决定的？</p>
+</blockquote>
 
 	</article>
 
