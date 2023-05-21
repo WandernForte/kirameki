@@ -320,8 +320,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月20日</a>
-			<a><i class="kirafont icon-areachart"></i>1.4k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>1.5k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 6 分钟</a>
 		</div>
 		<h1><span id="53-tcp">5.3 TCP</span></h1><h2><span id="531-tcp协议的特点">5.3.1 TCP协议的特点</span></h2><ol>
 <li>面向连接的逻辑连接</li>
@@ -393,7 +393,7 @@
 </ol>
 </li>
 </ol>
-</li>
+<img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/image-20230521154210552.png" alt="image-20230521154210552" class="lazyload"></li>
 </ol>
 <h2><span id="534-tcp可靠传输">5.3.4 TCP可靠传输</span></h2><blockquote>
 <p>引入两个变量：拥塞窗口CongWin和最大段大小MSS</p>
@@ -447,6 +447,18 @@
 <hr>
 <blockquote>
 <p>问题1: 窗口到底是如何在接收确认帧后决定的？</p>
+<p>发送窗口受接收窗口主导影响时，可发送数据等于接收窗口大小-未确认数据大小</p>
+</blockquote>
+<blockquote>
+<p>问题2: RTT的动态估计</p>
+<p>新RTT&#x3D;(1-α)旧RTT+α新RTT</p>
+</blockquote>
+<blockquote>
+<p>线路效率&#x3D;吞吐率&#x2F;信道带宽</p>
+</blockquote>
+<blockquote>
+<p>问题3: 如何判断TCP&#x2F;UDP的协议对上层使用的协议类型？</p>
+<p>根据目的端口号确定</p>
 </blockquote>
 
 	</article>
