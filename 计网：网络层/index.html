@@ -321,7 +321,7 @@
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月17日</a>
 			<a><i class="kirafont icon-areachart"></i>5.8k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 23 分钟</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 24 分钟</a>
 		</div>
 		<h1><span id="41-网络层的功能">4.1 网络层的功能</span></h1><p><code>无连接，不可靠，传输层负责错误处理</code></p>
 <h2><span id="411-异构网络互联">4.1.1 异构网络互联</span></h2><p><strong>中继系统</strong></p>
@@ -566,6 +566,10 @@
 <p><code>arp看到了IP地址，所以工作在网络层；nat看到了端口，所以工作在传输层</code></p>
 <h3><span id="3-动态主机配置协议dhcp">3. 动态主机配置协议（DHCP）</span></h3><p><strong>用于给主机动态地分配IP地址，是应用层的协议，基于UDP，但是涉及IP地址，所以放到网络层介绍</strong></p>
 <p>默认网关：决定当子网内的数据报需要发出这个子网时，需要送到哪一个接口上进行转发的路由器，其ip地址就是默认网关</p>
+<blockquote>
+<p>已知ip地址和子网掩码，如何求出默认网关?</p>
+<p>默认网关是网络地址的最后一个IP地址（常用的默认网关地址通常是主机号全部位置1后再减去1）。</p>
+</blockquote>
 <p><strong>工作原理</strong></p>
 <ol>
 <li><p>客户端发广播寻找DHCP服务器，希望请求到一个ip地址。[此时源ip地址为0.0.0.0， 目的地址为255.255.255.255]</p>
