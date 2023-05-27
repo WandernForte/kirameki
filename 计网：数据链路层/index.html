@@ -555,7 +555,7 @@ Rate = \frac{W_s\times L}{L+2R\times V}\\
 <li>重传16次仍未成功时放弃重传，并向上层报告出错</li>
 <li>重传次数越多，越能降低发生碰撞的概率</li>
 </ol>
-<h3><span id="以太网帧结构">以太网帧结构</span></h3><p>|前导码（64）|目的MAC地址(48)|源MAC地址（48）|类型|数据|校验和|</p>
+<h3><span id="以太网帧结构">以太网帧结构</span></h3><p>|前导码（8B）|目的MAC地址(6B)|源MAC地址（6B）|类型(2B)|数据(46-1500B)|校验和(4B)|</p>
 <h2><span id="362-以太网与ieee-8023">3.6.2 以太网与IEEE 802.3</span></h2><ol>
 <li><strong>以太网的传输介质与网卡</strong><ol>
 <li><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E8%AE%A1%E7%BD%91%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93%E4%BB%8B%E8%B4%A8.jpeg" alt="以太网传输介质" class="lazyload"></li>
