@@ -320,7 +320,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月17日</a>
-			<a><i class="kirafont icon-areachart"></i>5.8k 字</a>
+			<a><i class="kirafont icon-areachart"></i>5.9k 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 24 分钟</a>
 		</div>
 		<h1><span id="41-网络层的功能">4.1 网络层的功能</span></h1><p><code>无连接，不可靠，传输层负责错误处理</code></p>
@@ -434,6 +434,12 @@
 <li>IP数据报分片封装数据<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mfrac><mrow><mi>M</mi><mo>−</mo><mn>20</mn></mrow><mn>8</mn></mfrac><mo>×</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">d = {\frac{M-20}{8}}\times 8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">8</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span><span class="mbin mtight">−</span><span class="mord mtight">2</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span></span></span></span>（必须是8的整数倍）</li>
 <li>最大传输单元MTU</li>
 </ol>
+<blockquote>
+<p>不考虑NAT，ip数据报在整个传输过程中都不会更改源地址和目的地址</p>
+</blockquote>
+<blockquote>
+<p>首部长度如没有指明，默认是20B</p>
+</blockquote>
 </li>
 </ol>
 <h2><span id="432-ipv4地址与nat">4.3.2 IPv4地址与NAT</span></h2><ol>
@@ -503,6 +509,7 @@
 <li>A: 1个网段，即10.0.0.0~10.255.255.255</li>
 <li>B: 16个网段，即172.16.0.0~172.31.255.255</li>
 <li>C: 256个网段，即192.168.0.0~192.168.255.255</li>
+<li><strong>上述地址均不可以在外部网络中出现!!!</strong></li>
 </ul>
 </li>
 <li><p>工作流程：</p>
@@ -517,10 +524,13 @@
 </ol>
 </li>
 </ol>
-<h2><span id="433-子网划分与子网掩码-cidr">4.3.3 子网划分与子网掩码、CIDR</span></h2><h3><span id="1-子网划分">1. 子网划分</span></h3><p>在ip地址中增加一个“子网号字段”，使两级ip地址变更为三级ip地址，是因特网的一个正式标准协议</p>
+<h2><span id="433-子网划分与子网掩码-cidr">4.3.3 子网划分与子网掩码、CIDR</span></h2><blockquote>
+<p>注意：子网划分时，默认要将所有地址全部分配完毕</p>
+</blockquote>
+<h3><span id="1-子网划分">1. 子网划分</span></h3><p>在ip地址中增加一个“子网号字段”，使两级ip地址变更为三级ip地址，是因特网的一个正式标准协议</p>
 <p><strong>基本思路 basic idea</strong></p>
 <ol>
-<li>对内划分，对外视为整体</li>
+<li>对内划分，对外视为整体，<strong>减小广播域</strong></li>
 <li>从主机号借用若干比特作为子网号，三级ip地址的结构：**{网络号，子网号，主机号}**</li>
 <li>外来数据报先送达本单位的路由器，再由路由器找到目的子网，最后把ip数据报发送给目的主机</li>
 </ol>
