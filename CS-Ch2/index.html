@@ -323,8 +323,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年04月10日</a>
-			<a><i class="kirafont icon-areachart"></i>1.6k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 7 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>1.8k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 8 分钟</a>
 		</div>
 		<h1><span id="chapter-2-信息的表示和处理">Chapter 2 信息的表示和处理</span></h1><h2><span id="信息的位表示">信息的位表示</span></h2><p><strong>字</strong> 根据不同CPU的地址索引有关。在汇编&#x2F;机器语言编程上，一个字指的是<strong>16bit</strong></p>
 <p><strong>最高有效位&#x2F;最低有效位</strong> 01串的最高&#x2F;最低位</p>
@@ -495,6 +495,23 @@
 </ul>
 </li>
 </ul>
+<p><strong>无符号数的减法</strong></p>
+<ol>
+<li>获取被减数和减数的值。</li>
+<li>如果减数大于被减数，则将减数与模数取模，以确保结果在模数范围内。这是为了模拟无符号数的循环性质。</li>
+<li>执行模数减法，即将被减数减去减数。</li>
+<li>如果差值小于 0，则将差值与模数相加，以确保结果在模数范围内。这是为了处理模数减法产生的负值。</li>
+<li>最终得到的差值即为无符号数的减法结果。</li>
+</ol>
+<blockquote>
+<p>例如：考虑一个 8 位无符号数的减法，模数为 256（2^8）。</p>
+<p>假设被减数为 50，减数为 70。</p>
+<ol>
+<li>由于减数 70 大于被减数 50，对减数进行模数操作，得到减数 70 % 256 &#x3D; 70。</li>
+<li>执行模数减法：差值 &#x3D; 被减数 - 减数 &#x3D; 50 - 70 &#x3D; -20。</li>
+<li>由于差值 -20 小于 0，将其与模数相加，得到最终结果：差值 &#x3D; -20 + 256 &#x3D; 236。</li>
+</ol>
+</blockquote>
 <p><strong>乘法</strong></p>
 <p>  与加法类似，无论是否有符号，溢出时均只保留结果的低w位</p>
 <p>无溢出时， 有符号数的乘积需要进行符号扩展</p>
