@@ -320,8 +320,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月20日</a>
-			<a><i class="kirafont icon-areachart"></i>1.8k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 7 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>1.9k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 8 分钟</a>
 		</div>
 		<h1><span id="61-网络应用体系结构">6.1 网络应用体系结构</span></h1><ul>
 <li><p>客户机&#x2F;服务器结构(C&#x2F;S)</p>
@@ -434,8 +434,7 @@
 </ul>
 </li>
 </ul>
-<h3><span id="dns协议与信息">DNS协议与信息</span></h3><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/image-20230420113153024.png" alt="image-20230420113153024" class="lazyload">
-
+<h3><span id="dns协议与信息">DNS协议与信息</span></h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/Application-Layer/image-20230420113153024.png" alt="image-20230420113153024" class="lazyload"></p>
 <p><strong>header(12 byte)</strong></p>
 <ul>
 <li>id: 16bits, 同一查询&#x2F;回复过程消息使用同一ID</li>
@@ -563,6 +562,14 @@
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>HTTP1.0每个TCP链接只能传输一个对象，传输一个对象的时间为2RTT</p>
+</blockquote>
+<blockquote>
+<p>HTTP1.1</p>
+<p>非流水情况下每个引用对象耗时一个RTT</p>
+<p>流水情况下所有引用对象耗时一个RTT</p>
+</blockquote>
 <h3><span id="http-响应时间优化">HTTP 响应时间优化</span></h3><p>并行连接</p>
 <p>持久连接</p>
 <p>HTTP&#x2F;2</p>
