@@ -319,8 +319,8 @@
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2023年05月27日</a>
-			<a><i class="kirafont icon-areachart"></i>35 字</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2023年05月31日</a>
+			<a><i class="kirafont icon-areachart"></i>252 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
 		<blockquote>
@@ -329,6 +329,18 @@
 <blockquote>
 <p>只需要更改BoundaryAttack的run()</p>
 </blockquote>
+<blockquote>
+<p>经过多次实验， 我认为BoundaryAttack是能够直接迁移到多标签攻击中的，但是问题也很明显，那就是效率很低，攻击次数要在25000次以上才比较好。另外foolbox的clipped_pertubation函数不知道意义何在，哪怕是一个单标签的白盒攻击在取clipped后效果都极差。</p>
+<p>而以下是官方文档对于clipped的结果的说明</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">raw, clipped, is_adv = attack(fmodel, images, labels, epsilons=<span class="hljs-number">0.03</span>)<br></code></pre></td></tr></table></figure>
+
+<p>The attack returns three tensors.</p>
+<ol>
+<li>The raw adversarial examples. This depends on the attack and we cannot make an guarantees about this output.</li>
+<li>The clipped adversarial examples. These are guaranteed to not be perturbed more than epsilon and thus are the actual adversarial examples you want to visualize. Note that some of them might not actually switch the class. To know which samples are actually adversarial, you should look at the third tensor.</li>
+<li>The third tensor contains a boolean for each sample, indicating which samples are true adversarials that are both misclassified and within the epsilon balls around the clean samples.</li>
+</ol>
 
 	</article>
 
