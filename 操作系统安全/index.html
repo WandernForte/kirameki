@@ -320,10 +320,110 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月31日</a>
-			<a><i class="kirafont icon-areachart"></i>8 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>687 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
 		</div>
-		<h1><span id="操作系统安全概述">操作系统安全概述</span></h1>
+		<h1><span id="操作系统安全等级和安全机制">操作系统安全等级和安全机制</span></h1><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/image-20230531110503376.png" alt="image-20230531110503376" class="lazyload"></p>
+<h2><span id="操作系统安全目标">操作系统安全目标</span></h2><p>机密性</p>
+<p>完整性</p>
+<p>可用性</p>
+<h2><span id="操作系统主要安全机制">操作系统主要安全机制</span></h2><ul>
+<li>身份认证 </li>
+<li>访问控制 </li>
+<li>最小权限管理 </li>
+<li>信道保护 <ul>
+<li>正常信道的保护</li>
+<li>隐蔽信道的发现和处理</li>
+</ul>
+</li>
+<li>安全审计 <ul>
+<li>记录系统用户的活动</li>
+</ul>
+</li>
+<li>存储保护 <ul>
+<li>内存保护</li>
+<li>运行保护</li>
+<li>I&#x2F;O保护</li>
+</ul>
+</li>
+<li>文件系统保护<ul>
+<li>分区</li>
+<li>文件共享安全&amp;加密</li>
+<li>文件系统数据备份</li>
+</ul>
+</li>
+</ul>
+<h1><span id="身份认证">身份认证</span></h1><h2><span id="基于口令的身份认证">基于口令的身份认证</span></h2><p>弱点: 重放攻击， 字典攻击， 嗅探攻击</p>
+<h2><span id="一次性口令认证机制">一次性口令认证机制</span></h2><p>1）能够抵御嗅探&#x2F;窃取攻击 </p>
+<p>2）能够抵御字典攻击 </p>
+<p>3）能够抵御重放攻击</p>
+<p>4）难以抵御中间人攻击</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/image-20230531112308978.png" alt="image-20230531112308978" class="lazyload"></p>
+<h2><span id="使用验证码实现一次性口令认证">使用验证码实现一次性口令认证</span></h2><h2><span id="线上快速身份验证协议">线上快速身份验证协议</span></h2><hr>
+<h1><span id="访问控制">访问控制</span></h1><h2><span id="基本概念">基本概念</span></h2><h3><span id="访问控制三要素">访问控制三要素</span></h3><ol>
+<li>主体</li>
+<li>客体</li>
+<li>安全访问规则</li>
+</ol>
+<h3><span id="引用监视器和安全内核">引用监视器和安全内核</span></h3><p>监视每一个访问行为</p>
+<h3><span id="访问控制模型和访问控制方案">访问控制模型和访问控制方案</span></h3><ol>
+<li><p>访问控制基本模型</p>
+<ol>
+<li>访问控制矩阵(ACM)<ul>
+<li>存储信息量大，难以维护和缺乏灵活性</li>
+</ul>
+</li>
+<li>访问控制表(ACL)<ul>
+<li>每个客体都有一张ACL，用于记录可以访问该客体的主体及其访问权限</li>
+</ul>
+</li>
+<li>能力表(CL)<ul>
+<li>每个主体都有一张能力表，用于记录可以访问的客体及其访问权限</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>自主访问控制模型</p>
+<ol>
+<li><p>由客体的属主对自己的客体进行管理，由属主自己决定是否将自己客体的访问权或部分访问权授予其他主体，这种控制方式是自主的，称之为自主访问控制。</p>
+</li>
+<li><p>安全性分析</p>
+<ul>
+<li>这种机制允许用户自主地将自己客体的访问操作权转授给别的主体。<strong>权利的多次转授后，一旦转授给不可信主体，那么该客体的信息就会泄漏。</strong></li>
+<li>无法抵御木马攻击</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>强制访问控制模型</p>
+<ol>
+<li>基于安全级标签的访问控制<ul>
+<li>通过分级的安全标签实现信息从下向上的单向流动，从而防止高密级信息的泄露[以抵御特洛伊木马攻击]</li>
+</ul>
+</li>
+<li>加强保密性的强制访问控制模型BLP</li>
+<li>加强完整性的强制访问控制模型<ul>
+<li>Biba</li>
+<li>Clark-Wilson</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>基于角色的访问控制</p>
+</li>
+</ol>
+<h1><span id="windows系统安全">Windows系统安全</span></h1><blockquote>
+<p>需要满足以下安全功能</p>
+</blockquote>
+<ol>
+<li>登录认证 </li>
+<li>自主访问控制 </li>
+<li>安全审计 </li>
+<li>对象重用保护 </li>
+<li>可信路径功能 </li>
+<li>可信设施管理</li>
+</ol>
+<h1><span id="linux系统安全">Linux系统安全</span></h1>
 	</article>
 
 	 
