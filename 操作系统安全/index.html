@@ -319,9 +319,9 @@
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2023年05月31日</a>
-			<a><i class="kirafont icon-areachart"></i>687 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2023年06月10日</a>
+			<a><i class="kirafont icon-areachart"></i>1.2k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
 		</div>
 		<h1><span id="操作系统安全等级和安全机制">操作系统安全等级和安全机制</span></h1><p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/image-20230531110503376.png" alt="image-20230531110503376" class="lazyload"></p>
 <h2><span id="操作系统安全目标">操作系统安全目标</span></h2><p>机密性</p>
@@ -391,6 +391,7 @@
 <ul>
 <li>这种机制允许用户自主地将自己客体的访问操作权转授给别的主体。<strong>权利的多次转授后，一旦转授给不可信主体，那么该客体的信息就会泄漏。</strong></li>
 <li>无法抵御木马攻击</li>
+<li>用户的错误操作造成信息泄露</li>
 </ul>
 </li>
 </ol>
@@ -410,6 +411,9 @@
 </ol>
 </li>
 <li><p>基于角色的访问控制</p>
+<ul>
+<li>RBAC</li>
+</ul>
 </li>
 </ol>
 <h1><span id="windows系统安全">Windows系统安全</span></h1><blockquote>
@@ -423,7 +427,96 @@
 <li>可信路径功能 </li>
 <li>可信设施管理</li>
 </ol>
-<h1><span id="linux系统安全">Linux系统安全</span></h1>
+<h2><span id="windows安全子系统">Windows安全子系统</span></h2><blockquote>
+<p>本地安全授权子系统服务（LSASS）| LSASS策略数据库</p>
+</blockquote>
+<ul>
+<li>可信任的域</li>
+<li>合法用户以及访问方式</li>
+<li>用户权限</li>
+<li>安全审计类型</li>
+</ul>
+<blockquote>
+<p>认证包</p>
+</blockquote>
+<p>为用户提供认证</p>
+<h2><span id="windows系统登录认证">Windows系统登录认证</span></h2><h3><span id="安全主体类型">安全主体类型</span></h3><ol>
+<li>用户账户</li>
+<li>组账户</li>
+<li>计算机</li>
+<li>服务</li>
+</ol>
+<h3><span id="安全标识符">安全标识符</span></h3><p>唯一性 一个安全标识符唯一对应一个用户</p>
+<p>不重复性 LSA绝不会重复发放同一个SID</p>
+<h3><span id="登录认证">登录认证</span></h3><p>统一验证，一次登录，多次访问</p>
+<h2><span id="windows系统访问控制">Windows系统访问控制</span></h2><ol>
+<li>安全对象</li>
+<li>访问控制</li>
+</ol>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/kirameki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/image-20230610105407016.png" alt="image-20230610105407016" class="lazyload"></p>
+<ol start="3">
+<li>组件<ul>
+<li><p>安全性标识符</p>
+</li>
+<li><p>访问令牌</p>
+<ul>
+<li>标识一个进程或线程可以访问哪些对象</li>
+</ul>
+</li>
+<li><p>安全描述符</p>
+<ul>
+<li>规定了哪个用户可以在哪个对象上执行哪些操作</li>
+</ul>
+</li>
+<li><p>访问控制表</p>
+<ul>
+<li>每个安全对象保持一份ACL</li>
+</ul>
+</li>
+<li><p>访问控制项</p>
+</li>
+<li><p>安全引用监视器</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2><span id="其他安全机制">其他安全机制</span></h2><ol>
+<li>文件系统</li>
+<li>用户账户控制<ul>
+<li>用户程序会继承用户的权限</li>
+<li>标准令牌+管理员令牌</li>
+<li>是一种特殊的缩减权限</li>
+</ul>
+</li>
+</ol>
+<h1><span id="linux系统安全">Linux系统安全</span></h1><h2><span id="系统登录认证">系统登录认证</span></h2><h3><span id="用户账户和用户组">用户账户和用户组</span></h3><p>每个用户有一个唯一的整数标识符即用户id</p>
+<p>每个用户组都有一个组id和组名</p>
+<h3><span id="用户账户文件">用户账户文件</span></h3><h3><span id="登录认证">登录认证</span></h3><ol>
+<li>基于口令的认证</li>
+<li>客户终端认证</li>
+<li>主机信任认证</li>
+<li>第三方认证</li>
+</ol>
+<h2><span id="系统访问控制">系统访问控制</span></h2><blockquote>
+<p>用户分类</p>
+</blockquote>
+<ol>
+<li>文件属主</li>
+<li>文件所属组的用户</li>
+<li>其他用户</li>
+</ol>
+<blockquote>
+<p>文件访问控制列表</p>
+</blockquote>
+<p>文件的访问权限通过9个字符来表示</p>
+<p>|文件类型|文件属主权限(3)|同组用户权限(3)|其他用户权限(3)|</p>
+<h2><span id="其他安全机制">其他安全机制</span></h2><ol>
+<li>文件系统</li>
+<li>最小特权管理</li>
+<li>可信路径</li>
+<li>安全审计</li>
+</ol>
+<h2><span id="安全增强linux">安全增强Linux</span></h2>
 	</article>
 
 	 
