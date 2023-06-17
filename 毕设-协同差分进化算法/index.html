@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/kirameki/css/layout.css">
 
 		
-		<title> 个人介绍 -  Wandern</title>
+		<title> 毕设: 协同差分进化算法 -  Wandern</title>
 		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
 		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 		<!-- lazyload -->
@@ -100,7 +100,7 @@
 		</a>
 		
 		<a
-			class="kira-list-item mdui-ripple true"
+			class="kira-list-item mdui-ripple false"
 			href="/kirameki/about.html"
 			title="关于本人"
 		>
@@ -308,53 +308,55 @@
 <div class="kira-post">
 	<article>
 		
-		<div
-			class="kira-post-cover"
-			style="padding-bottom: '56.25%'"
-		>
+		<div class="kira-post-cover">
 			<img
-				data-src="https://cdn.jsdelivr.net/gh/WandernForte/roselia/bkg.jpg"
+				data-src="https://wandernforte.github.io/kirameki/images/SD601B.png"
 				data-sizes="auto"
-				alt="个人介绍"
+				alt="毕设: 协同差分进化算法"
 				class="lazyload kira-post-cover-image disabled-kira-image"
 			/>
-			<h1>个人介绍</h1>
+			<h1>毕设: 协同差分进化算法</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2023年04月21日</a>
-			<a><i class="kirafont icon-areachart"></i>67 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2023年06月17日</a>
+			<a><i class="kirafont icon-areachart"></i>358 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
 		</div>
-		<hr>
+		<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">CCDE</span>(<span class="hljs-params">pop_size, generation, length, model, image, target_label, eps, batch_size, gradient</span>):<br>    generation_save = np.zeros((<span class="hljs-number">10000</span>,))<br>    problem = Problem(model, image, target_label, eps, batch_size) <span class="hljs-comment"># 子种群的问题假定一致, 假定子种群的数量为2, 其中一个作为主种群，另一个作为辅助种群（提供优秀个体）</span><br>    subpop = [np.random.uniform(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, size=(pop_size, length)) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>)]<br>    <span class="hljs-comment"># pop = np.random.uniform(-1, 1, size=(pop_size, length))</span><br>    <span class="hljs-comment"># for i in range(len(subpop)):</span><br>    n_subpop = <span class="hljs-built_in">len</span>(subpop)<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">not</span> (gradient <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>)):<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n_subpop):<br>            subpop[i][<span class="hljs-number">0</span>] = np.reshape(np.sign(gradient), (length)) <span class="hljs-comment"># 初始化每个子种群</span><br>    max_eval = pop_size * generation<br>    eval_count = <span class="hljs-number">0</span><br>    fitness, fit = np.zeros((n_subpop,)), np.zeros((n_subpop,))<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n_subpop):<br>        fitness[i], fit[i] = problem.evaluate(subpop[i])<br>    eval_count += pop_size<br>    count = <span class="hljs-number">0</span><br>    fitmin = np.zeros((n_subpop,))<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n_subpop):<br>        fitmin[i]=np.<span class="hljs-built_in">min</span>(fitness)<br>    generation_save[count] = fitmin<br>    F = <span class="hljs-number">0.5</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">len</span>(np.where(fitness[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span>)[<span class="hljs-number">0</span>]) == <span class="hljs-number">0</span>):<br>        <span class="hljs-keyword">while</span> (eval_count &lt; max_eval):<br>            count += <span class="hljs-number">1</span><br>            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n_subpop):<span class="hljs-comment"># 每个子种群分别进化变异</span><br>                off = mating(subpop[i],F) <span class="hljs-comment"># 变异</span><br>                off_fitness , off_fit = problem.evaluate(off)<br>                eval_count += pop_size<br>                subpop[i] ,fitness[i] ,fit[i] = select(subpop[i],fitness[i],fit[i], off, off_fitness, off_fit) <span class="hljs-comment"># 选择最优适应度的个体</span><br>                subpop[i], fitness[i], fit[i] = complement(fit[i], subpop[i], fitness[i], problem)<br>                fitmin[i] = np.<span class="hljs-built_in">min</span>(fitness[i])<br>            subpop[<span class="hljs-number">0</span>] ,fitness[<span class="hljs-number">0</span>] ,fit[<span class="hljs-number">0</span>] = select(subpop[<span class="hljs-number">0</span>],fitness[<span class="hljs-number">0</span>],fit[<span class="hljs-number">0</span>],subpop[<span class="hljs-number">1</span>],fitness[<span class="hljs-number">1</span>],fit[<span class="hljs-number">1</span>]) <span class="hljs-comment"># 选择最优适应度的个体</span><br>            subpop[<span class="hljs-number">0</span>], fitness[<span class="hljs-number">0</span>], fit[<span class="hljs-number">0</span>] = complement(fit[<span class="hljs-number">0</span>], subpop[<span class="hljs-number">0</span>], fitness[<span class="hljs-number">0</span>], problem)<br>            generation_save[count] = np.<span class="hljs-built_in">min</span>(fitmin[<span class="hljs-number">0</span>])<br>            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">len</span>(np.where(fitness[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span>)[<span class="hljs-number">0</span>]) != <span class="hljs-number">0</span>):<br>                <span class="hljs-keyword">break</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">len</span>(np.where(fitness[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span>)[<span class="hljs-number">0</span>]) != <span class="hljs-number">0</span>):<br>        <span class="hljs-keyword">return</span> subpop[<span class="hljs-number">0</span>][np.where(fitness[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span>)[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]], eval_count, generation_save[:count + <span class="hljs-number">1</span>]<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> subpop[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>], eval_count/<span class="hljs-number">100</span>, generation_save[:count + <span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
 
-<h2><span id="一个致力于成为所爱之人的来电汪的飘香豚">一个致力于成为所爱之人的来电汪的飘香豚。</span></h2><img src="https://s1.52poke.wiki/wiki/thumb/6/63/835Yamper.png/250px-835Yamper.png" style="zoom:33%;">
-
-<img src="https://s1.52poke.wiki/wiki/thumb/7/7f/916Oinkologne-Male.png/300px-916Oinkologne-Male.png" style="zoom:33%;">
-
-<hr>
-<p><strong>快要考试力</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 6.2 计算机网络</li>
-<li><input disabled type="checkbox"> 6.14 计算机系统与网络安全</li>
-<li><input disabled type="checkbox"> 6.19 计算机系统</li>
-</ul>
-<p><strong>这几天会陆续开始面向题目的各种复习</strong></p>
-<hr>
 
 	</article>
 
 	 
     <div class="kira-post-copyright">
         <strong>本文作者：</strong>Kiryu Sento<br>
-        <strong>本文链接：</strong><a href="https://wandernforte.github.io/kirameki/about.html" title="https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;about.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;about.html</a><br>
+        <strong>本文链接：</strong><a href="https://wandernforte.github.io/kirameki/%E6%AF%95%E8%AE%BE-%E5%8D%8F%E5%90%8C%E5%B7%AE%E5%88%86%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95/" title="https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;毕设-协同差分进化算法&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;毕设-协同差分进化算法&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
     </div>
 
   
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			          
+			<!-- 先找到与当前文字相同的目录 -->
+			                                    
+			<!-- 在找到当前文章所在的 index -->
+			                                            
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/kirameki/%E6%AF%95%E8%AE%BE%E8%AE%BA%E6%96%87-1/"> 毕设论文-1</a>
+			</div>
+			              
+		</nav>
+	</div>
+	
 	<div class="kira-post-meta kira-rainbow">
+		
+			<a class="kirafont icon-appstore-fill -link" href="/kirameki/categories/%E5%AF%B9%E6%8A%97%E6%A0%B7%E6%9C%AC/">对抗样本</a>
 		
 		
 	</div>
