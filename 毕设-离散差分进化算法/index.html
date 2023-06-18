@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html 
+	lang="zh_CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/kirameki/css/layout.css">
+
+		
+		<title> 毕设-离散差分进化算法 -  Wandern</title>
+		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+		<!-- lazyload -->
+		<script src="https://unpkg.com/lazysizes@5.1.0/lazysizes.min.js"></script>
+		<!-- smooth-scrolling -->
+		<script src="https://unpkg.com/smooth-scrolling.js@1.0.0"></script>
+		<!-- highlight -->
+		<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/atom-one-dark.min.css" />
+		<script src="//unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+		<!-- 预置 kiraicon -->
+		<link rel="stylesheet" href="/kirameki/lib/iconfont/iconfont.css" crossorigin />
+		
+			<link rel="stylesheet" href="//at.alicdn.com/t/font_3299330_el19bsi97h8.css" crossorigin />
+		
+		<link rel="stylesheet" href="/kirameki/lib/iconfont/iconfont.css" crossorigin />
+		<link
+			rel="shortcut icon"
+			href="https://cdn.jsdelivr.net/gh/WandernForte/roselia/favicon.png"
+			type="image/png"
+		/>
+		<link rel="stylesheet" href="/kirameki/deps/css/APlayer.min.css">
+		
+		<script src="/kirameki/deps/js/APlayer.min.js"></script>
+		<script src="/kirameki/deps/js/Meting.min.js"></script>
+	<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('https://cdn.jsdelivr.net/gh/WandernForte/roselia/bkg.jpg')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="Wandern">
+        <img
+			src="https://wandernforte.github.io/kirameki/images/SD102F.png"
+			alt="Kiryu Sento"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="https://wandernforte.github.io/kirameki/images/SD102F.png" title="Kiryu Sento">
+			<img
+				src="https://wandernforte.github.io/kirameki/images/SD102F.png"
+				alt="Kiryu Sento"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>32</div>
+		<div><span>标签</span>9</div>
+		<div><span>分类</span>4</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/kirameki/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont icon-home"
+			></i>
+			<div class="kira-list-item-content">回到首页</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/kirameki/Archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont icon-container"
+			></i>
+			<div class="kira-list-item-content">文章归档</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/kirameki/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont icon-user"
+			></i>
+			<div class="kira-list-item-content">关于本人</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/kirameki/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont icon-team"
+			></i>
+			<div class="kira-list-item-content">我的朋友</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		 <div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		<a
+			class="mdui-ripple"
+			href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1648639935&website=www.oicqzone.com"
+			target="_blank"
+			mdui-tooltip="{content: 'QQ'}"
+			style="
+				color: rgb(49, 174, 255);
+				background-color: rgba(49, 174, 255, .1);
+			"
+		>
+			<i
+				class="kirafont icon-QQ"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/57486455"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .15);
+			"
+		>
+			<i
+				class="kirafont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/WandernForte/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .15);
+			"
+		>
+			<i
+				class="kirafont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://gitee.com/sento1926"
+			target="_blank"
+			mdui-tooltip="{content: 'Gitee'}"
+			style="
+				color: rgb(165, 15, 15);
+				background-color: rgba(165, 15, 15, .15);
+			"
+		>
+			<i
+				class="kirafont icon-gitee"
+			></i> </a
+		>
+	</div>
+</div>
+  
+<div class="kira-widget-wrap">
+  <h3 class="kira-widget-title">分类</h3>
+  <div class="kira-widget">
+
+    <ul class="category-list">
+
+      
+
+
+      
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/kirameki/categories/CSAPP/">CSAPP</a>
+        <span class="category-list-count">6</span>
+      </li>
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/kirameki/categories/Computer-Network/">Computer Network</a>
+        <span class="category-list-count">8</span>
+      </li>
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/kirameki/categories/对抗样本/">对抗样本</a>
+        <span class="category-list-count">13</span>
+      </li>
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/kirameki/categories/网络与系统安全/">网络与系统安全</a>
+        <span class="category-list-count">4</span>
+      </li>
+
+      
+    </ul>
+
+  </div>
+</div>
+  
+<div class="kira-widget-wrap">
+	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/kirameki/tags/Code/" style="font-size: 10px;">Code</a> <a href="/kirameki/tags/Note/" style="font-size: 20px;">Note</a> <a href="/kirameki/tags/getStarted/" style="font-size: 10px;">getStarted</a> <a href="/kirameki/tags/hw-exam/" style="font-size: 10px;">hw&exam</a> <a href="/kirameki/tags/idea/" style="font-size: 10px;">idea</a> <a href="/kirameki/tags/note/" style="font-size: 16.67px;">note</a> <a href="/kirameki/tags/plan/" style="font-size: 10px;">plan</a> <a href="/kirameki/tags/survey/" style="font-size: 10px;">survey</a> <a href="/kirameki/tags/%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" style="font-size: 13.33px;">代码模板</a></div>
+	
+</div>
+
+  
+<div class="kira-widget-wrap">
+	<h3 class="kira-widget-title">文章归档</h3>
+	<div class="kira-widget">
+		<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/kirameki/archives/2023/">2023</a><span class="archive-list-count">32</span></li></ul>
+	</div>
+</div>
+
+ 
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2023
+		<a href="/">Kiryu Sento</a
+		>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<!-- TODO: github 链接 -->
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+			<a href="https://beian.miit.gov.cn/" target="_blank">下北泽ICP备114514号-3</a>
+		
+		
+	</div>
+</div>
+<div class="kira-sidebar-modal" id="sidebar-modal" onclick="(function(self) {
+	self.classList.remove('show');
+	document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+})(this)"></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/kirameki/css/kira-image.css">
+
+<script src="/js/kira-image.js"></script>
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="https://wandernforte.github.io/kirameki/images/SD601B.png"
+				data-sizes="auto"
+				alt="毕设-离散差分进化算法"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>毕设-离散差分进化算法</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2023年06月18日</a>
+			<a><i class="kirafont icon-areachart"></i>914 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
+		</div>
+		<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> logging<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> gc<br><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Pool<br><span class="hljs-keyword">from</span> ml_liw_model.train  <span class="hljs-keyword">import</span> criterion<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms<br><span class="hljs-comment"># 多标签离散进化算法攻击 SparseEvo</span><br><span class="hljs-comment"># 实现借助了chatgpt</span><br></code></pre></td></tr></table></figure>
+<p>原文地址[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2202.00091">2202.00091] Query Efficient Decision Based Sparse Attacks Against Black-Box Deep Learning Models (arxiv.org)</a></p>
+<h1><span id="多标签离散进化攻击调用类定义">多标签离散进化攻击调用类定义</span></h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MLSparseEvo</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, model</span>):<br>        self.model = model<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_np</span>(<span class="hljs-params">self, x_list, **kwargs</span>):<br>        <span class="hljs-keyword">if</span> torch.cuda.is_available():   <br>            self.model = self.model.cuda()<br>        logging.info(<span class="hljs-string">&#x27;prepare attack&#x27;</span>)<br>        self.clip_max = kwargs[<span class="hljs-string">&#x27;clip_max&#x27;</span>]<br>        self.clip_min = kwargs[<span class="hljs-string">&#x27;clip_min&#x27;</span>]<br>        y_target = kwargs[<span class="hljs-string">&#x27;y_target&#x27;</span>]<br>        eps = kwargs[<span class="hljs-string">&#x27;eps&#x27;</span>]<br>        pop_size = kwargs[<span class="hljs-string">&#x27;pop_size&#x27;</span>]<br>        generation = kwargs[<span class="hljs-string">&#x27;generation&#x27;</span>]<br>        batch_size = kwargs[<span class="hljs-string">&#x27;batch_size&#x27;</span>]<br>        starting_points = kwargs[<span class="hljs-string">&#x27;starting_points&#x27;</span>] <span class="hljs-comment"># 起始攻击目标</span><br>        alpha = kwargs[<span class="hljs-string">&#x27;alpha&#x27;</span>] <span class="hljs-comment"># 每次扰动的点</span><br>        x_adv = []<br>        success = <span class="hljs-number">0</span><br>        nchannels,img_rows, img_cols,  = x_list.shape[<span class="hljs-number">1</span>:<span class="hljs-number">4</span>]<br>        count = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(x_list)):<br>            target_label = np.argwhere(y_target[i] &gt; <span class="hljs-number">0</span>)<br>            r= SparseEvo(pop_size, generation, img_rows * img_cols * nchannels, self.model, x_list[i],<br>                                   target_label, eps, batch_size, gradient=<span class="hljs-literal">None</span>)<br>            x_adv_tem = np.clip(x_list[i] + np.reshape(r, x_list.shape[<span class="hljs-number">1</span>:]) * eps, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)<br>            <span class="hljs-comment"># count += count_tem</span><br>            <span class="hljs-keyword">with</span> torch.no_grad():<br>                <span class="hljs-keyword">if</span> torch.cuda.is_available():                        adv_pred = self.model(<br>                        torch.tensor(np.expand_dims(x_adv_tem, axis=<span class="hljs-number">0</span>), dtype=torch.float32).cuda()).cpu()<br>                <span class="hljs-keyword">else</span>:<br>                    adv_pred = self.model(torch.tensor(np.expand_dims(x_adv_tem, axis=<span class="hljs-number">0</span>), dtype=torch.float32))<br>            adv_pred = np.asarray(adv_pred)<br>            pred = adv_pred.copy()<br>            pred[pred &gt;= (<span class="hljs-number">0.5</span> + <span class="hljs-number">0</span>)] = <span class="hljs-number">1</span><br>            pred[pred &lt; (<span class="hljs-number">0.5</span> + <span class="hljs-number">0</span>)] = -<span class="hljs-number">1</span><br>            adv_pred_match_target = np.<span class="hljs-built_in">all</span>((pred == y_target[i]), axis=<span class="hljs-number">1</span>)<br>            <span class="hljs-keyword">if</span> adv_pred_match_target:<br>                success = success + <span class="hljs-number">1</span><br>            x_adv.append(x_adv_tem)<br>            logging.info(<span class="hljs-string">&#x27;Successfully generated adversarial examples on &#x27;</span>+<span class="hljs-built_in">str</span>(success)+<span class="hljs-string">&#x27; of &#x27;</span>+<span class="hljs-built_in">str</span>(batch_size)+<span class="hljs-string">&#x27; instances&#x27;</span>)<br>        <span class="hljs-keyword">return</span> x_adv , count<br></code></pre></td></tr></table></figure>
+<h1><span id="评估打分类">评估打分类</span></h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Problem</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, model, image, target_label, eps, batch_size</span>):<br>        self.model = model<br>        self.image = image<br>        self.target_label = target_label<br>        self.eps = eps<br>        self.batch_size = batch_size<br><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">evaluate</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-keyword">with</span> torch.no_grad():<br>            <span class="hljs-keyword">if</span> torch.cuda.is_available():<br>                predict = self.model(torch.tensor(np.clip(np.tile(self.image, (<span class="hljs-built_in">len</span>(x), <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>))<br>                                                          + np.reshape(x, (<span class="hljs-built_in">len</span>(x),) + self.image.shape) * self.eps, <span class="hljs-number">0.</span>,<br>                                                          <span class="hljs-number">1.</span>), dtype=torch.float32).cuda()).cpu()<br>            <span class="hljs-keyword">else</span>:<br>                predict = self.model(torch.tensor(np.clip(np.tile(self.image, (<span class="hljs-built_in">len</span>(x), <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>))<br>                                                          + np.reshape(x, (<span class="hljs-built_in">len</span>(x),) + self.image.shape) * self.eps, <span class="hljs-number">0.</span>,<br>                                                          <span class="hljs-number">1.</span>), dtype=torch.float32))<br>        p = np.copy(predict)<br>        q = np.zeros(p.shape)+<span class="hljs-number">0.5</span><br>        fit = p-q<br>        fit[:,self.target_label]=-fit[:,self.target_label]<br>        fit[np.where(fit&lt;<span class="hljs-number">0</span>)]=<span class="hljs-number">0</span><br>        fitness = np.<span class="hljs-built_in">sum</span>(fit,axis=<span class="hljs-number">1</span>)<br>        fitness = fitness[:, np.newaxis]<br>        <span class="hljs-keyword">return</span> fitness, fit<br></code></pre></td></tr></table></figure>
+<h1><span id="对论文方法的实现">对论文方法的实现</span></h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_vo</span>(<span class="hljs-params">v, n</span>):<br>    ones_indices = np.where(v==<span class="hljs-number">1</span>)<br>    <span class="hljs-built_in">print</span>(ones_indices.shape)<br>    num_ones = <span class="hljs-built_in">len</span>(ones_indices)<br>    <br>    n = <span class="hljs-built_in">min</span>(n, num_ones)<br>    selected_indices = np.random.choice(ones_indices, n, replace=<span class="hljs-literal">False</span>)<br>    <br>    v_o = v.copy()<br>    v_o[selected_indices] = <span class="hljs-number">1</span> - v_o[selected_indices]<br>    <span class="hljs-keyword">return</span> v_o<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">init_pop</span>(<span class="hljs-params">image, target_image, classfier, pop_size, init_rate</span>):<br>    distance = math.inf<br>    V = []<br>    n = math.floor(init_rate*image.shape[<span class="hljs-number">0</span>]*image.shape[<span class="hljs-number">1</span>]) <span class="hljs-comment"># n = floor(alpha*W*H)</span><br>        <br>    v = np.where(image==target_image) <span class="hljs-comment"># 获取初始向量v</span><br>    <br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(pop_size):<br>        <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>            v_o = generate_vo(v, n)<br>            x_pert = image<br>            x_pert[v_o] = target_image[v_o] <span class="hljs-comment"># x_pert = (1-v)x + vx&#x27;</span><br>            distance_pert = np.linalg.norm(image-x_pert, <span class="hljs-built_in">ord</span>=<span class="hljs-number">2</span>)<br>            outputs_pert = classfier(x_pert)<br>            labels_pert = (outputs_pert&gt;<span class="hljs-number">0.5</span>)+<span class="hljs-number">0</span> <span class="hljs-comment"># f(x_pert)</span><br>            <span class="hljs-keyword">if</span> distance_pert &lt; distance:<br>                distance = distance_pert<br>                V.append(v_o)<br>                <span class="hljs-keyword">break</span><br>    <span class="hljs-keyword">return</span> V, distance<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">rand_select_jq</span>(<span class="hljs-params">V, kb</span>):<br>    <span class="hljs-comment"># 获取 V 中不在 kb 中的索引</span><br>    valid_indices = np.where(~np.isin(V, kb))[<span class="hljs-number">0</span>]<br>    <br>    <span class="hljs-comment"># 从有效索引中随机选择 v(j) 和 v(q)</span><br>    v_j_index = np.random.choice(valid_indices)<br>    v_q_index = np.random.choice(valid_indices[valid_indices != v_j_index])<br>    <br>    <span class="hljs-comment"># 获取对应的向量 v(j) 和 v(q)</span><br>    v_j = V[v_j_index]<br>    v_q = V[v_q_index]<br>    <br>    <span class="hljs-keyword">return</span> v_j, v_q<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">binary_differential_recombination</span>(<span class="hljs-params">v_j, v_q, v_kb</span>):<br>    new_candidate = np.zeros_like(v_kb)<br>    random_indices = np.random.rand(v_kb.shape)<br>    <span class="hljs-comment"># 使用均匀交叉选择位</span><br>    new_candidate[random_indices&gt;<span class="hljs-number">0.5</span>] = v_j[random_indices&gt;<span class="hljs-number">0.5</span>]<br>    new_candidate[random_indices&lt;=<span class="hljs-number">0.5</span>] = v_q[random_indices&lt;=<span class="hljs-number">0.5</span>]<br>    <br>    <span class="hljs-comment"># 重组最佳个体和新的候选解</span><br>    recombined = np.where(new_candidate == <span class="hljs-number">0</span>, v_kb, new_candidate)<br>    <br>    <span class="hljs-keyword">return</span> recombined<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">mutation</span>(<span class="hljs-params">v_o, mu</span>):<br>    num_ones = np.<span class="hljs-built_in">sum</span>(v_o == <span class="hljs-number">1</span>)<br>    num_mutations = <span class="hljs-built_in">int</span>(mu * num_ones)<br>    <br>    <span class="hljs-comment"># 随机选择要突变的1位</span><br>    mutation_indices = np.random.choice(np.where(v_o == <span class="hljs-number">1</span>)[<span class="hljs-number">0</span>], num_mutations, replace=<span class="hljs-literal">False</span>)<br>    <br>    <span class="hljs-comment"># 将选定位设置为0</span><br>    v_o[mutation_indices] = <span class="hljs-number">0</span><br>    <br>    <span class="hljs-keyword">return</span> v_o<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">SparseEvo</span>(<span class="hljs-params">pop_size, generation, length, model, image, target_image, target_label, eps, batch_size, gradient</span>):<br>    generation_save = np.zeros((<span class="hljs-number">10000</span>,))<br>    Vector, distances = init_pop(image, target_image, model, pop_size, init_rate=<span class="hljs-number">0.5</span>)<br>    k_worst = np.argmax(distances)<br>    k_best = np.argmin(distances) <br>    problem = Problem(model, image, target_label, eps, batch_size)<br>    <span class="hljs-comment"># max_eval = pop_size * generation</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(generation.shape[<span class="hljs-number">0</span>]):<br>        v_j, v_q = rand_select_jq(Vector, k_best)<br>        v_r = binary_differential_recombination(v_j, v_q, Vector[k_best])<br>        v_mut = mutation(v_r, mu=<span class="hljs-number">0.5</span>)<br>        x_pert = image<br>        x_pert[v_mut] = target_image[v_mut] <span class="hljs-comment"># x_pert = (1-v_m)x + vx&#x27;</span><br>        distance_pert = np.linalg.norm(image-x_pert, <span class="hljs-built_in">ord</span>=<span class="hljs-number">2</span>)<br>        outputs_pert = model(x_pert)<br>        labels_pert = (outputs_pert&gt;<span class="hljs-number">0.5</span>)+<span class="hljs-number">0</span> <span class="hljs-comment"># f(x_pert)</span><br>        <span class="hljs-keyword">if</span> distance_pert &lt; distances[k_worst]:<br>            distances[k_worst] = distance_pert<br>            Vector[k_worst] = v_mut<br>        k_worst = np.argmax(distances)<br>        k_best = np.argmin(distances)<br>    x_pert = image<br>    x_pert[Vector[k_best]] = target_image[Vector[k_best]] <span class="hljs-comment"># x_pert = (1-v_kb)x + vx&#x27; </span><br></code></pre></td></tr></table></figure>
+
+
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>Kiryu Sento<br>
+        <strong>本文链接：</strong><a href="https://wandernforte.github.io/kirameki/%E6%AF%95%E8%AE%BE-%E7%A6%BB%E6%95%A3%E5%B7%AE%E5%88%86%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95/" title="https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;毕设-离散差分进化算法&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;毕设-离散差分进化算法&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			          
+			<!-- 先找到与当前文字相同的目录 -->
+			                                       
+			<!-- 在找到当前文章所在的 index -->
+			                                                
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/kirameki/%E6%AF%95%E8%AE%BE-%E5%8D%8F%E5%90%8C%E5%B7%AE%E5%88%86%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95/"> 毕设: 协同差分进化算法</a>
+			</div>
+			              
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+			<a class="kirafont icon-appstore-fill -link" href="/kirameki/categories/%E5%AF%B9%E6%8A%97%E6%A0%B7%E6%9C%AC/">对抗样本</a>
+		
+		
+	</div>
+	
+		<script src="/js/kira-code-copy.js"></script>
+	
+
+</div>
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
