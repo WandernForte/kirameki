@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/kirameki/css/layout.css">
 
 		
-		<title> 分类：CSAPP -  Wandern</title>
+		<title> 线性代数复习 -  Wandern</title>
 		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
 		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 		<!-- lazyload -->
@@ -255,47 +255,121 @@
 			<div class="kira-content">
 				<div id="kira-top-header"></div>
 				<div class="kira-main-content">
-					<div class="kira-posts">
-    
-        <div class="kira-post">
-            <a href="/kirameki/CS-Ch2/">
-                
-                <div
-                    class="kira-post-cover mdui-ripple"
-                    style="padding-bottom: '56.25%'"
-                >
-                    <img
-                        data-src="https://cdn.jsdelivr.net/gh/WandernForte/roselia/bkg.jpg"
-                        data-sizes="auto"
-                        alt="CS_Ch2"
-                        class="lazyload"
-                    />
-                    <h1>CS_Ch2</h1>
+					
+<link rel="stylesheet" href="/kirameki/css/kira-image.css">
+
+<script src="/js/kira-image.js"></script>
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
                 </div>
-                
-            </a>
-
-            <div class="kira-post-meta kira-rainbow">
-                <a
-                    ><i class="kirafont icon-calendar-fill"></i>2023年04月10日</a
-                >
-                <a><i class="kirafont icon-areachart"></i>1.8k 字</a>
-                <a>
-                    <i class="kirafont icon-time-circle-fill"></i>大概
-                    8 分钟
-                </a>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
             </div>
-    
-            
         </div>
-        <div class="kira-hr"></div>
-    
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="https://cdn.jsdelivr.net/gh/WandernForte/roselia/bkg.jpg"
+				data-sizes="auto"
+				alt="线性代数复习"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>线性代数复习</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2023年06月22日</a>
+			<a><i class="kirafont icon-areachart"></i>336 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
+		</div>
+		<blockquote>
+<p>首先的首先，需要清楚线性相关和线性无关的几何定义：几个N维空间中的向量，如果同时又处在同一个低维空间中，称为线性相关；否则称为线性无关</p>
+</blockquote>
+<h1><span id="行列式">行列式</span></h1><h2><span id="逆序数法定义">逆序数法定义</span></h2><h2><span id="行列式展开定理">行列式展开定理</span></h2><h3><span id="余子式amp代数余子式">余子式&amp;代数余子式</span></h3><p>余子式与逆序数无关, 用M表示</p>
+<p>代数余子式与逆序数相关，用A表示</p>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo><mrow><mi>i</mi><mo>+</mo><mi>j</mi></mrow></msup><msub><mi>M</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">A_{ij} = (-1)^{i+j}M_{ij}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1107719999999999em;vertical-align:-0.286108em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>
 
-    <div class="kira-page-nav">
-        <a class="extend prev" rel="prev" href="/kirameki/categories/CSAPP/"><i class="kirafont icon-left"></i></a><a class="page-number" href="/kirameki/categories/CSAPP/">1</a><span class="page-number current">2</span>
+<p>在此基础上，行列式的值等于某行&#x2F;列的所有元素与其对应的<strong>代数余子式</strong>的乘积之和</p>
+<h2><span id="行列式的性质">行列式的性质</span></h2><ul>
+<li>转置后的行列式值不变</li>
+<li>行列式中存在至少一行或一列全为0，则行列式的值为0</li>
+<li>行列式行或列的公因子可以提出<ul>
+<li>行列式中某行或某列的元素均是两元素之和，可以拆成两个行列式之和</li>
+</ul>
+</li>
+<li>行列式中的两行&#x2F;列互换，行列式的值取相反数</li>
+<li>行列式中某行&#x2F;列的k倍加到另一行&#x2F;列，行列式值不变<ul>
+<li>行列式中两行元素相等或对应成比例，则行列式为0</li>
+</ul>
+</li>
+</ul>
+<h1><span id="矩阵">矩阵</span></h1><h1><span id="向量组">向量组</span></h1><h1><span id="线性方程组">线性方程组</span></h1><h1><span id="特征值与特征向量">特征值与特征向量</span></h1><h1><span id="二次型">二次型</span></h1>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>Kiryu Sento<br>
+        <strong>本文链接：</strong><a href="https://wandernforte.github.io/kirameki/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0/" title="https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;线性代数复习&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wandernforte.github.io&#x2F;kirameki&#x2F;线性代数复习&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
     </div>
 
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			      
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/kirameki/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="tag">线性代数</a>
+		
+	</div>
+	
+		<script src="/js/kira-code-copy.js"></script>
+	
+
+</div>
 				</div>
 			</div>
 			<div class="kira-right-column">
