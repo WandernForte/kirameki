@@ -313,7 +313,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年06月18日</a>
-			<a><i class="kirafont icon-areachart"></i>1k 字</a>
+			<a><i class="kirafont icon-areachart"></i>1.1k 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 6 分钟</a>
 		</div>
 		<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> logging<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> gc<br><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Pool<br><span class="hljs-keyword">from</span> ml_liw_model.train  <span class="hljs-keyword">import</span> criterion<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms<br><span class="hljs-comment"># 多标签离散进化算法攻击 SparseEvo</span><br><span class="hljs-comment"># 实现借助了chatgpt</span><br></code></pre></td></tr></table></figure>
@@ -325,6 +325,8 @@
 <blockquote>
 <p>用pytorch对一些方法的实现进行了改进</p>
 </blockquote>
+<p>基本上是复现了论文的效果（当然用的数据集和模型不是一个），成功率有90%以上</p>
+<p>不知道作者是怎么得出最佳的参数的尤其是种群突变率这个参数</p>
 
 	</article>
 
