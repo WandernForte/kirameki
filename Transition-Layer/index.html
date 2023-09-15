@@ -320,7 +320,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月19日</a>
-			<a><i class="kirafont icon-areachart"></i>652 字</a>
+			<a><i class="kirafont icon-areachart"></i>679 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
 		</div>
 		<h1><span id="第5章-传输层">第5章 传输层</span></h1><h2><span id="51-传输层提供的服务">5.1 传输层提供的服务</span></h2><p>传输层为应用层提供<strong>可靠</strong>通信服务</p>
@@ -400,7 +400,11 @@
 <h3><span id="513-无连接服务与面向连接服务">5.1.3 无连接服务与面向连接服务</span></h3><p>暂略</p>
 <h2><span id="52-udp协议">5.2 UDP协议</span></h2><h3><span id="521-udp数据报">5.2.1 UDP数据报</span></h3><ol>
 <li>UDP概述</li>
-<li>UDP首部格式</li>
+<li>UDP首部格式<ol>
+<li>UDP首部长度仅为8B</li>
+<li>|源端口号（16）|目的端口号（16）|UDP长度（16）|UDP校验码（16）|</li>
+</ol>
+</li>
 </ol>
 <h3><span id="522-udp校验">5.2.2 UDP校验</span></h3><p>在计算校验和时，要在UDP数据报之前增加12B的伪首部，伪首部仅用于计算校验和</p>
 <p><strong>伪首部的格式：</strong> <strong>|源ip地址（4B）|目的ip地址（4B)|0(1B)|17(1B)|UDP长度（2B)|</strong></p>

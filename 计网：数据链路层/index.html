@@ -320,8 +320,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年05月14日</a>
-			<a><i class="kirafont icon-areachart"></i>4.4k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 18 分钟</a>
+			<a><i class="kirafont icon-areachart"></i>4.5k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 19 分钟</a>
 		</div>
 		<h1><span id="31-数据链路层的功能">3.1 数据链路层的功能</span></h1><h2><span id="311-为网络层提供服务">3.1.1 为网络层提供服务</span></h2><blockquote>
 <p>数据链路层不关心与物理层的实现，以及对物理层的作用。</p>
@@ -473,16 +473,26 @@ Rate = \frac{W_s\times L}{L+2R\times V}\\
 <p><code>为每个节点隔离来自同一信道上其他节点所传输的信号</code></p>
 <h2><span id="351-信道划分静态信道划分">3.5.1 信道划分（静态信道划分）</span></h2><p><strong>静态信道划分没有碰撞发生的风险</strong></p>
 <ol>
-<li>频分多路复用（FDM)<ol>
+<li><p>频分多路复用（FDM)</p>
+<ol>
 <li>频分多路复用的各用户占用不同的带宽资源（请注意，这里的 “带宽”是载波频率的域（单位：Hz）而不是数据的发送速率）</li>
+<li>子信道的带宽总和必须不超过信道的总带宽</li>
 </ol>
 </li>
-<li>时分多路复用（TDM）<ol>
+<li><p>时分多路复用（TDM）</p>
+<ol>
 <li>将一个时间段分成若干时间片，轮流分配给多个信号使用</li>
+<li>总带宽应当不小于子信道的最大带宽</li>
 </ol>
 </li>
-<li>波分多路复用（WDM）</li>
-<li>码分多路复用（CDM）</li>
+<li><p>波分多路复用（WDM）<br>1. </p>
+</li>
+<li><p>码分多路复用（CDM）</p>
+<ol>
+<li>两个不同发送点的码片序列正交</li>
+<li>自身码片的内积，1表示这一位数据为1，-1表示这一位数据为0</li>
+</ol>
+</li>
 </ol>
 <h2><span id="352-随机访问协议介质访问控制">3.5.2 随机访问（协议）介质访问控制</span></h2><p><strong>动态划分信道，有碰撞的风险，需要设计检测碰撞策略来避免&#x2F;解除碰撞</strong></p>
 <h3><span id="aloha协议">ALOHA协议</span></h3><ol>
@@ -518,7 +528,7 @@ Rate = \frac{W_s\times L}{L+2R\times V}\\
 </ol>
 </li>
 </ol>
-<h3><span id="csmax2fcd协议">CSMA&#x2F;CD协议</span></h3><p><strong>“先听后发，边听边发，冲突停发，随机重发”</strong></p>
+<h3><span id="csmax2fcd协议冲突检测">CSMA&#x2F;CD协议|冲突检测</span></h3><p><strong>“先听后发，边听边发，冲突停发，随机重发”</strong></p>
 <p><strong>争议期（也称争用期）：信号最远两个端点之间往返传输的时间, 即两次单向传播时延</strong> </p>
 <blockquote>
 <p>这个定义也不是正确的</p>
@@ -526,17 +536,19 @@ Rate = \frac{W_s\times L}{L+2R\times V}\\
 <p><strong>最短帧长计算</strong></p>
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub><mo>=</mo><msub><mi>d</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>×</mo><mi>V</mi><mo>×</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">L_{min}=d_{max}\times V\times 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>
 
+<p>$L_{min}&#x3D;d_{max}\times V\times 2$</p>
 <p>L是帧长， d是物理链路上的传播时延， V是bit速率</p>
 <blockquote>
 <p>最短帧长是考试经常要考到的计算</p>
 </blockquote>
 <p><strong>极限最短帧长为64B</strong></p>
 <p><strong>最长帧长为1518B(1500B数据+18B头部)</strong></p>
+<p>CSMA&#x2F;CA冲突避免</p>
 <h2><span id="353-轮询访问令牌传递协议">3.5.3 轮询访问：令牌传递协议</span></h2><ol>
 <li>等待令牌</li>
 <li>接收令牌&amp;&amp;发送数据（通过接收到的令牌的数据块封装数据帧）&amp;&amp;重新生成令牌，发给下一个可以使用信道的结点</li>
 <li>最后发回到发送方检测是否出现差错。</li>
-<li>理论上不会发生碰撞或冲突，可以承担较大的网络负载</li>
+<li>理论上不会发生碰撞或冲突，<strong>可以承担较大的网络负载</strong></li>
 </ol>
 <h1><span id="36-局域网">3.6 局域网</span></h1><h2><span id="361-局域网的基本概念和体系结构">3.6.1 局域网的基本概念和体系结构</span></h2><h3><span id="mac地址">MAC地址</span></h3><h3><span id="物理拓扑">物理拓扑</span></h3><p>❖总线(bus):  </p>
 <ul>
