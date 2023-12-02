@@ -299,21 +299,30 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2023年11月28日</a>
-			<a><i class="kirafont icon-areachart"></i>113 字</a>
+			<a><i class="kirafont icon-areachart"></i>290 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
 		<h1><span id="工作计划">工作计划</span></h1><blockquote>
 <p>Sparse Evolution Attack直接用到排名攻击直接改个攻击是否成功评估函数是不行的</p>
 </blockquote>
 <ul>
-<li>更改选择和生成初始种群的策略（突变方法不变）</li>
-<li>适应度函数参考MLDE的，能成功几个是几个</li>
-<li>数据集整理函数以及实验基本框架（记录实验数据之类的）</li>
+<li><del>更改选择和生成初始种群的策略（突变方法不变）</del></li>
+<li><del>适应度函数参考MLDE的，能成功几个是几个</del></li>
+<li><del>数据集整理函数以及实验基本框架（记录实验数据之类的）</del></li>
 </ul>
 <hr>
 <ul>
-<li>扰动量过于大了，投影到L2 50的范围就会失效</li>
+<li><del>扰动量过于大了，投影到L2 50的范围就会失效</del></li>
 </ul>
+<hr>
+<ul>
+<li>通过更改适应度评估函数，现在在200次查询的成功率达到了27&#x2F;500的大小</li>
+<li>计划先慢慢提高查询次数上限看是否有明显提升，如果没有，很可能方法是无效的</li>
+<li>更改klh学长的实验代码框架，获取对照数据</li>
+</ul>
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">fitness_eval</span>(<span class="hljs-params">model, <span class="hljs-built_in">input</span>, image, target_top</span>):<br>    <span class="hljs-comment"># 适应度评估</span><br>    clip_input = clip_perturbation(image, <span class="hljs-built_in">input</span>, <span class="hljs-number">50.</span>)<br>    outputs = model(clip_input)<br>    <br>    ranking = torch.argsort(outputs, descending=<span class="hljs-literal">True</span>).cuda()<br>    top_class = <span class="hljs-built_in">set</span>(ranking[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>:<span class="hljs-number">3</span>].tolist())<br>    ft = torch.<span class="hljs-built_in">sum</span>(ranking[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>:<span class="hljs-number">3</span>]==target_top)<br>    target_top = <span class="hljs-built_in">set</span>(target_top.tolist())<br>    fitness = <span class="hljs-built_in">len</span>(top_class&amp;target_top) <br>    <span class="hljs-keyword">return</span> fitness<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">is_adversarial_rank1</span>(<span class="hljs-params">model, <span class="hljs-built_in">input</span>, target_top</span>):<br>    <span class="hljs-comment"># 判断首3位rank1攻击是否成功</span><br><br>    outputs = model(<span class="hljs-built_in">input</span>)<br>    <br>    ranking = torch.argsort(outputs, descending=<span class="hljs-literal">True</span>).cuda()<br>    top_class = <span class="hljs-built_in">set</span>(ranking[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>:<span class="hljs-number">3</span>].tolist())<br>    target_top = <span class="hljs-built_in">set</span>(target_top.tolist())<br>    is_adv = top_class==target_top<br>    <span class="hljs-keyword">return</span> is_adv<br></code></pre></td></tr></table></figure>
+
 
 	</article>
 
